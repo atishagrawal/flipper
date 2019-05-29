@@ -2,10 +2,10 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "enableIvy": true,
-    "allowEmptyCodegenFiles": true,
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "baseUrl": "",
+    "target":"es2015",
     "types": []
   },
   "exclude": [
