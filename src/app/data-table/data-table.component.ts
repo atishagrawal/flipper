@@ -7,7 +7,8 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import {MatColumnDef, MatPaginator, MatTable} from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatColumnDef, MatTable } from '@angular/material/table';
 import {PaginatedDataTableSource} from './data/paginated-data-table-source';
 import { SharedModel, SharedModelService } from '../shared-model/shared-model-service';
 import { Observable } from 'rxjs/internal/Observable';

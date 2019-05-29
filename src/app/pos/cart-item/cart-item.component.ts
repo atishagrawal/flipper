@@ -10,7 +10,8 @@ import {
   animate
 } from "@angular/animations";
 import { OrderItems } from "../cart/order_items";
-import { MatTableDataSource, MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material";
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+import { MatTableDataSource } from "@angular/material/table";
 import { Customer } from "../../customers/customer";
 import { ApiPosService } from '../api/api.service';
 import { Orders } from '../../orders/orders';

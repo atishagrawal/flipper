@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { SharedModelService } from '../../shared-model/shared-model-service';
 import { UrlAwarePaginator } from '../../common/pagination/url-aware-paginator.service';
 import { Modal } from '../../common/core/ui/dialogs/modal.service';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import {CustomizeInvoice} from './customize-invoice';
 import { ApiCustomizeInvoiceService } from './api-customize-invoice.service';
 import { Router } from '@angular/router';

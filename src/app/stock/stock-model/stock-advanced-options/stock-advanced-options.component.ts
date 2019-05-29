@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { Stock } from '../../api/stock';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';

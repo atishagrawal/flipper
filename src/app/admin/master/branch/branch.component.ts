@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, Input, ChangeDetectorRef, Inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Branch } from './api/branch';
 import { Details } from '../../../details/details';
 import { SelectionModel } from '@angular/cdk/collections';

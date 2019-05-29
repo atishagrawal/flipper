@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Reason } from '../api/reason';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Toast } from '../../../common/core/ui/toast.service';
 import { finalize } from 'rxjs/operators';
 import { ApiReasonService } from '../api/api.service';

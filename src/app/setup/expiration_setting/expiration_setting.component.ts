@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { ExpirationSetting } from './api/expiration_setting';
 import { ApiExpirationSettingService } from './api/api.service';
 import { UrlAwarePaginator } from '../../common/pagination/url-aware-paginator.service';

@@ -1,4 +1,5 @@
-import {MatPaginator, MatSort} from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { UrlAwarePaginator } from '../../common/pagination/url-aware-paginator.service';
 
 export interface DataTableSourceConfig<T> {

@@ -1,5 +1,5 @@
 import {Component, Inject, ViewEncapsulation, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { finalize } from 'rxjs/operators';
 import { Category } from '../api/category';

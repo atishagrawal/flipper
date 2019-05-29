@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import {finalize } from 'rxjs/operators';
 import { PaginatedDataTableSource } from '../../data-table/data/paginated-data-table-source';
 import { SharedModelService } from '../../shared-model/shared-model-service';

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Customer } from '../customer';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { finalize } from 'rxjs/operators';
 import { CustomerService } from '../customer.service';
 import { Toast } from '../../common/core/ui/toast.service';

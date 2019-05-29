@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { PaginatedDataTableSource } from '../../../data-table/data/paginated-data-table-source';
 import { UrlAwarePaginator } from '../../../common/pagination/url-aware-paginator.service';
 import { Modal } from '../../../common/core/ui/dialogs/modal.service';

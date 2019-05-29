@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Input, ChangeDetectorRef } from '@angular/core';
 import {BehaviorSubject } from 'rxjs';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { UrlAwarePaginator } from '../../common/pagination/url-aware-paginator.service';
 import { PaginatedDataTableSource } from '../../data-table/data/paginated-data-table-source';
 import { StockMovements } from '../api/stock';

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { MatSort, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { PaginatedDataTableSource } from '../../../../data-table/data/paginated-data-table-source';
 import { Reason } from '../../../../setup/reasons/api/reason';
 import { BehaviorSubject } from 'rxjs';

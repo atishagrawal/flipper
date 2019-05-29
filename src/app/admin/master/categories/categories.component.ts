@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild,ViewEncapsulation, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { ApiCategoryService } from './api/api.service';
-import {MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { Category } from './api/category';
 import { UrlAwarePaginator } from '../../../common/pagination/url-aware-paginator.service';
 import { PaginatedDataTableSource } from '../../../data-table/data/paginated-data-table-source';

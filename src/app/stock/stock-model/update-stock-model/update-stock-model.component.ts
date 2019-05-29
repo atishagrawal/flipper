@@ -10,7 +10,7 @@ import { MasterModelService } from '../../../admin/master/master-model.service';
 import { SetUp } from '../../../setup/setup';
 import { SetUpModelService } from '../../../setup/setup-model.service';
 import { Reason } from '../../../setup/reasons/api/reason';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Toast } from '../../../common/core/ui/toast.service';
 import { SharedModelService } from '../../../shared-model/shared-model-service';
 import { Modal } from '../../../common/core/ui/dialogs/modal.service';

@@ -1,6 +1,6 @@
 import { OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 
 export class BaseDialog implements OnDestroy {
     public loading = new BehaviorSubject(false);

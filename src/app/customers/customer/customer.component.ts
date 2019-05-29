@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../customer';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { PaginatedDataTableSource } from '../../data-table/data/paginated-data-table-source';
 import { BehaviorSubject } from 'rxjs';
 import { UrlAwarePaginator } from '../../common/pagination/url-aware-paginator.service';

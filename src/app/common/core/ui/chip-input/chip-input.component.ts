@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, AfterViewInit } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { ControlValueAccessor, FormArray, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 

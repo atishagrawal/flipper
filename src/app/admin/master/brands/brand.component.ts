@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild,ViewEncapsulation, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import {MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { UrlAwarePaginator } from '../../../common/pagination/url-aware-paginator.service';
 import { PaginatedDataTableSource } from '../../../data-table/data/paginated-data-table-source';
 import { ConfirmModalComponent } from '../../../common/core/ui/confirm-modal/confirm-modal.component';
@@ -20,7 +20,8 @@ import { GlobalVariables } from '../../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class BrandComponent implements   OnInit,OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  //TODO: added { static: true } in @viewChild I do not know if this will impact our app.
+  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
   @Input() public enableSelectButton:boolean=false;
   @Input() public selectedId:number=0;
 

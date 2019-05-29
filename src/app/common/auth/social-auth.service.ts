@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { RequestExtraCredentialsModalComponent } from './request-extra-credentials-modal/request-extra-credentials-modal.component';
 import { CurrentUser } from './current-user';
 import { Settings } from '../core/config/settings.service';

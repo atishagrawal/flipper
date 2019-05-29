@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { UrlAwarePaginator } from '../../../common/pagination/url-aware-paginator.service';
 import { Orders } from '../../orders';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { PaginatedDataTableSource } from '../../../data-table/data/paginated-data-table-source';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Business } from '../../../business/api/business';

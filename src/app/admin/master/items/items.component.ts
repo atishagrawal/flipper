@@ -9,7 +9,7 @@ import { ApiItemService } from "./api/api.service";
 import { DetailsService } from "../../../details/details.service";
 import { Router } from '@angular/router';
 import { UrlAwarePaginator } from '../../../common/pagination/url-aware-paginator.service';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { PaginatedDataTableSource } from '../../../data-table/data/paginated-data-table-source';
 import { Item } from './api/item';
 import { Modal } from '../../../common/core/ui/dialogs/modal.service';

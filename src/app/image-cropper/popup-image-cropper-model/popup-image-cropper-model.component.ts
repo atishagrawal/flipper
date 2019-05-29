@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { ImageCropperComponent } from '../component/image-cropper.component';
 import { ImageCroppedEvent } from '../interfaces/image-cropped-event.interface';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface ImageModalData {
   title?: string;
 }

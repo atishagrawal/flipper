@@ -17,7 +17,7 @@ import { YLocalStorage } from "../../../classes/local-storage";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "../../../core/http/http.module";
 import { CommonModule } from "@angular/common";
-import { MatSnackBarModule } from "@angular/material";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NgxModelModule } from "ngx-model";
 
 //level up testing

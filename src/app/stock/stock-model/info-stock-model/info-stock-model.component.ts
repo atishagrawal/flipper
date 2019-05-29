@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Details } from '../../../details/details';
 import { Observable } from 'rxjs';
 import { DetailsService } from '../../../details/details.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Stock } from '../../api/stock';
 import { UpdateStockModelComponent } from '../update-stock-model/update-stock-model.component';
 @Component({

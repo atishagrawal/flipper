@@ -10,7 +10,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { DataTableModule } from '../data-table/data-table/data-table.module';
 import { SelectCustomerModelComponent } from './manage-customer/select-customer-model/select-customer-model.component';
 import { CustomersComponent } from './customer/customer.component';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SetupModule } from '../setup/setup.module';
 
 @NgModule({

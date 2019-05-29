@@ -11,7 +11,7 @@ import { PosModelService } from "../pos-model.service";
 import { OrderItemsModelService } from "../cart/order-item-model.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ApiPosService } from '../api/api.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { OrderModelService } from '../../orders/order-model.service';
 import { StockModelService } from '../../stock/stock-model.service';
 import { MasterModelService } from '../../admin/master/master-model.service';

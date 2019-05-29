@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpirationSetting } from '../api/expiration_setting';
 import { BehaviorSubject } from 'rxjs';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Toast } from '../../../common/core/ui/toast.service';
 import { finalize } from 'rxjs/operators';
 import { ApiExpirationSettingService } from '../api/api.service';

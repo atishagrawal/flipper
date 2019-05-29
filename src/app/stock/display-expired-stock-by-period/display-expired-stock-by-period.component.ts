@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation, Input } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UrlAwarePaginator } from '../../common/pagination/url-aware-paginator.service';
 import { ApiStockService } from '../api/api.service';

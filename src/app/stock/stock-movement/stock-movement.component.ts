@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Stock, StockMovements } from '../api/stock';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 
 import { DetailsService } from '../../details/details.service';
 import { UrlAwarePaginator } from '../../common/pagination/url-aware-paginator.service';

@@ -15,7 +15,7 @@ import { Brand } from '../../brands/api/brand';
 import { TAXRATE } from '../../../../setup/tax-rates/api/tax-rate';
 import { SetUp } from '../../../../setup/setup';
 import { SetUpModelService } from '../../../../setup/setup-model.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CustomerType } from '../../../../setup/customerType/api/CustomerType';
 import { CustomerTypePrices } from '../../../../setup/customerType/api/CustomerTypePrices';
 import { Item } from '../../items/api/item';

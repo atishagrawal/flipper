@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Master } from '../../master';
 import { SetUp } from '../../../../setup/setup';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { SetUpModelService } from '../../../../setup/setup-model.service';
 import { MasterModelService } from '../../master-model.service';
 import { FormArray, FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';

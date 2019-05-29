@@ -1,4 +1,4 @@
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { Component, Inject } from '@angular/core';
 @Component({
   selector: 'bottom-sheet-of-stock',

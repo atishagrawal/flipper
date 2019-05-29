@@ -1,5 +1,5 @@
 import { SortColumn } from './pos-category-state-model';
-import { SortDirection } from '@angular/material';
+import { SortDirection } from '@angular/material/sort';
 import { PosStockExpiredState } from './pos-stock-expired-state-model';
 
 

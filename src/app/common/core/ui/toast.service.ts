@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Settings } from '../config/settings.service';
 import { Translations } from '../translations/translations.service';
 import { MatSnackBarRef } from '@angular/material/snack-bar/typings/snack-bar-ref';

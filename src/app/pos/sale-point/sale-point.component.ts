@@ -14,7 +14,7 @@ import { OrderModelService } from '../../orders/order-model.service';
 import { Orders } from '../../orders/orders';
 import { CurrentUser } from '../../common/auth/current-user';
 import { Business } from '../../business/api/business';
-import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { SetUpModelService } from '../../setup/setup-model.service';
 import { CustomerType } from '../../setup/customerType/api/CustomerType';
 import { SetUp } from '../../setup/setup';

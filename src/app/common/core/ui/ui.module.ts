@@ -8,9 +8,12 @@ import { CommonModule } from '@angular/common';
 import { CustomMenuComponent } from './custom-menu/custom-menu.component';
 import { EmptyRouteComponent } from './empty-route/empty-route.component';
 import { EnterKeybindDirective } from './enter-keybind.directive';
-import {
-    MatButtonModule, MatSnackBarModule, MatMenuModule, MatCheckboxModule, MatTooltipModule, MatIconModule, MatIconRegistry
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmModalModule } from './confirm-modal/confirm-modal.module';
 import { LoggedInUserWidgetComponent } from './logged-in-user-widget/logged-in-user-widget.component';
 import { MaterialNavbar } from './material-navbar/material-navbar.component';

@@ -6,7 +6,7 @@ import { Modal } from '../../common/core/ui/dialogs/modal.service';
 import { PaginatedDataTableSource } from '../../data-table/data/paginated-data-table-source';
 import { ConfirmModalComponent } from '../../common/core/ui/confirm-modal/confirm-modal.component';
 import { CrupdateCustomerTypeModalComponent } from './crupdate-customet-type-modal/crupdate-customer-type-modal.component';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { GlobalVariables } from '../../common/core/global-variables';
