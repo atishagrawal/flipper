@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {Settings} from "../config/settings.service";
+import {Injectable} from '@angular/core';
+import {Settings} from '../config/settings.service';
 
 @Injectable({
     providedIn: 'root',
@@ -13,14 +13,14 @@ export class LazyLoaderService {
      * Load js script and return promise resolved on script load event.
      */
     public loadScript(url, params: { id?: string, force?: boolean } = {}): Promise<any> {
-        //script is already loaded, return resolved promise
+        // script is already loaded, return resolved promise
         if (this.loadedScripts[url] === 'loaded' && !params.force) {
             return new Promise((resolve) => resolve());
 
-            //script has never been loaded before, load it, return promise and resolve on script load event
+            // script has never been loaded before, load it, return promise and resolve on script load event
         } else if (!this.loadedScripts[url]) {
             this.loadedScripts[url] = new Promise((resolve, reject) => {
-                let s: HTMLScriptElement = document.createElement('script');
+                const s: HTMLScriptElement = document.createElement('script');
                 s.async = true;
                 s.id = params.id || url.split('/').pop();
                 s.src = url.indexOf('//') > -1 ? url : this.config.getAssetUrl() + url;
@@ -35,7 +35,7 @@ export class LazyLoaderService {
 
             return this.loadedScripts[url];
 
-            //script is still loading, return existing promise
+            // script is still loading, return existing promise
         } else {
             return this.loadedScripts[url];
         }

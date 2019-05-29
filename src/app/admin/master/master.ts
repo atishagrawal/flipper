@@ -4,14 +4,14 @@ import { Brand } from './brands/api/brand';
 import { Branch } from './branch/api/branch';
 
 export class Master {
-  id?:number;
-  loading:boolean;
-  items:Item[]=[];
-  categories:Category[]=[];
-  brands:Brand[]=[];
-  branchs:Branch[]=[]
+  id?: number;
+  loading: boolean;
+  items: Item[] = [];
+  categories: Category[] = [];
+  brands: Brand[] = [];
+  branchs: Branch[] = [];
     constructor(params: Object = {}) {
-      for (let name in params) {
+      for (const name in params) {
           this[name] = params[name];
       }
     }

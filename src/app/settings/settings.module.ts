@@ -14,7 +14,7 @@ import { NgxModelModule } from 'ngx-model';
 import { PreviewInvoiceCustomizedComponent } from './customize-invoice/preview-invoice-customized/preview-invoice-customized.component';
 
 @NgModule({
-  declarations: [SettingsComponent, SetCompanyComponent, CustomizeInvoiceComponent, CrupdateInvoiceCustomizationComponent,PreviewInvoiceCustomizedComponent],
+  declarations: [SettingsComponent, SetCompanyComponent, CustomizeInvoiceComponent, CrupdateInvoiceCustomizationComponent, PreviewInvoiceCustomizedComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,
@@ -27,6 +27,6 @@ import { PreviewInvoiceCustomizedComponent } from './customize-invoice/preview-i
     NgxModelModule
   ],
   exports:
-  [SettingsComponent, SetCompanyComponent, CustomizeInvoiceComponent,PreviewInvoiceCustomizedComponent]
+  [SettingsComponent, SetCompanyComponent, CustomizeInvoiceComponent, PreviewInvoiceCustomizedComponent]
 })
 export class SettingsModule { }

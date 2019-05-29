@@ -11,7 +11,7 @@ import { NoEntryFoundMasterComponent } from './messages/no-entry-found/no-entry-
 import { DataTableModule } from '../data-table/data-table/data-table.module';
 
 @NgModule({
-  declarations: [InvoiceComponent,NoEntryFoundMasterComponent],
+  declarations: [InvoiceComponent, NoEntryFoundMasterComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -19,7 +19,7 @@ import { DataTableModule } from '../data-table/data-table/data-table.module';
     MaterialModule,
     FormsModule,
     UiModule,
-    InvoiceRoutingModule,DataTableModule
+    InvoiceRoutingModule, DataTableModule
   ],
   bootstrap: [InvoiceComponent]
 })

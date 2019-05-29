@@ -9,8 +9,8 @@ import { ApiReasonService } from '../api/api.service';
 
 export interface CrupdatReasonTypeModalData {
     reason?: Reason;
-    reasonType?:string;
-    reasonName?:string
+    reasonType?: string;
+    reasonName?: string;
 
 }
 
@@ -23,7 +23,7 @@ export interface CrupdatReasonTypeModalData {
 })
 export class CrupdateReasonModalComponent  implements OnInit {
   public dataForm: FormGroup;
-  public model:Reason;
+  public model: Reason;
   public errors: any = {};
   public loading = new BehaviorSubject(false);
   /**
@@ -34,12 +34,12 @@ export class CrupdateReasonModalComponent  implements OnInit {
    * CrupdateCategoryModalComponent Constructor.
    */
   stock_reason_status: string[];
-  reason:string='stock_movements';
-  reasonName:string='Reason';
+  reason = 'stock_movements';
+  reasonName = 'Reason';
   constructor(
       private dialogRef: MatDialogRef<CrupdateReasonModalComponent>,
       @Inject(MAT_DIALOG_DATA) public data: CrupdatReasonTypeModalData,
-      private api:ApiReasonService,
+      private api: ApiReasonService,
       private toast: Toast
   ) {
       this.resetState();
@@ -59,8 +59,8 @@ export class CrupdateReasonModalComponent  implements OnInit {
    * Create a new user or update existing one.
    */
   public confirm() {
-      if (!this.dataForm.valid) return;
-      let request, payload:Reason = this.getPayload();
+      if (!this.dataForm.valid) { return; }
+      let request, payload: Reason = this.getPayload();
 
       this.loading.next(true);
 
@@ -92,14 +92,14 @@ export class CrupdateReasonModalComponent  implements OnInit {
    * Get payload for updating or creating a user.
    */
   private getPayload() {
-      const payload:Reason ={
-        name:this.dataForm.value.name,
-        return_to_stock:this.dataForm.value.return_to_stock?this.dataForm.value.return_to_stock:0,
-        description:this.dataForm.value.description,
-        stock_movements_status:this.dataForm.value.stock_movements_status?this.dataForm.value.stock_movements_status:'add',
-        discount_value:this.dataForm.value.discount_value?this.dataForm.value.discount_value:0,
-        reason_type:this.dataForm.value.reason_type?this.dataForm.value.reason_type:this.data.reasonType,
-      }
+      const payload: Reason = {
+        name: this.dataForm.value.name,
+        return_to_stock: this.dataForm.value.return_to_stock ? this.dataForm.value.return_to_stock : 0,
+        description: this.dataForm.value.description,
+        stock_movements_status: this.dataForm.value.stock_movements_status ? this.dataForm.value.stock_movements_status : 'add',
+        discount_value: this.dataForm.value.discount_value ? this.dataForm.value.discount_value : 0,
+        reason_type: this.dataForm.value.reason_type ? this.dataForm.value.reason_type : this.data.reasonType,
+      };
       return payload;
   }
 
@@ -108,9 +108,9 @@ export class CrupdateReasonModalComponent  implements OnInit {
    */
   private resetState() {
       this.errors = {};
-      this.stock_reason_status = ['add','remove'];
-      this.reason=this.data.reasonType;
-      this.reasonName=this.data.reasonName;
+      this.stock_reason_status = ['add', 'remove'];
+      this.reason = this.data.reasonType;
+      this.reasonName = this.data.reasonName;
   }
 
   /**
@@ -119,9 +119,9 @@ export class CrupdateReasonModalComponent  implements OnInit {
   private hydrateModel(reason) {
     const numberPatern = '^[0-9.,]+$';
     this.dataForm = new FormGroup({
-      name: new FormControl(reason ? reason.name : "", [Validators.required]),
-      description: new FormControl(reason ? reason.description : ""),
-      reason_type: new FormControl(reason ? reason.reason_type :this.data.reasonType),
+      name: new FormControl(reason ? reason.name : '', [Validators.required]),
+      description: new FormControl(reason ? reason.description : ''),
+      reason_type: new FormControl(reason ? reason.reason_type : this.data.reasonType),
       return_to_stock: new FormControl(reason ? reason.return_to_stock : false),
       stock_movements_status: new FormControl(reason ? reason.stock_movements_status : 'add'),
       discount_value: new FormControl(reason ? reason.discount_value : 0.00, [Validators.required, Validators.pattern(numberPatern)])
@@ -135,24 +135,24 @@ export class CrupdateReasonModalComponent  implements OnInit {
       this.errors = response.messages || {};
   }
   get name() {
-    return this.dataForm.get("name");
+    return this.dataForm.get('name');
   }
 
   get description() {
-    return this.dataForm.get("description");
+    return this.dataForm.get('description');
   }
 
   get reason_type() {
-    return this.dataForm.get("reason_type");
+    return this.dataForm.get('reason_type');
   }
   get discount_value() {
-    return this.dataForm.get("discount_value");
+    return this.dataForm.get('discount_value');
   }
   get return_to_stock() {
-    return this.dataForm.get("return_to_stock");
+    return this.dataForm.get('return_to_stock');
   }
   get stock_movements_status() {
-    return this.dataForm.get("stock_movements_status");
+    return this.dataForm.get('stock_movements_status');
   }
 }
 

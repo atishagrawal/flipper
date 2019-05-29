@@ -21,10 +21,10 @@ export class CustomizeInvoiceComponent implements OnInit {
   @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<CustomizeInvoice>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,private router: Router,public shared:SharedModelService, public paginator: UrlAwarePaginator,private modal: Modal,private api:ApiCustomizeInvoiceService) { }
+  constructor(public v: GlobalVariables, private router: Router, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiCustomizeInvoiceService) { }
 
   ngOnInit() {
-    this.v.webTitle("Invoice Customization");
+    this.v.webTitle('Invoice Customization');
     this.dataSource = new PaginatedDataTableSource<CustomizeInvoice>({
       uri: 'customize-invoice',
       dataPaginator: this.paginator,
@@ -36,8 +36,8 @@ ngOnDestroy() {
   this.paginator.destroy();
 }
 
-newInvoiceCustomization(){
-  this.router.navigate(["/admin/settings/new-customize-invoice"]);
+newInvoiceCustomization() {
+  this.router.navigate(['/admin/settings/new-customize-invoice']);
 }
 /**
      * Delete currently selected users.
@@ -61,7 +61,7 @@ newInvoiceCustomization(){
           body:  'Are you sure you want to delete selected Customize Invoice(s)?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedCustomizeInvoice();
       });
   }

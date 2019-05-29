@@ -23,7 +23,7 @@ export class PopupImageCropperModelComponent implements OnInit {
   ngOnInit() {
   }
   public close() {
-    this.dialogRef.close(this.croppedImage?this.croppedImage:null);
+    this.dialogRef.close(this.croppedImage ? this.croppedImage : null);
 }
 
   fileChangeEvent(event: any): void {

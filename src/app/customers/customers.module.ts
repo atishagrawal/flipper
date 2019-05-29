@@ -27,8 +27,8 @@ import { SetupModule } from '../setup/setup.module';
     SetupModule
   ],
   declarations: [CustomersComponent, CrupdateCustomerModelComponent, SelectCustomerModelComponent],
-  exports: [CustomersComponent,CrupdateCustomerModelComponent,SelectCustomerModelComponent],
-  entryComponents: [CrupdateCustomerModelComponent,SelectCustomerModelComponent],
+  exports: [CustomersComponent, CrupdateCustomerModelComponent, SelectCustomerModelComponent],
+  entryComponents: [CrupdateCustomerModelComponent, SelectCustomerModelComponent],
   bootstrap: [CustomersComponent],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

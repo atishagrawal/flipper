@@ -10,10 +10,10 @@ export class SettingsComponent implements OnInit {
   leftColumnIsHidden = false;
   links: any[] = [
     {
-      menu:'Company/Business',icon:'assignment',path:'set-company',
+      menu: 'Company/Business', icon: 'assignment', path: 'set-company',
     },
     {
-      menu:'Invoices Customization',icon:'assignment',path:'customize-invoice',
+      menu: 'Invoices Customization', icon: 'assignment', path: 'customize-invoice',
     }
   ];
   constructor() { }

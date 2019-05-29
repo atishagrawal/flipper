@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderHeldComponent implements OnInit {
 
-  url='';
+  url = '';
   constructor() {
-    this.url='orders/hold/'+parseInt(localStorage.getItem('active_branch'));
+    this.url = 'orders/hold/' + parseInt(localStorage.getItem('active_branch'));
    }
 
   ngOnInit() {
-       this.url='orders/hold/'+parseInt(localStorage.getItem('active_branch'));
+       this.url = 'orders/hold/' + parseInt(localStorage.getItem('active_branch'));
 
   }
 }

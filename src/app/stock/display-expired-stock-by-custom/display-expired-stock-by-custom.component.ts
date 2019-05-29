@@ -24,9 +24,9 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
 })
 export class DisplayExpiredStockByCustomComponent implements OnInit {
 
-//entries
+// entries
 @ViewChild(MatSort) matSort: MatSort;
-public dataSource=new MatTableDataSource<StockExpired>([]);
+public dataSource = new MatTableDataSource<StockExpired>([]);
 public loading = new BehaviorSubject(false);
 searchForm: FormGroup;
 @Select(PosStockExpiredStates.loading) loading$: Observable<boolean>;
@@ -34,10 +34,10 @@ searchForm: FormGroup;
 @Select(PosStockExpiredStates.meta) meta$: Observable<any>;
 @Select(PosStockExpiredStates.entriesEmpty) entriesEmpty$: Observable<boolean>;
 
-displayedColumns = ['batch_no','sku', 'item', 'in_qty', 'out_qty','total_qty','expired_date','manufacture_date'];
+displayedColumns = ['batch_no', 'sku', 'item', 'in_qty', 'out_qty', 'total_qty', 'expired_date', 'manufacture_date'];
 
 selection = new SelectionModel<StockExpired>(true, []);
-constructor(private localStorage: LocalStorage,private store:Store,private api:ApiStockService,private modal: Modal) {}
+constructor(private localStorage: LocalStorage, private store: Store, private api: ApiStockService, private modal: Modal) {}
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -65,25 +65,25 @@ constructor(private localStorage: LocalStorage,private store:Store,private api:A
         this.loadingSearchForm();
         this.loadData();
 }
-loadData(){
-  this.localStorage.set('stockExpiredUrl',"expired_item/custom/"+parseInt(localStorage.getItem('active_branch'))+'/'+this.searchForm.value.from+'/'+this.searchForm.value.to);
+loadData() {
+  this.localStorage.set('stockExpiredUrl', 'expired_item/custom/' + parseInt(localStorage.getItem('active_branch')) + '/' + this.searchForm.value.from + '/' + this.searchForm.value.to);
   this.store.dispatch(new LoadStockExpiredEntries());
 
 }
-loadingSearchForm(){
+loadingSearchForm() {
   this.searchForm = new FormGroup({
     from: new FormControl(new Date(), [Validators.required]),
-    to:new FormControl(new Date(), [Validators.required])
+    to: new FormControl(new Date(), [Validators.required])
   });
 }
 get from() {
-  return this.searchForm.get("from");
+  return this.searchForm.get('from');
 }
 get to() {
-  return this.searchForm.get("to");
+  return this.searchForm.get('to');
 }
 
-viewExpiredBySearch(){
+viewExpiredBySearch() {
   if (this.searchForm.valid) {
    this.loadData();
 
@@ -92,7 +92,7 @@ viewExpiredBySearch(){
 
 
 public deleteSelectedStocks() {
-  const ids = this.selection.selected.map(item=>item.id);
+  const ids = this.selection.selected.map(item => item.id);
   this.loading.next(true);
   this.api.deleteMultipleStockMovement(ids).pipe(finalize(() => this.loading.next(false))).subscribe(() => {
       this.selection.clear();
@@ -106,7 +106,7 @@ this.modal.show(ConfirmModalComponent, {
     body:  'Are you sure you want to delete selected stock expired?',
     ok:    'Delete'
 }).afterClosed().subscribe(confirmed => {
-    if ( ! confirmed) return;
+    if ( ! confirmed) { return; }
     this.deleteSelectedStocks();
 });
 }

@@ -13,16 +13,16 @@ export class SalesComponent implements OnInit {
 
   links: any[] = [
     {
-      menu:'Invoices',icon:'assignment',path:'invoices',
+      menu: 'Invoices', icon: 'assignment', path: 'invoices',
     },
     {
-      menu:'Customers',icon:'assignment',path:'customers',
+      menu: 'Customers', icon: 'assignment', path: 'customers',
     }
   ];
 
-  toggled=false;
-  isMobile=false;
-  leftColumnIsHidden=false;
+  toggled = false;
+  isMobile = false;
+  leftColumnIsHidden = false;
   constructor(private localStorage: LocalStorage) {
         this.localStorage.set('sales-path', 'invoices');
   }

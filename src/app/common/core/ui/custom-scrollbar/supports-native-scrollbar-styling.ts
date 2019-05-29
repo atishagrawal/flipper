@@ -16,7 +16,7 @@ export const SUPPORTS_NATIVE_SCROLLBAR_STYLING = new InjectionToken<boolean>('SU
         // Apply
         test.appendChild(style);
         document.body.appendChild(test);
-        //document.body.appendChild(style);
+        // document.body.appendChild(style);
 
         // If css scrollbar is supported, than the scrollWidth should not be impacted
         const result = test.scrollWidth == 40;

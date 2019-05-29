@@ -25,12 +25,12 @@ export class NoBackendErrorHandler extends ErrorHandler {
      * Handle specified error.
      */
     public handleError(err: any, options?: RavenOptions): void {
-        if ( ! err) return;
+        if ( ! err) { return; }
 
         super.handleError(err);
 
         // sentry did not install properly
-        if ( ! this.installSentry()) return;
+        if ( ! this.installSentry()) { return; }
 
         Raven.captureException(err.originalError || err, options);
     }
@@ -39,10 +39,10 @@ export class NoBackendErrorHandler extends ErrorHandler {
      * Install sentry error logger.
      */
     protected installSentry(): boolean {
-        if (this.installed) return true;
+        if (this.installed) { return true; }
 
         // no sentry public key is set
-        if ( ! this.settings.has('logging.sentry_public')) return false;
+        if ( ! this.settings.has('logging.sentry_public')) { return false; }
 
         // install
         Raven.config(this.settings.get('logging.sentry_public'), {

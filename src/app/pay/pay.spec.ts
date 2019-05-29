@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PayModelService } from './pay-model.service';
 import { PayComponent } from './pay/pay.component';
@@ -7,13 +7,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SalePointComponent } from '../pos/sale-point/sale-point.component';
 
 
-describe("PayComponent", () => {
+describe('PayComponent', () => {
     let component: PayComponent;
     let fixture: ComponentFixture<PayComponent>;
-    let uniqueArray = ["A", "B"];
+    const uniqueArray = ['A', 'B'];
 
-    const payModelService = jasmine.createSpyObj("PayModelService", [
-        "update"
+    const payModelService = jasmine.createSpyObj('PayModelService', [
+        'update'
     ]);
 
     beforeEach(async(() => {
@@ -31,7 +31,7 @@ describe("PayComponent", () => {
         component = fixture.componentInstance;
         fixture.detectChanges(); // ?
     });
-    it("should create", () => {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 

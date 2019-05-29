@@ -19,19 +19,19 @@ import { GlobalVariables } from '../../common/core/global-variables';
 
 export class ExpiredStockComponent implements OnInit {
   panelOpenState = false;
-  triggerState=false;
+  triggerState = false;
   setup$: Observable<SetUp>;
-  expirationSetting:ExpirationSetting[];
-  entries:any[]=[];
+  expirationSetting: ExpirationSetting[];
+  entries: any[] = [];
   public loading = new BehaviorSubject(false);
-  expandedId=null;
+  expandedId = null;
 @Select(PosStockExpiredStates.entries) entries$: Observable<StockExpired>;
-  all_url='';
-  branch_id=0;
+  all_url = '';
+  branch_id = 0;
 
-  constructor(public v: GlobalVariables,private localStorage: LocalStorage,private store:Store,private api:ApiExpiredItemService) {
-    this.branch_id=parseInt(this.localStorage.get('active_branch'));
-    this.all_url="expired_item/all/"+parseInt(this.localStorage.get('active_branch'));
+  constructor(public v: GlobalVariables, private localStorage: LocalStorage, private store: Store, private api: ApiExpiredItemService) {
+    this.branch_id = parseInt(this.localStorage.get('active_branch'));
+    this.all_url = 'expired_item/all/' + parseInt(this.localStorage.get('active_branch'));
    }
 
   ngOnInit() {
@@ -39,28 +39,28 @@ export class ExpiredStockComponent implements OnInit {
     this.viewExpiredByPeriod();
   }
 
-  viewExpiredByPeriod(){
+  viewExpiredByPeriod() {
     this.loading.next(true);
-        this.api.getExpPeriod().subscribe(res=>{
-          if(res.data){
+        this.api.getExpPeriod().subscribe(res => {
+          if (res.data) {
             this.loading.next(false);
-            this.expirationSetting=res.data;
-          }else{
-            this.expirationSetting=[];
+            this.expirationSetting = res.data;
+          } else {
+            this.expirationSetting = [];
           }
       });
   }
 
-  expandingOpened(element){
-    const url="expired_item/period/"+this.branch_id+"/"+element.period_value+"/"+element.period;
-    this.localStorage.set('stockExpiredUrl',url);
-    //if(url!=this.localStorage.get('stockExpiredUrl')){
-        this.expandedId=element.id;
+  expandingOpened(element) {
+    const url = 'expired_item/period/' + this.branch_id + '/' + element.period_value + '/' + element.period;
+    this.localStorage.set('stockExpiredUrl', url);
+    // if(url!=this.localStorage.get('stockExpiredUrl')){
+        this.expandedId = element.id;
         this.store.dispatch(new LoadStockExpiredEntries());
    // }
 
   }
-  expandingClosed(){
+  expandingClosed() {
   //  alert('closed');
   }
 }

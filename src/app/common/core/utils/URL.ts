@@ -1,9 +1,9 @@
-import { Injector, Injectable } from "@angular/core";
-import { Settings } from "../config/settings.service";
-import { AppConfig } from "../../../../environments/environment";
+import { Injector, Injectable } from '@angular/core';
+import { Settings } from '../config/settings.service';
+import { AppConfig } from '../../../../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class URL {
   settings: Settings;
@@ -12,15 +12,15 @@ export class URL {
   }
   defineAppUrl(): string {
     let url;
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
-      return (url = AppConfig.url + "secure/bootstrap-data");
+    if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
+      return (url = AppConfig.url + 'secure/bootstrap-data');
     } else {
-      return (url = this.settings.getBaseUrl() + "secure/bootstrap-data");
+      return (url = this.settings.getBaseUrl() + 'secure/bootstrap-data');
     }
   }
   defineAppUrlStock(): string {
     let url;
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
+    if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
       return (url = AppConfig.url);
     } else {
       return (url = this.settings.getBaseUrl());

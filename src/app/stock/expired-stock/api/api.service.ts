@@ -19,21 +19,21 @@ export interface ExpirationSettingEntriesPaginationResponse extends PaginationRe
     providedIn: 'root'
 })
 export class ApiExpiredItemService {
-    constructor(private http: AppHttpClient,private localStorage: LocalStorage) {}
+    constructor(private http: AppHttpClient, private localStorage: LocalStorage) {}
 
 
   public get(params: StockApiIndexParams = {}): Observable<StockEntriesPaginationResponse> {
-      return this.http.get(this.localStorage.get('stockExpiredUrl'),params);
+      return this.http.get(this.localStorage.get('stockExpiredUrl'), params);
   }
   public getExpPeriod(): Observable<ExpirationSettingEntriesPaginationResponse> {
     return this.http.get('expiration_setting');
 }
-  expiration_setting
-  public getBySearchExpiredItems(branch_id:number,from:Date,to:Date): BackendResponse<{ expiredStock: StockExpired[] }> {
-    return this.http.get(API_ROUTES_EXPITEDITEM.EXPITEDITEM_SEARCHED+'/'+branch_id+'/'+from+'/'+to);
+  expiration_setting;
+  public getBySearchExpiredItems(branch_id: number, from: Date, to: Date): BackendResponse<{ expiredStock: StockExpired[] }> {
+    return this.http.get(API_ROUTES_EXPITEDITEM.EXPITEDITEM_SEARCHED + '/' + branch_id + '/' + from + '/' + to);
 }
-public getByPeriodExpiredItems(branch_id:number,num:number=0,type:string='today'): BackendResponse<{ expiredStock: StockExpired[] }> {
-  return this.http.get(API_ROUTES_EXPITEDITEM.EXPITEDITEM_PERIODICAL+'/'+branch_id+'/'+num+'/'+type);
+public getByPeriodExpiredItems(branch_id: number, num: number= 0, type: string= 'today'): BackendResponse<{ expiredStock: StockExpired[] }> {
+  return this.http.get(API_ROUTES_EXPITEDITEM.EXPITEDITEM_PERIODICAL + '/' + branch_id + '/' + num + '/' + type);
 }
 
 

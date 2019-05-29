@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Observable, of as observableOf } from "rxjs";
-import { share } from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
-import { HttpErrorHandler } from "./errors/http-error-handler.service";
-import { AppHttpClient } from "./app-http-client.service";
-import { Settings } from "../config/settings.service";
+import { Injectable } from '@angular/core';
+import { Observable, of as observableOf } from 'rxjs';
+import { share } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { HttpErrorHandler } from './errors/http-error-handler.service';
+import { AppHttpClient } from './app-http-client.service';
+import { Settings } from '../config/settings.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class HttpCacheClient extends AppHttpClient {
   /**

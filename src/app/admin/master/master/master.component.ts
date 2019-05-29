@@ -16,24 +16,24 @@ export class MasterComponent implements OnInit, OnDestroy {
 
 links: any[] = [
   {
-    menu:'Categories',icon:'assignment',path:'category',
+    menu: 'Categories', icon: 'assignment', path: 'category',
   },
   {
-    menu:'Brands',icon:'assignment',path:'brand',
+    menu: 'Brands', icon: 'assignment', path: 'brand',
   },
   {
-    menu:'Products',icon:'assignment',path:'item',
+    menu: 'Products', icon: 'assignment', path: 'item',
   }
 
 ];
-toggled=false;
+toggled = false;
 
 @Select(MasterState.loading) loading$: Observable<boolean>;
-isMobile=false;
-leftColumnIsHidden=false;
+isMobile = false;
+leftColumnIsHidden = false;
 subscription: Observable<Details>;
 details$: Observable<Details>;
-constructor(private route: ActivatedRoute,private detailsService:DetailsService) {
+constructor(private route: ActivatedRoute, private detailsService: DetailsService) {
  }
 
   ngOnInit() {
@@ -42,15 +42,15 @@ constructor(private route: ActivatedRoute,private detailsService:DetailsService)
   }
 
   ngOnDestroy() {
-    //this.subscription.next();
+    // this.subscription.next();
   }
-  clickedMenu(menu){
-    localStorage.setItem('master-menu',menu);
+  clickedMenu(menu) {
+    localStorage.setItem('master-menu', menu);
   }
-  getMenuHighlighted(){
-    if(localStorage.getItem('master-menu')==null){
+  getMenuHighlighted() {
+    if (localStorage.getItem('master-menu') == null) {
       return 'Products';
-    }else{
+    } else {
       return localStorage.getItem('master-menu');
     }
 

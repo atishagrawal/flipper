@@ -4,18 +4,18 @@ import { Item } from '../../../admin/master/items/api/item';
 
 
 export class StockExpired {
-  id?:number;
-  stock?:Stock;
-  item?:Item;
-  branch?:Branch;
-  batch_no?:string;
-  expired_date?:Date;
-  in_qty?:number;
-  out_qty?:number;
-  total_qty?:number;
-  manufacture_date?:Date;
+  id?: number;
+  stock?: Stock;
+  item?: Item;
+  branch?: Branch;
+  batch_no?: string;
+  expired_date?: Date;
+  in_qty?: number;
+  out_qty?: number;
+  total_qty?: number;
+  manufacture_date?: Date;
     constructor(params: Object = {}) {
-      for (let name in params) {
+      for (const name in params) {
           this[name] = params[name];
       }
     }

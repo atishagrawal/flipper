@@ -13,7 +13,7 @@ import { PrintOutModule } from '../print-out/print-out.module';
   declarations: [PayComponent],
   exports: [PayComponent],
   imports: [
-    CommonModule,MaterialModule,
+    CommonModule, MaterialModule,
     UiModule,
     PayRoutingModule,
     PrintOutModule,

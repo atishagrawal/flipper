@@ -28,7 +28,7 @@ import { SelectCustomerModelComponent } from '../../../../customers/manage-custo
   styleUrls: ['../../../sale-point/sale-point.component.scss'],
 })
 export class PosProductsComponent implements OnInit {
-  sub: any
+  sub: any;
   id: any;
   centered = false;
   disabled = false;
@@ -37,8 +37,8 @@ export class PosProductsComponent implements OnInit {
   radius: number;
   color: string;
   warn = 'warn';
-  accent='accent';
-  primary='primary';
+  accent = 'accent';
+  primary = 'primary';
   mode = 'determinate';
 
   business: Business;
@@ -53,11 +53,11 @@ export class PosProductsComponent implements OnInit {
 
   @Select(PosOrderState.selectedOrders) current_order$: Observable<Orders>;
   @Select(PosOrderState.customerOrder) customer$: Observable<Customer>;
-  current_order:Orders=null;
-  selectedItem=null;
-  customer:Customer=null;
+  current_order: Orders = null;
+  selectedItem = null;
+  customer: Customer = null;
 
-  constructor( public dialog: MatDialog,private api: ApiPosService,private bottomSheet: MatBottomSheet,public currentUser: CurrentUser,private store:Store, private route:ActivatedRoute,private localStorage: LocalStorage) {}
+  constructor( public dialog: MatDialog, private api: ApiPosService, private bottomSheet: MatBottomSheet, public currentUser: CurrentUser, private store: Store, private route: ActivatedRoute, private localStorage: LocalStorage) {}
 
   ngOnInit() {
     if (this.currentUser.user) {
@@ -68,55 +68,55 @@ export class PosProductsComponent implements OnInit {
 
         this.store.dispatch(new CurrentOrder());
 
-        this.current_order$.subscribe(current=>{
-          if(current){
-            this.current_order=current as Orders;
-          }else{
-            this.current_order=null;
+        this.current_order$.subscribe(current => {
+          if (current) {
+            this.current_order = current as Orders;
+          } else {
+            this.current_order = null;
           }
         });
 
-      //pos-categoryId
-     this.store.dispatch(new OpenPosCategory(this.localStorage.get('pos-categoryId'),null));
+      // pos-categoryId
+     this.store.dispatch(new OpenPosCategory(this.localStorage.get('pos-categoryId'), null));
 
   }
-  openBottomSheet(stock_movemts,stock_name): any {
-    return this.bottomSheet.open(BottomSheetOverviewStock,{
-        data:{stock_movemts:stock_movemts,stock_name:stock_name}
+  openBottomSheet(stock_movemts, stock_name): any {
+    return this.bottomSheet.open(BottomSheetOverviewStock, {
+        data: {stock_movemts: stock_movemts, stock_name: stock_name}
     });
   }
 
   addItemToCart(stock: Stock) {
-    this.selectedItem=stock;
-    if(stock['stockMovmentsTransformable'].length > 1){
-        this.openBottomSheet(stock['stockMovmentsTransformable'],stock.item.item).afterDismissed().subscribe(cart_data => {
-          this.saveToCartWithOrder(cart_data,stock);
+    this.selectedItem = stock;
+    if (stock['stockMovmentsTransformable'].length > 1) {
+        this.openBottomSheet(stock['stockMovmentsTransformable'], stock.item.item).afterDismissed().subscribe(cart_data => {
+          this.saveToCartWithOrder(cart_data, stock);
         });
-    }else{
-      this.saveToCartWithOrder(stock['stockMovmentsTransformable'][0],stock);
+    } else {
+      this.saveToCartWithOrder(stock['stockMovmentsTransformable'][0], stock);
     }
   }
 
-  saveToCartWithOrder(cart,stock:Stock){
-    if (!this.business) return;
+  saveToCartWithOrder(cart, stock: Stock) {
+    if (!this.business) { return; }
 
     if (cart.total_qty <= 0) {
-      alert("Stock Quantity is unavailable");
+      alert('Stock Quantity is unavailable');
     } else {
-     const sale_price=stock.customer_price;
+     const sale_price = stock.customer_price;
       const cart_data: OrderItems = {
-        batch_no:cart.batch_no,
+        batch_no: cart.batch_no,
         note: null,
         reason_id: null,
-        discount_value:stock.customer_type.discount_value,
-        tax_rate_id: stock.tax_rate?stock.tax_rate.id:null,
-        sale_price_id: sale_price?sale_price.id:null,
-        order_id: this.current_order?this.current_order.id:null,
-        stock_id: stock?stock.stock_id:null,
+        discount_value: stock.customer_type.discount_value,
+        tax_rate_id: stock.tax_rate ? stock.tax_rate.id : null,
+        sale_price_id: sale_price ? sale_price.id : null,
+        order_id: this.current_order ? this.current_order.id : null,
+        stock_id: stock ? stock.stock_id : null,
         discount_reason_id: null,
-        refund_reason_id:null,
+        refund_reason_id: null,
         qty: 1,
-        action:'add'
+        action: 'add'
       };
 
       if (this.current_order) {
@@ -126,7 +126,7 @@ export class PosProductsComponent implements OnInit {
         branch_id: parseInt(localStorage.getItem('active_branch')),
         user_id: this.currentUser.get('id'),
         business_id: this.currentUser.get('business')[0].id,
-        customer_id:this.customer?this.customer.id:null,
+        customer_id: this.customer ? this.customer.id : null,
         cart_data: cart_data });
       }
     }
@@ -134,7 +134,7 @@ export class PosProductsComponent implements OnInit {
 updateOrder(params) {
   this.api.updateOrderItem(params).subscribe(
     res => {
-        if(res['status']){
+        if (res['status']) {
            this.store.dispatch(new CurrentOrder());
         }
     },
@@ -147,7 +147,7 @@ updateOrder(params) {
 createNewOrder(params) {
   this.api.createOrder(params).subscribe(
     res => {
-      if(res['order']){
+      if (res['order']) {
         this.store.dispatch(new CurrentOrder());
        }
     },
@@ -156,9 +156,9 @@ createNewOrder(params) {
     }
   );
 }
-  percentage(num,num1) {
-    let sum=Math.round(parseInt(num) *100)/parseInt(num1);
-  return isNaN(sum)?0:sum.toFixed(1);
+  percentage(num, num1) {
+    const sum = Math.round(parseInt(num) * 100) / parseInt(num1);
+  return isNaN(sum) ? 0 : sum.toFixed(1);
 }
 
 }

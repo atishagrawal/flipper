@@ -20,7 +20,7 @@ export interface CrupdatTaxRateModalData {
 })
 export class CrupdateTaxRateModalComponent implements OnInit {
     public dataForm: FormGroup;
-    public model:TAXRATE;
+    public model: TAXRATE;
     public errors: any = {};
     public loading = new BehaviorSubject(false);
     /**
@@ -34,7 +34,7 @@ export class CrupdateTaxRateModalComponent implements OnInit {
     constructor(
         private dialogRef: MatDialogRef<CrupdateTaxRateModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CrupdatTaxRateModalData,
-        private api:ApiTaxRateService,
+        private api: ApiTaxRateService,
         private toast: Toast
     ) {
         this.resetState();
@@ -55,8 +55,8 @@ export class CrupdateTaxRateModalComponent implements OnInit {
      * Create a new user or update existing one.
      */
     public confirm() {
-        if (!this.dataForm.valid) return;
-        let request, payload:TAXRATE = this.getPayload();
+        if (!this.dataForm.valid) { return; }
+        let request, payload: TAXRATE = this.getPayload();
 
         this.loading.next(true);
 
@@ -88,13 +88,13 @@ export class CrupdateTaxRateModalComponent implements OnInit {
      * Get payload for updating or creating a user.
      */
     private getPayload() {
-        const payload:TAXRATE ={
-          name:this.dataForm.value.name,
-          percentage:this.dataForm.value.percentage,
-          description:this.dataForm.value.description,
-          tax_code:this.dataForm.value.tax_code,
-          tax_type:this.dataForm.value.tax_type
-        }
+        const payload: TAXRATE = {
+          name: this.dataForm.value.name,
+          percentage: this.dataForm.value.percentage,
+          description: this.dataForm.value.description,
+          tax_code: this.dataForm.value.tax_code,
+          tax_type: this.dataForm.value.tax_type
+        };
         return payload;
     }
 
@@ -111,10 +111,10 @@ export class CrupdateTaxRateModalComponent implements OnInit {
     private hydrateModel(taxrate) {
       const numberPatern = '^[0-9.,]+$';
       this.dataForm = new FormGroup({
-        name: new FormControl(taxrate ? taxrate.name : "", [Validators.required]),
-        description: new FormControl(taxrate ? taxrate.description : ""),
-        tax_type: new FormControl(taxrate ? taxrate.tax_type :"Standard"),
-        tax_code: new FormControl(taxrate ? taxrate.tax_code : "0"),
+        name: new FormControl(taxrate ? taxrate.name : '', [Validators.required]),
+        description: new FormControl(taxrate ? taxrate.description : ''),
+        tax_type: new FormControl(taxrate ? taxrate.tax_type : 'Standard'),
+        tax_code: new FormControl(taxrate ? taxrate.tax_code : '0'),
         percentage: new FormControl(taxrate ? taxrate.percentage : 0.00, [Validators.required, Validators.pattern(numberPatern)])
       });
     }
@@ -127,20 +127,20 @@ export class CrupdateTaxRateModalComponent implements OnInit {
     }
       ///////////////////////////// TAXRATE
       get description() {
-        return this.dataForm.get("description");
+        return this.dataForm.get('description');
       }
       get name() {
-        return this.dataForm.get("name");
+        return this.dataForm.get('name');
       }
 
       get tax_type() {
-        return this.dataForm.get("tax_type");
+        return this.dataForm.get('tax_type');
       }
       get tax_code() {
-        return this.dataForm.get("tax_code");
+        return this.dataForm.get('tax_code');
       }
       get percentage() {
-        return this.dataForm.get("percentage");
+        return this.dataForm.get('percentage');
       }
 }
 

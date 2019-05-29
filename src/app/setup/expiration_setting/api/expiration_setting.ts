@@ -4,15 +4,15 @@ export class ExpirationSetting {
   is_active?: number;
   description?: string;
   period?: string;
-  period_value?:number;
-  color?:string;
-  receive_notification?:number;
-  business_id?:number;
+  period_value?: number;
+  color?: string;
+  receive_notification?: number;
+  business_id?: number;
   created_at?: any;
   updated_at?: any;
 
   constructor(params: Object = {}) {
-    for (let name in params) {
+    for (const name in params) {
       this[name] = params[name];
     }
   }

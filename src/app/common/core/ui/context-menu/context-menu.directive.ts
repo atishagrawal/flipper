@@ -26,7 +26,7 @@ export class ContextMenuDirective implements OnInit {
             e.preventDefault();
             e.stopPropagation();
 
-            if (this.disableContextMenu) return;
+            if (this.disableContextMenu) { return; }
 
             this.contextMenu.open(
                 this.getMenuComponent(),

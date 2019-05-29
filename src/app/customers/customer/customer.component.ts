@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../customer';
 import { MatSort } from '@angular/material/sort';
@@ -21,20 +21,20 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
 export class CustomersComponent implements OnInit {
 
   @ViewChild(MatSort) matSort: MatSort;
-  @Input() public enableSelectButton:boolean=false;
+  @Input() public enableSelectButton = false;
 
-  @Input() public hiddenCheckBox:boolean=false;
+  @Input() public hiddenCheckBox = false;
 
-  @Input() public selectedId:number=0;
+  @Input() public selectedId = 0;
 
   @Output() valueChange = new EventEmitter<Customer>();
 
   public dataSource: PaginatedDataTableSource<Customer>;
   public loading$ = new BehaviorSubject(false);
-  constructor(private localStorage: LocalStorage,public v: GlobalVariables,public paginator: UrlAwarePaginator,private modal: Modal,private api:CustomerService) { }
+  constructor(private localStorage: LocalStorage, public v: GlobalVariables, public paginator: UrlAwarePaginator, private modal: Modal, private api: CustomerService) { }
 
   ngOnInit() {
-    if(!this.enableSelectButton){
+    if (!this.enableSelectButton) {
       this.v.webTitle('Manage Customers');
       this.localStorage.set('sales-path', 'customers');
     }
@@ -71,7 +71,7 @@ ngOnDestroy() {
           body:  'Are you sure you want to delete selected customers?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedCustomers();
       });
   }
@@ -86,12 +86,12 @@ ngOnDestroy() {
           {customer},
           'crupdate-customer-modal-container'
       ).beforeClose().subscribe(data => {
-          if ( ! data) return;
+          if ( ! data) { return; }
           this.paginator.refresh();
       });
   }
 
-  selectCustomer(customer:Customer){
+  selectCustomer(customer: Customer) {
     return this.valueChange.emit(customer);
   }
 }

@@ -22,10 +22,10 @@ export class ApiBranchService {
       return this.http.get(API_ROUTES_BRANCH.BRANCH);
   }
 
-  public update(params: Branch,id:number): BackendResponse<{ data: Branch }> {
-    return this.http.put(API_ROUTES_BRANCH.BRANCH+'/'+id, params);
+  public update(params: Branch, id: number): BackendResponse<{ data: Branch }> {
+    return this.http.put(API_ROUTES_BRANCH.BRANCH + '/' + id, params);
  }
- public delete(id:number): BackendResponse<{ data: Branch }> {
-  return this.http.delete(API_ROUTES_BRANCH.BRANCH+'/'+id);
+ public delete(id: number): BackendResponse<{ data: Branch }> {
+  return this.http.delete(API_ROUTES_BRANCH.BRANCH + '/' + id);
 }
 }

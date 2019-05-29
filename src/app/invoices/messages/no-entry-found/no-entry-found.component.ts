@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./no-entry-found.component.scss']
 })
 export class NoEntryFoundMasterComponent implements OnInit {
-  @Input() message:string;
-  @Input() subMessage:string;
+  @Input() message: string;
+  @Input() subMessage: string;
   constructor() { }
 
   ngOnInit() {

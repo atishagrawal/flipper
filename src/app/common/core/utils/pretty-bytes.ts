@@ -1,7 +1,7 @@
 import { spaceUnits } from './space-units';
 
 export function prettyBytes(bytes: number, precision?: number|string): string|null {
-    if (isNaN(parseFloat(String(bytes))) || ! isFinite(bytes)) return null;
+    if (isNaN(parseFloat(String(bytes))) || ! isFinite(bytes)) { return null; }
 
     let unitKey = 0;
     while (bytes >= 1024) {

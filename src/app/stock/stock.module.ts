@@ -29,7 +29,7 @@ import { DisplayExpiredStockByPeriodComponent } from './display-expired-stock-by
         AvailabeStockComponent,
     StockSoldOutComponent,
     StockLowerComponent,
-     StockTableComponent,StockMovementComponent, DisplayExpiredStockByCustomComponent,
+     StockTableComponent, StockMovementComponent, DisplayExpiredStockByCustomComponent,
      DisplayExpiredStockByPeriodComponent,
      StockInfiniteScrollDirective],
   imports: [
@@ -49,7 +49,7 @@ import { DisplayExpiredStockByPeriodComponent } from './display-expired-stock-by
     AvailabeStockComponent,
     StockSoldOutComponent,
     StockLowerComponent,
-     StockTableComponent,StockMovementComponent,
+     StockTableComponent, StockMovementComponent,
      DisplayExpiredStockByPeriodComponent,
      StockInfiniteScrollDirective]
 })

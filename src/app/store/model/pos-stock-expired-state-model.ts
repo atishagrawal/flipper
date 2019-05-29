@@ -5,11 +5,11 @@ export interface PosStockExpiredState {
   data: StockExpired[];
   loaded: boolean;
   loading: boolean;
-  payload?:any;
-  success?:boolean;
-  stock:Stock;
-  itemId:number | 0;
-  meta:{
+  payload?: any;
+  success?: boolean;
+  stock: Stock;
+  itemId: number | 0;
+  meta: {
   from: number;
   to: number;
   total: number;
@@ -24,7 +24,7 @@ export interface PosStockExpiredState {
   sort_column: SortColumn;
   sort_direction: SortDirection;
 
-  },
+  };
   queryParams?: StockApiIndexParams;
 
 }
@@ -37,7 +37,7 @@ export const AVAILABLE_SORTS: PosSortOption[] = [
 ];
 
 export interface StockModel {
-  entries:Stock[];
+  entries: Stock[];
   meta: {
     currentPage: number;
     lastPage: number;
@@ -61,10 +61,10 @@ export interface StockApiIndexParams {
   order_by?: SortColumn;
   order_dir?: SortDirection;
   from?: Date ;
-  to?:Date;
+  to?: Date;
   query?: string;
   type?: string;
   per_page?: number;
   page?: number;
-  url?:string;
+  url?: string;
 }

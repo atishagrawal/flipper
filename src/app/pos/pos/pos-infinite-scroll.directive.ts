@@ -23,11 +23,11 @@ export class PosInfiniteScrollDirective extends InfiniteScroll {
 
 
   protected loadMoreItems() {
-    const loadData= this.localStorage.get('pos-load-data');
-    if(loadData=='ofCategories'){
+    const loadData = this.localStorage.get('pos-load-data');
+    if (loadData == 'ofCategories') {
       const page = this.store.selectSnapshot(PosCateoriesState.currentPage) + 1;
       this.store.dispatch(new LoadMoreCategoriesEntries({page}));
-    }else{
+    } else {
       const page = this.store.selectSnapshot(PosStockStates.currentPage) + 1;
       this.store.dispatch(new LoadMoreStockEntries({page}));
     }
@@ -35,20 +35,20 @@ export class PosInfiniteScrollDirective extends InfiniteScroll {
   }
 
   protected isLoading(): boolean {
-    const loadData= this.localStorage.get('pos-load-data');
-    if(loadData=='ofCategories'){
+    const loadData = this.localStorage.get('pos-load-data');
+    if (loadData == 'ofCategories') {
       return this.store.selectSnapshot(PosCateoriesState.loading);
-    }else{
+    } else {
       return this.store.selectSnapshot(PosStockStates.loading);
     }
 
   }
 
   protected canLoadMore(): boolean {
-    const loadData= this.localStorage.get('pos-load-data');
-    if(loadData=='ofCategories'){
+    const loadData = this.localStorage.get('pos-load-data');
+    if (loadData == 'ofCategories') {
       return this.store.selectSnapshot(PosCateoriesState.canLoadMoreEntries);
-    }else{
+    } else {
       return this.store.selectSnapshot(PosStockStates.canLoadMoreEntries);
     }
   }

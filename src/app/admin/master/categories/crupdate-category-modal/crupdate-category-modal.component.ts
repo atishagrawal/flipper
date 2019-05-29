@@ -20,7 +20,7 @@ export interface CrupdatCategoryModalData {
 })
 export class CrupdateCategoryModalComponent implements OnInit {
     public cateogryForm: FormGroup;
-    public model:Category;
+    public model: Category;
     public errors: any = {};
     public loading = new BehaviorSubject(false);
     /**
@@ -29,28 +29,28 @@ export class CrupdateCategoryModalComponent implements OnInit {
     public updating = false;
 
 
-    colors:any[]=[{
-      value:'#0e0d0d',valueName:'Black',
-    },{
-      value:'#f44336',valueName:'Red',
+    colors: any[] = [{
+      value: '#0e0d0d', valueName: 'Black',
+    }, {
+      value: '#f44336', valueName: 'Red',
 
-    },{
-      value:'#490f0f',valueName:'Red - Dark',
+    }, {
+      value: '#490f0f', valueName: 'Red - Dark',
 
-    },{
-      value:'#4caf50',valueName:'Green',
+    }, {
+      value: '#4caf50', valueName: 'Green',
 
-    },{
-      value:'#1da1f2',valueName:'Blue Sky',
+    }, {
+      value: '#1da1f2', valueName: 'Blue Sky',
 
-    },{
-      value:'#3b5998',valueName:'Blue',
+    }, {
+      value: '#3b5998', valueName: 'Blue',
 
-    },{
-      value:'#b57541',valueName:'Coffee',
+    }, {
+      value: '#b57541', valueName: 'Coffee',
 
-    },{
-      value:'#b541a6',valueName:'Violet',
+    }, {
+      value: '#b541a6', valueName: 'Violet',
 
     }];
 
@@ -61,7 +61,7 @@ export class CrupdateCategoryModalComponent implements OnInit {
     constructor(
         private dialogRef: MatDialogRef<CrupdateCategoryModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CrupdatCategoryModalData,
-        private api:ApiCategoryService,
+        private api: ApiCategoryService,
         private toast: Toast
     ) {
         this.resetState();
@@ -82,8 +82,8 @@ export class CrupdateCategoryModalComponent implements OnInit {
      * Create a new user or update existing one.
      */
     public confirm() {
-        if (!this.cateogryForm.valid) return;
-        let request, payload:Category = this.getPayload();
+        if (!this.cateogryForm.valid) { return; }
+        let request, payload: Category = this.getPayload();
 
         this.loading.next(true);
 
@@ -115,10 +115,10 @@ export class CrupdateCategoryModalComponent implements OnInit {
      * Get payload for updating or creating a user.
      */
     private getPayload() {
-        const payload:Category ={
-          name:this.cateogryForm.value.name,
-          color:this.cateogryForm.value.color
-        }
+        const payload: Category = {
+          name: this.cateogryForm.value.name,
+          color: this.cateogryForm.value.color
+        };
         return payload;
     }
 
@@ -134,8 +134,8 @@ export class CrupdateCategoryModalComponent implements OnInit {
      */
     private hydrateModel(category) {
       this.cateogryForm = new FormGroup({
-        name: new FormControl(category?category.name:"", [Validators.required]),
-        color: new FormControl(category?category.color:"", [Validators.required])
+        name: new FormControl(category ? category.name : '', [Validators.required]),
+        color: new FormControl(category ? category.color : '', [Validators.required])
       });
     }
 
@@ -147,9 +147,9 @@ export class CrupdateCategoryModalComponent implements OnInit {
     }
       ///////////////////////////// Category
   get name() {
-    return this.cateogryForm.get("name");
+    return this.cateogryForm.get('name');
   }
   get color() {
-    return this.cateogryForm.get("color");
+    return this.cateogryForm.get('color');
   }
 }

@@ -35,7 +35,7 @@ export class ConfirmModalComponent implements OnInit {
     ngOnInit() {
         this.data.title = this.i18n.t(this.data.title);
         this.data.body = this.i18n.t(this.data.body);
-        if (this.data.bodyBold) this.data.bodyBold = this.i18n.t(this.data.bodyBold);
+        if (this.data.bodyBold) { this.data.bodyBold = this.i18n.t(this.data.bodyBold); }
         this.data.ok = this.data.ok ? this.i18n.t(this.data.ok) : this.i18n.t('Confirm');
         this.data.cancel = this.data.cancel ? this.i18n.t(this.data.cancel) : this.i18n.t('Cancel');
     }

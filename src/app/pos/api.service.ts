@@ -1,15 +1,15 @@
-import { Injectable } from "@angular/core";
-import { AppHttpClient } from "../common/core/http/app-http-client.service";
-import { BackendResponse } from "../common/core/types/backend-response";
-import { API_ROUTES } from "./api.enum";
-import { Session } from "./sessions/sessions.component";
-import * as Raven from "raven-js";
+import { Injectable } from '@angular/core';
+import { AppHttpClient } from '../common/core/http/app-http-client.service';
+import { BackendResponse } from '../common/core/types/backend-response';
+import { API_ROUTES } from './api.enum';
+import { Session } from './sessions/sessions.component';
+import * as Raven from 'raven-js';
 Raven.config(
-  "https://dff6a3f171414762ac4f1c7e084289c3@sentry.io/1323436"
+  'https://dff6a3f171414762ac4f1c7e084289c3@sentry.io/1323436'
 ).install();
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ApiService {
   constructor(private http: AppHttpClient) {}

@@ -23,7 +23,7 @@ import { ExpirationSettingModelComponent } from './expiration-setting-model/expi
     FormsModule,
     ReactiveFormsModule
   ],
-  exports:[
+  exports: [
     TaxRateModelComponent,
     SetUpModelComponent,
     ReasonModelComponent,

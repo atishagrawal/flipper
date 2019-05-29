@@ -1,5 +1,5 @@
-import { Injectable, Injector } from "@angular/core";
-import { finalize } from "rxjs/operators";
+import { Injectable, Injector } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Settings } from '../common/core/config/settings.service';
 import { CurrentUser } from '../common/auth/current-user';
@@ -41,7 +41,7 @@ export class BootstrapperSetUp {
    * Bootstrap application with data returned from server.
    */
   public bootstrap() {
-    //this.user.userChanged.subscribe(res => {
+    // this.user.userChanged.subscribe(res => {
       if (localStorage.getItem('active_branch')) {
         this.taxRates();
         this.reasons();
@@ -54,10 +54,10 @@ export class BootstrapperSetUp {
 
   protected customerTypes(): Promise<CustomerType[]> {
     let url;
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
-      url = AppConfig.url + "secure/" + API_ROUTES_CUSTOMER_TYPE.CUSTOMER_TYPE;
+    if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
+      url = AppConfig.url + 'secure/' + API_ROUTES_CUSTOMER_TYPE.CUSTOMER_TYPE;
     } else {
-      url = this.settings.getBaseUrl() + "secure/" + API_ROUTES_CUSTOMER_TYPE.CUSTOMER_TYPE;
+      url = this.settings.getBaseUrl() + 'secure/' + API_ROUTES_CUSTOMER_TYPE.CUSTOMER_TYPE;
     }
     this.modelSetUpService.update({ loading: true });
     return new Promise((resolve, reject) => {
@@ -70,8 +70,8 @@ export class BootstrapperSetUp {
           res => {
             this.modelSetUpService.update({
               loading: false,
-              customertypes: res["customertypes"]["data"].length > 0
-                ? res["customertypes"]["data"]
+              customertypes: res['customertypes']['data'].length > 0
+                ? res['customertypes']['data']
                 : []
             });
 
@@ -79,7 +79,7 @@ export class BootstrapperSetUp {
           },
           error => {
             this.modelSetUpService.update({ loading: false });
-            console.log("bootstrap error", error);
+            console.log('bootstrap error', error);
             reject();
           }
         );
@@ -88,10 +88,10 @@ export class BootstrapperSetUp {
 
   protected expirationSettings(): Promise<ExpirationSetting[]> {
     let url;
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
-      url = AppConfig.url + "secure/" + API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING;
+    if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
+      url = AppConfig.url + 'secure/' + API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING;
     } else {
-      url = this.settings.getBaseUrl() + "secure/" + API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING;
+      url = this.settings.getBaseUrl() + 'secure/' + API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING;
     }
     this.modelSetUpService.update({ loading: true });
     return new Promise((resolve, reject) => {
@@ -104,8 +104,8 @@ export class BootstrapperSetUp {
           res => {
             this.modelSetUpService.update({
               loading: false,
-              expirationSetting: res["expiration_setting"]["data"].length > 0
-                ? res["expiration_setting"]["data"]
+              expirationSetting: res['expiration_setting']['data'].length > 0
+                ? res['expiration_setting']['data']
                 : []
             });
 
@@ -113,7 +113,7 @@ export class BootstrapperSetUp {
           },
           error => {
             this.modelSetUpService.update({ loading: false });
-            console.log("bootstrap error", error);
+            console.log('bootstrap error', error);
             reject();
           }
         );
@@ -122,13 +122,13 @@ export class BootstrapperSetUp {
   /**
    * Handle specified bootstrap data.
    */
-  //reasons
+  // reasons
   protected reasons(): Promise<Reason[]> {
     let url;
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
-      url = AppConfig.url + "secure/" + API_ROUTES_REASON.REASON;
+    if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
+      url = AppConfig.url + 'secure/' + API_ROUTES_REASON.REASON;
     } else {
-      url = this.settings.getBaseUrl() + "secure/" +  API_ROUTES_REASON.REASON;
+      url = this.settings.getBaseUrl() + 'secure/' +  API_ROUTES_REASON.REASON;
     }
     this.modelSetUpService.update({ loading: true });
     return new Promise((resolve, reject) => {
@@ -142,8 +142,8 @@ export class BootstrapperSetUp {
 
             this.modelSetUpService.update({
               loading: false,
-              reasons: res["reasons"]["data"].length > 0
-                ? res["reasons"]["data"]
+              reasons: res['reasons']['data'].length > 0
+                ? res['reasons']['data']
                 : []
             });
 
@@ -151,7 +151,7 @@ export class BootstrapperSetUp {
           },
           error => {
             this.modelSetUpService.update({ loading: false });
-            console.log("bootstrap error", error);
+            console.log('bootstrap error', error);
             reject();
           }
         );
@@ -159,10 +159,10 @@ export class BootstrapperSetUp {
   }
   protected taxRates(): Promise<TAXRATE[]> {
     let url;
-    if (this.settings.getBaseUrl() != "http://localhost:4200/") {
-      url = AppConfig.url + "secure/" + API_ROUTES_TAXRATE.TAXRATE;
+    if (this.settings.getBaseUrl() != 'http://localhost:4200/') {
+      url = AppConfig.url + 'secure/' + API_ROUTES_TAXRATE.TAXRATE;
     } else {
-      url = this.settings.getBaseUrl() + "secure/" +  API_ROUTES_TAXRATE.TAXRATE;
+      url = this.settings.getBaseUrl() + 'secure/' +  API_ROUTES_TAXRATE.TAXRATE;
     }
     this.modelSetUpService.update({ loading: true });
     return new Promise((resolve, reject) => {
@@ -175,8 +175,8 @@ export class BootstrapperSetUp {
           res => {
             this.modelSetUpService.update({
               loading: false,
-              taxRates: res["taxrates"]["data"].length > 0
-                ? res["taxrates"]["data"]
+              taxRates: res['taxrates']['data'].length > 0
+                ? res['taxrates']['data']
                 : []
             });
 
@@ -184,7 +184,7 @@ export class BootstrapperSetUp {
           },
           error => {
             this.modelSetUpService.update({ loading: false });
-            console.log("bootstrap error", error);
+            console.log('bootstrap error', error);
             reject();
           }
         );

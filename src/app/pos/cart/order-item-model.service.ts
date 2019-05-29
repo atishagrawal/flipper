@@ -11,52 +11,51 @@ export class OrderItemsModelService {
 
   order_items$: Observable<OrderItems[]>;
   private model: Model<OrderItems[]>;
-  constructor(private api:ApiPosService,private modelFactory: ModelFactory<OrderItems[]>) {
+  constructor(private api: ApiPosService, private modelFactory: ModelFactory<OrderItems[]>) {
     this.create([]);
     this.order_items$ = this.model.data$;
    }
 
-   public create(order){
+   public create(order) {
     this.model = this.modelFactory.create(order);
    }
 
-   public get(){
+   public get() {
        return this.model.get();
    }
 
-   update(stateUpdates: any,status='add-qty') {
+   update(stateUpdates: any, status= 'add-qty') {
 
-    if(status === 'all'){
+    if (status === 'all') {
       this.model.set(stateUpdates);
-    }else{
+    } else {
     const modelSnapshot = this.model.get();
-    let check_existing=false;
+    const check_existing = false;
 
-        modelSnapshot.forEach((el,index,object)=>{
-          if(el.batch_no===stateUpdates.batch_no && el.order_id === stateUpdates.order_id && el.stock_id === stateUpdates.stock_id){
-            if(status=='add-qty'){
-              el.qty+=1;
-              if(el.qty > stateUpdates.available_qty){
-                el.qty-=1;
+        modelSnapshot.forEach((el, index, object) => {
+          if (el.batch_no === stateUpdates.batch_no && el.order_id === stateUpdates.order_id && el.stock_id === stateUpdates.stock_id) {
+            if (status == 'add-qty') {
+              el.qty += 1;
+              if (el.qty > stateUpdates.available_qty) {
+                el.qty -= 1;
                 alert('Quantity will create a negative stock level');
               }
 
-            }else if(status=='remove-qty'){
-              el.qty-=1;
-              if(el.qty < 0){
-                el.qty+=1;
+            } else if (status == 'remove-qty') {
+              el.qty -= 1;
+              if (el.qty < 0) {
+                el.qty += 1;
                 alert('Quantity must be greater than 0');
               }
-            }else if(status=='discount'){
+            } else if (status == 'discount') {
              // el.discount_value=this.calculateDiscount(stateUpdates);
-            }else if(status=='note'){
-              el.note=stateUpdates.note;
-            }
-            else if(status=='delete'){
+            } else if (status == 'note') {
+              el.note = stateUpdates.note;
+            } else if (status == 'delete') {
                  modelSnapshot.splice(index, 1);
 
-            }else if(status=='update-qty'){
-              el.qty=stateUpdates.qty;
+            } else if (status == 'update-qty') {
+              el.qty = stateUpdates.qty;
             }
 
               // el.total=el.currency+ ' '+ (el.qty*el.price);
@@ -66,7 +65,7 @@ export class OrderItemsModelService {
           }
         });
 
-      if(!check_existing){
+      if (!check_existing) {
         modelSnapshot.push(stateUpdates);
       }
 
@@ -74,10 +73,10 @@ export class OrderItemsModelService {
     }
   }
 
-  cartItemModified(){
+  cartItemModified() {
 
   }
-  calculateDiscount(item:OrderItems){
+  calculateDiscount(item: OrderItems) {
 
     // Cost of one chocolate pack = $10
 
@@ -96,8 +95,8 @@ export class OrderItemsModelService {
     //   return 0;
     // }
   }
-calcalTax(item:OrderItems){
- return ((item.qty*item.price)*18)/100;
+calcalTax(item: OrderItems) {
+ return ((item.qty * item.price) * 18) / 100;
 }
 
 

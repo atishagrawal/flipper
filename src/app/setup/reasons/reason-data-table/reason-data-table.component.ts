@@ -21,20 +21,20 @@ import { GlobalVariables } from '../../../common/core/global-variables';
 export class ReasonDataTableComponent  implements OnInit, OnDestroy {
   @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Reason>;
-  @Input() public reasonName: string='Reason';
-  @Input() public reasonType: string='stock_movements';
-  @Input() public url: string='reason';
+  @Input() public reasonName = 'Reason';
+  @Input() public reasonType = 'stock_movements';
+  @Input() public url = 'reason';
   public loading = new BehaviorSubject(false);
-  @Input() public enableSelectButton:boolean=false;
-  @Input() public selectedId:number=0;
+  @Input() public enableSelectButton = false;
+  @Input() public selectedId = 0;
 
   @Output() valueChange = new EventEmitter<Reason>();
 
-   constructor(public v: GlobalVariables,public paginator: UrlAwarePaginator,private modal: Modal,private api:ApiReasonService) {
+   constructor(public v: GlobalVariables, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiReasonService) {
 
   }
    ngOnInit() {
-    if(!this.enableSelectButton){
+    if (!this.enableSelectButton) {
     this.v.webTitle('Manage Reasons');
     }
     this.dataSource = new PaginatedDataTableSource<Reason>({
@@ -64,11 +64,11 @@ ngOnDestroy() {
      */
     public maybeDeleteSelectedReasons() {
       this.modal.show(ConfirmModalComponent, {
-          title: 'Delete '+this.reasonName,
+          title: 'Delete ' + this.reasonName,
           body:  'Are you sure you want to delete selected Reason(s)?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedReasons();
       });
   }
@@ -81,15 +81,15 @@ ngOnDestroy() {
 
       this.modal.open(
         CrupdateReasonModalComponent,
-          {reason:reason,reasonType:this.reasonType,reasonName:this.reasonName},
+          {reason: reason, reasonType: this.reasonType, reasonName: this.reasonName},
           'crupdate-reason-modal-container'
       ).beforeClose().subscribe(data => {
-          if ( ! data) return;
+          if ( ! data) { return; }
           this.paginator.refresh();
       });
   }
 
-  selectReason(reason:Reason){
+  selectReason(reason: Reason) {
     return this.valueChange.emit(reason);
   }
 }

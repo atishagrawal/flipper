@@ -24,9 +24,9 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
 })
 export class DisplayExpiredStockByPeriodComponent implements OnInit {
 
-//entries
+// entries
 @ViewChild(MatSort) matSort: MatSort;
-public dataSource=new MatTableDataSource<StockExpired>([]);
+public dataSource = new MatTableDataSource<StockExpired>([]);
 public loading = new BehaviorSubject(false);
 
 @Select(PosStockExpiredStates.loading) loading$: Observable<boolean>;
@@ -34,21 +34,21 @@ public loading = new BehaviorSubject(false);
 @Select(PosStockExpiredStates.entriesEmpty) entriesEmpty$: Observable<boolean>;
 @Select(PosStockExpiredStates.entries) entries$: Observable<StockExpired>;
 
-displayedColumns = ['batch_no','sku','item', 'in_qty', 'out_qty','total_qty','expired_date','manufacture_date'];
+displayedColumns = ['batch_no', 'sku', 'item', 'in_qty', 'out_qty', 'total_qty', 'expired_date', 'manufacture_date'];
 
 selection = new SelectionModel<StockExpired>(true, []);
-constructor(private api:ApiStockService,private modal: Modal) {}
+constructor(private api: ApiStockService, private modal: Modal) {}
 
 
   ngOnInit() {
-    this.entries$.subscribe(e=>console.log(e));
+    this.entries$.subscribe(e => console.log(e));
 }
 
 
 
 
 public deleteSelectedStocks() {
-  const ids = this.selection.selected.map(item=>item.id);
+  const ids = this.selection.selected.map(item => item.id);
   this.loading.next(true);
   this.api.deleteMultipleStockMovement(ids).pipe(finalize(() => this.loading.next(false))).subscribe(() => {
       this.selection.clear();
@@ -61,7 +61,7 @@ this.modal.show(ConfirmModalComponent, {
     body:  'Are you sure you want to delete selected stock expired?',
     ok:    'Delete'
 }).afterClosed().subscribe(confirmed => {
-    if ( ! confirmed) return;
+    if ( ! confirmed) { return; }
     this.deleteSelectedStocks();
 });
 }

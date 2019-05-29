@@ -20,7 +20,7 @@ export interface CrupdatCustomerTypeModalData {
 })
 export class CrupdateCustomerTypeModalComponent implements OnInit {
     public dataForm: FormGroup;
-    public model:CustomerType;
+    public model: CustomerType;
     public errors: any = {};
     public loading = new BehaviorSubject(false);
     /**
@@ -34,7 +34,7 @@ export class CrupdateCustomerTypeModalComponent implements OnInit {
     constructor(
         private dialogRef: MatDialogRef<CrupdateCustomerTypeModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CrupdatCustomerTypeModalData,
-        private api:ApiCustomerTypeService,
+        private api: ApiCustomerTypeService,
         private toast: Toast
     ) {
         this.resetState();
@@ -54,8 +54,8 @@ export class CrupdateCustomerTypeModalComponent implements OnInit {
      * Create a new user or update existing one.
      */
     public confirm() {
-        if (!this.dataForm.valid) return;
-        let request, payload:CustomerType = this.getPayload();
+        if (!this.dataForm.valid) { return; }
+        let request, payload: CustomerType = this.getPayload();
 
         this.loading.next(true);
 
@@ -87,11 +87,11 @@ export class CrupdateCustomerTypeModalComponent implements OnInit {
      * Get payload for updating or creating a user.
      */
     private getPayload() {
-        const payload:CustomerType ={
-          name:this.dataForm.value.name,
-          discount_value:this.dataForm.value.discount_value,
-          description:this.dataForm.value.description
-        }
+        const payload: CustomerType = {
+          name: this.dataForm.value.name,
+          discount_value: this.dataForm.value.discount_value,
+          description: this.dataForm.value.description
+        };
         return payload;
     }
 
@@ -108,9 +108,9 @@ export class CrupdateCustomerTypeModalComponent implements OnInit {
     private hydrateModel(customertype) {
       const numberPatern = '^[0-9.,]+$';
       this.dataForm = new FormGroup({
-        name: new FormControl(customertype?customertype.name:"", [Validators.required]),
-        description: new FormControl(customertype?customertype.description:""),
-        discount_value: new FormControl(customertype?customertype.discount_value:0.00, [Validators.required,Validators.pattern(numberPatern)]),
+        name: new FormControl(customertype ? customertype.name : '', [Validators.required]),
+        description: new FormControl(customertype ? customertype.description : ''),
+        discount_value: new FormControl(customertype ? customertype.discount_value : 0.00, [Validators.required, Validators.pattern(numberPatern)]),
       });
     }
 
@@ -122,12 +122,12 @@ export class CrupdateCustomerTypeModalComponent implements OnInit {
     }
       ///////////////////////////// CustomerType
   get name() {
-    return this.dataForm.get("name");
+    return this.dataForm.get('name');
   }
   get description() {
-    return this.dataForm.get("description");
+    return this.dataForm.get('description');
   }
   get discount_value() {
-    return this.dataForm.get("discount_value");
+    return this.dataForm.get('discount_value');
   }
 }

@@ -11,7 +11,7 @@ import { UiModule } from '../../common/core/ui/ui.module';
     MaterialModule,
     UiModule
   ],
-  exports:[DataTableComponent]
+  exports: [DataTableComponent]
 })
 export class DataTableModule {
 

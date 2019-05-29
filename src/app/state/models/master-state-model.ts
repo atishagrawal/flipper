@@ -9,7 +9,7 @@ export interface MasterStateModel {
     items: Item[];
     loading: boolean;
     currentUser: User|null;
-    details:Details;
+    details: Details;
 }
 
 export const VIEW_MODE_KEY = 'bedesk.viewMode';

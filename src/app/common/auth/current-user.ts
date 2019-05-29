@@ -1,9 +1,9 @@
-import { EventEmitter, Injectable } from "@angular/core";
-import { User } from "../core/types/models/User";
-import { Role } from "../core/types/models/Role";
+import { EventEmitter, Injectable } from '@angular/core';
+import { User } from '../core/types/models/User';
+import { Role } from '../core/types/models/Role';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CurrentUser {
   /**
@@ -65,9 +65,9 @@ export class CurrentUser {
     if (model) {
       this.current = model;
 
-      if(model.branches){
-        const active_branch=model.branches.find(branch=>branch.active==1);
-        localStorage.setItem('active_branch',active_branch.id.toString());
+      if (model.branches) {
+        const active_branch = model.branches.find(branch => branch.active == 1);
+        localStorage.setItem('active_branch', active_branch.id.toString());
       }
     }
 
@@ -91,7 +91,7 @@ export class CurrentUser {
    */
   public hasPermission(permission: string): boolean {
     const permissions = this.getAllPermissions();
-    return (permissions["admin"] || permissions[permission]) > 0;
+    return (permissions['admin'] || permissions[permission]) > 0;
   }
 
   public hasRole(role: string): boolean {
@@ -104,7 +104,7 @@ export class CurrentUser {
    * Check if current user is logged in.
    */
   public isLoggedIn(): boolean {
-    return this.get("id") > 0;
+    return this.get('id') > 0;
   }
 
   /**
@@ -120,7 +120,7 @@ export class CurrentUser {
    * Check if user subscription is active
    */
   public subscriptionIsActive(): boolean {
-    return false; //this.isSubscribed() && !this.onTrial();
+    return false; // this.isSubscribed() && !this.onTrial();
   }
 
   public onTrial() {
@@ -167,7 +167,7 @@ export class CurrentUser {
    * Check if current user is an admin.
    */
   public isAdmin(): boolean {
-    return this.hasPermission("admin");
+    return this.hasPermission('admin');
   }
 
   /**
@@ -196,10 +196,10 @@ export class CurrentUser {
     }
 
     // permissions on user modal
-    const permissions = this.get("permissions") || {};
+    const permissions = this.get('permissions') || {};
 
     // merge role permissions
-    const roles = this.get("roles") || [];
+    const roles = this.get('roles') || [];
     // roles.forEach((role: Role) => {
     //     if (role) Object.assign(permissions, role.permissions);
     // });

@@ -28,7 +28,7 @@ export class Translations {
      * Translate specified key.
      */
     public t(transKey: string, values?: object): string {
-        if ( ! transKey) return '';
+        if ( ! transKey) { return ''; }
         if ( ! this.translationsEnabled()) {
             return this.replacePlaceholders(transKey, values);
         }
@@ -39,7 +39,7 @@ export class Translations {
     }
 
     private replacePlaceholders(message: string, values: object): string {
-        if ( ! values) return message;
+        if ( ! values) { return message; }
 
         const keys = Object.keys(values);
 
@@ -61,8 +61,8 @@ export class Translations {
      * Set active localization.
      */
     public setLocalization(localization: LocalizationWithLines) {
-        if (!localization || !localization.lines || !localization.model) return;
-        if (this.localization.model.name === localization.model.name) return;
+        if (!localization || !localization.lines || !localization.model) { return; }
+        if (this.localization.model.name === localization.model.name) { return; }
 
         localization.lines = this.objectKeysToLowerCase(localization.lines);
         this.localization = localization;

@@ -10,10 +10,10 @@ import { ApiReasonService } from '../../../../setup/reasons/api/api.service';
 
 export interface enableSelectButtonModalData {
   enabled?: boolean;
-  reason_id:number;
-  reason_type:string;
-  reason_name:string;
-  url:string;
+  reason_id: number;
+  reason_type: string;
+  reason_name: string;
+  url: string;
 }
 @Component({
   selector: 'app-select-reason-model',
@@ -24,23 +24,23 @@ export class SelectReasonModelComponent implements OnInit {
 
   @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Reason>;
-  @Input() public reasonName: string='Reason';
-  @Input() public reasonType: string='stock_movements';
-  @Input() public url: string='reason';
+  @Input() public reasonName = 'Reason';
+  @Input() public reasonType = 'stock_movements';
+  @Input() public url = 'reason';
   public loading = new BehaviorSubject(false);
-  @Input() public selectedId:number=0;
+  @Input() public selectedId = 0;
 
   @Output() valueChange = new EventEmitter<Reason>();
-  @Input() public enableSelectButton:boolean=false;
+  @Input() public enableSelectButton = false;
 
-   constructor(public paginator: UrlAwarePaginator,private dialogRef: MatDialogRef<SelectReasonModelComponent>,
+   constructor(public paginator: UrlAwarePaginator, private dialogRef: MatDialogRef<SelectReasonModelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: enableSelectButtonModalData) { }
    ngOnInit() {
-    this.enableSelectButton=this.data.enabled;
-    this.selectedId=this.data.reason_id;
-    this.reasonType=this.data.reason_type;
-    this.reasonName=this.data.reason_name;
-    this.url=this.data.url;
+    this.enableSelectButton = this.data.enabled;
+    this.selectedId = this.data.reason_id;
+    this.reasonType = this.data.reason_type;
+    this.reasonName = this.data.reason_name;
+    this.url = this.data.url;
 
     this.dataSource = new PaginatedDataTableSource<Reason>({
         uri: this.url,
@@ -59,7 +59,7 @@ ngOnDestroy() {
      */
 
 
-  selectReason(reason:Reason){
+  selectReason(reason: Reason) {
     return this.close(reason);
   }
   public close(data?: any) {

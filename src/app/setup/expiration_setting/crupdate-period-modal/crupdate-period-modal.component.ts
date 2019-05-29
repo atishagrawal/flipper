@@ -18,7 +18,7 @@ export interface CrupdatePeriodModalData {
 })
 export class CrupdatePeriodModalComponent  implements OnInit {
   public dataForm: FormGroup;
-  public model:ExpirationSetting;
+  public model: ExpirationSetting;
   public errors: any = {};
   public loading = new BehaviorSubject(false);
   /**
@@ -30,45 +30,45 @@ export class CrupdatePeriodModalComponent  implements OnInit {
    */
   selectedValue: string;
 
-  colors:any[]=[{
-    value:'#0e0d0d',valueName:'Black',
-  },{
-    value:'#f44336',valueName:'Red',
+  colors: any[] = [{
+    value: '#0e0d0d', valueName: 'Black',
+  }, {
+    value: '#f44336', valueName: 'Red',
 
-  },{
-    value:'#490f0f',valueName:'Red - Dark',
+  }, {
+    value: '#490f0f', valueName: 'Red - Dark',
 
-  },{
-    value:'#4caf50',valueName:'Green',
+  }, {
+    value: '#4caf50', valueName: 'Green',
 
-  },{
-    value:'#1da1f2',valueName:'Blue Sky',
+  }, {
+    value: '#1da1f2', valueName: 'Blue Sky',
 
-  },{
-    value:'#3b5998',valueName:'Blue',
+  }, {
+    value: '#3b5998', valueName: 'Blue',
 
-  },{
-    value:'#b57541',valueName:'Coffee',
+  }, {
+    value: '#b57541', valueName: 'Coffee',
 
-  },{
-    value:'#b541a6',valueName:'Violet',
+  }, {
+    value: '#b541a6', valueName: 'Violet',
 
   }];
 
-  periods:any = [
-    {value:'today',valueName:'Today'},
-    {value:'yestarday',valueName:'Yestarday'},
-    {value:'tomorrow',valueName:'Tomorrow'}
-    ,{value:'day',valueName:'Day'}
-    ,{value:'week',valueName:'week'}
-    ,{value:'month',valueName:'Month'}
-    ,{value:'year',valueName:'Year'}
+  periods: any = [
+    {value: 'today', valueName: 'Today'},
+    {value: 'yestarday', valueName: 'Yestarday'},
+    {value: 'tomorrow', valueName: 'Tomorrow'}
+    , {value: 'day', valueName: 'Day'}
+    , {value: 'week', valueName: 'week'}
+    , {value: 'month', valueName: 'Month'}
+    , {value: 'year', valueName: 'Year'}
   ];
 
   constructor(
       private dialogRef: MatDialogRef<CrupdatePeriodModalComponent>,
       @Inject(MAT_DIALOG_DATA) public data: CrupdatePeriodModalData,
-      private api:ApiExpirationSettingService,
+      private api: ApiExpirationSettingService,
       private toast: Toast
   ) {
       this.resetState();
@@ -88,8 +88,8 @@ export class CrupdatePeriodModalComponent  implements OnInit {
    * Create a new user or update existing one.
    */
   public confirm() {
-      if (!this.dataForm.valid) return;
-      let request, payload:ExpirationSetting = this.getPayload();
+      if (!this.dataForm.valid) { return; }
+      let request, payload: ExpirationSetting = this.getPayload();
 
       this.loading.next(true);
 
@@ -121,13 +121,13 @@ export class CrupdatePeriodModalComponent  implements OnInit {
    * Get payload for updating or creating a user.
    */
   private getPayload() {
-      const payload:ExpirationSetting ={
-        name: this.dataForm.value.name?this.dataForm.value.name:'today',
+      const payload: ExpirationSetting = {
+        name: this.dataForm.value.name ? this.dataForm.value.name : 'today',
         description: this.dataForm.value.description,
-        color: this.dataForm.value.color?this.dataForm.value.color:'',
-        period: this.dataForm.value.period?this.dataForm.value.period:'today',
-        period_value: this.dataForm.value.period_value?this.dataForm.value.period_value:0
-      }
+        color: this.dataForm.value.color ? this.dataForm.value.color : '',
+        period: this.dataForm.value.period ? this.dataForm.value.period : 'today',
+        period_value: this.dataForm.value.period_value ? this.dataForm.value.period_value : 0
+      };
       return payload;
   }
 
@@ -144,10 +144,10 @@ export class CrupdatePeriodModalComponent  implements OnInit {
   private hydrateModel(period) {
     const numberPatern = '^[0-9.,]+$';
     this.dataForm = new FormGroup({
-      name: new FormControl(period ? period.name : "today"),
-      description: new FormControl(period ? period.description : ""),
-      period: new FormControl(period ? period.period :"today", [Validators.required]),
-      color: new FormControl(period ? period.color : ""),
+      name: new FormControl(period ? period.name : 'today'),
+      description: new FormControl(period ? period.description : ''),
+      period: new FormControl(period ? period.period : 'today', [Validators.required]),
+      color: new FormControl(period ? period.color : ''),
       period_value: new FormControl(period ? period.period_value : 0, [Validators.required, Validators.pattern(numberPatern)])
     });
   }
@@ -160,24 +160,24 @@ export class CrupdatePeriodModalComponent  implements OnInit {
   }
     ///////////////////////////// ExpirationSetting
     get name() {
-      return this.dataForm.get("name");
+      return this.dataForm.get('name');
     }
 
     get description() {
-      return this.dataForm.get("description");
+      return this.dataForm.get('description');
     }
 
     get period() {
-      return this.dataForm.get("period");
+      return this.dataForm.get('period');
     }
     get period_value() {
-      return this.dataForm.get("period_value");
+      return this.dataForm.get('period_value');
     }
     get color() {
-      return this.dataForm.get("color");
+      return this.dataForm.get('color');
     }
-    autoChange(period){
-      if(!this.dataForm.get('name').valid){
+    autoChange(period) {
+      if (!this.dataForm.get('name').valid) {
         this.dataForm.get('name').setValue(period);
       }
 

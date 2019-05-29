@@ -2,10 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface enableSelectButtonModalData {
   enabled?: boolean;
-  reason_id:number;
-  reason_type:string;
-  reason_name:string;
-  url:string;
+  reason_id: number;
+  reason_type: string;
+  reason_name: string;
+  url: string;
 }
 @Component({
   selector: 'select-reason-modal',
@@ -14,20 +14,20 @@ export interface enableSelectButtonModalData {
 })
 export class SelectReasonModalComponent implements OnInit {
 
-  enableSelectButton:boolean=true;
-  selectedId:number=0;
-  reasonType:string='stock_movements';
-  reasonName:string='Reason';
-  url:string='reason';
+  enableSelectButton = true;
+  selectedId = 0;
+  reasonType = 'stock_movements';
+  reasonName = 'Reason';
+  url = 'reason';
   constructor(  private dialogRef: MatDialogRef<SelectReasonModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: enableSelectButtonModalData) { }
 
   ngOnInit() {
-    this.enableSelectButton=this.data.enabled;
-    this.selectedId=this.data.reason_id;
-    this.reasonType=this.data.reason_type;
-    this.reasonName=this.data.reason_name;
-    this.url=this.data.url;
+    this.enableSelectButton = this.data.enabled;
+    this.selectedId = this.data.reason_id;
+    this.reasonType = this.data.reason_type;
+    this.reasonName = this.data.reason_name;
+    this.url = this.data.url;
   }
     public close(data?: any) {
       this.dialogRef.close(data);

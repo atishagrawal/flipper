@@ -1,5 +1,5 @@
-import { Category } from "../../admin/master/categories/api/category";
-import { Details } from "../../details/details";
+import { Category } from '../../admin/master/categories/api/category';
+import { Details } from '../../details/details';
 
 export class LoadCategories {
   static readonly type = '[Master] Load Categories';

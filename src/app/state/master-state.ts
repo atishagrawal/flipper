@@ -1,12 +1,12 @@
-import { LocalStorage } from "../common/core/services/local-storage.service";
-import { Router } from "@angular/router";
-import { MasterStateModel } from "./models/master-state-model";
-import { MASTER_STATE_MODEL_DEFAULTS } from "./models/master-state-model-defaults";
-import { Store, State, Selector, Action, StateContext, NgxsOnInit } from "@ngxs/store";
-import { LoadCategories, AddCategoryAction, LoadProgress, LoadingAction, ToggleDetailsSidebar, SetViewDetails } from "./actions/commands";
-import { tap } from "rxjs/operators";
-import { ApiCategoryService } from "../admin/master/categories/api/api.service";
-import { Injector } from "@angular/core";
+import { LocalStorage } from '../common/core/services/local-storage.service';
+import { Router } from '@angular/router';
+import { MasterStateModel } from './models/master-state-model';
+import { MASTER_STATE_MODEL_DEFAULTS } from './models/master-state-model-defaults';
+import { Store, State, Selector, Action, StateContext, NgxsOnInit } from '@ngxs/store';
+import { LoadCategories, AddCategoryAction, LoadProgress, LoadingAction, ToggleDetailsSidebar, SetViewDetails } from './actions/commands';
+import { tap } from 'rxjs/operators';
+import { ApiCategoryService } from '../admin/master/categories/api/api.service';
+import { Injector } from '@angular/core';
 
 @State<MasterStateModel>({
   name: 'master',
@@ -37,12 +37,12 @@ export class MasterState {
         return state.details;
     }
     @Action(ToggleDetailsSidebar)
-    toggleDetailsSidebar(ctx: StateContext<MasterStateModel>,action: SetViewDetails) {
+    toggleDetailsSidebar(ctx: StateContext<MasterStateModel>, action: SetViewDetails) {
       ctx.patchState({ details: action.details });
     }
 
   @Action(LoadCategories)
-   loadCategories(ctx: StateContext<MasterStateModel>, action:AddCategoryAction) {
+   loadCategories(ctx: StateContext<MasterStateModel>, action: AddCategoryAction) {
     const oldState = ctx.getState(),
     newState = { loading: true } as Partial<
     MasterStateModel
@@ -68,7 +68,7 @@ export class MasterState {
   }
 
   @Action(LoadProgress)
-  onLoadProgress({getState, patchState}: StateContext<MasterStateModel>, action:LoadingAction) {
+  onLoadProgress({getState, patchState}: StateContext<MasterStateModel>, action: LoadingAction) {
     patchState({loading: action.loading});
   }
 }

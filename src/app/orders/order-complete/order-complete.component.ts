@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderCompleteComponent implements OnInit {
 
-  url='';
+  url = '';
   constructor() {
-    this.url='orders/complete/'+parseInt(localStorage.getItem('active_branch'));
+    this.url = 'orders/complete/' + parseInt(localStorage.getItem('active_branch'));
    }
 
   ngOnInit() {
-       this.url='orders/complete/'+parseInt(localStorage.getItem('active_branch'));
+       this.url = 'orders/complete/' + parseInt(localStorage.getItem('active_branch'));
 
   }
 }

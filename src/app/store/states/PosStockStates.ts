@@ -12,7 +12,7 @@ import { PosStockState, StockApiIndexParams } from '../model/pos-stock-state-mod
 })
 
 export class PosStockStates {
-  constructor(private api: ApiPosService,private store:Store) { }
+  constructor(private api: ApiPosService, private store: Store) { }
   @Selector()
   static entries(state: PosStockState) {
     return state.data;
@@ -61,10 +61,12 @@ export class PosStockStates {
       order_dir: meta.sort_direction,
       ...params
     };
-    if (meta.query)
+    if (meta.query) {
       queryParams.query = meta.query;
-    if (meta.type)
+    }
+    if (meta.type) {
       queryParams.type = meta.type;
+    }
     return queryParams;
   }
 
@@ -89,13 +91,13 @@ export class PosStockStates {
           ...newState.meta,
           last_page: response.last_page,
           current_page: response.current_page,
-          from:response.from,
-          to:response.to,
+          from: response.from,
+          to: response.to,
           total: response.total,
           per_page: response.per_page,
           path: response.path,
           next_page_url: response.next_page_url,
-          prev_page_url:response.prev_page_url
+          prev_page_url: response.prev_page_url
         },
         loading: false
       } as Partial<PosStockState>;

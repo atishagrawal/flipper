@@ -12,7 +12,7 @@ import { DataTableModule } from '../../data-table/data-table/data-table.module';
 import { UiModule } from '../../common/core/ui/ui.module';
 
 @NgModule({
-  declarations: [UpdateStockModelComponent, StockModelComponent, InfoStockModelComponent, StockAdvancedOptionsComponent,AdvancedOptionDialog, SelectReasonModelComponent],
+  declarations: [UpdateStockModelComponent, StockModelComponent, InfoStockModelComponent, StockAdvancedOptionsComponent, AdvancedOptionDialog, SelectReasonModelComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -21,8 +21,8 @@ import { UiModule } from '../../common/core/ui/ui.module';
     UiModule,
     DataTableModule
   ],
-  exports:[UpdateStockModelComponent, StockModelComponent,StockAdvancedOptionsComponent,AdvancedOptionDialog,SelectReasonModelComponent],
-  entryComponents:[AdvancedOptionDialog,UpdateStockModelComponent,SelectReasonModelComponent],
+  exports: [UpdateStockModelComponent, StockModelComponent, StockAdvancedOptionsComponent, AdvancedOptionDialog, SelectReasonModelComponent],
+  entryComponents: [AdvancedOptionDialog, UpdateStockModelComponent, SelectReasonModelComponent],
   providers: [
     {
       provide: MAT_STEPPER_GLOBAL_OPTIONS,

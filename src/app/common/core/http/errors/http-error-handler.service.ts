@@ -69,7 +69,7 @@ export abstract class HttpErrorHandler {
         }
 
         const newBody = this.getEmptyErrorBody();
-        if ( ! original || ! original.messages) return newBody;
+        if ( ! original || ! original.messages) { return newBody; }
         Object.keys(original.messages).forEach(key => {
             const message = original.messages[key];
             newBody.messages[key] =  Array.isArray(message) ? message[0] : message;

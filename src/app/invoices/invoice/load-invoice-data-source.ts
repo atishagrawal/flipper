@@ -8,10 +8,10 @@ export class InvoiceDataSource implements DataSource<Invoice> {
 
   private invoicesSubject = new BehaviorSubject<Invoice[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
-private length=0;
+private length = 0;
   public loading$ = this.loadingSubject.asObservable();
 
-  invoicesCount$:Observable<Invoice[]>;
+  invoicesCount$: Observable<Invoice[]>;
 
   constructor() {}
 
@@ -24,13 +24,13 @@ private length=0;
       this.loadingSubject.complete();
   }
 
-  invoiceCount(){
+  invoiceCount() {
 
   }
-  set count(num){
-    this.length=num;
+  set count(num) {
+    this.length = num;
   }
-  get count(){
+  get count() {
     return this.length;
   }
 }

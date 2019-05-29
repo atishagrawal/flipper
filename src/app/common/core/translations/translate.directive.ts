@@ -16,7 +16,7 @@ export class TranslateDirective implements AfterViewInit, OnDestroy {
     ) {}
 
     ngAfterViewInit() {
-        if ( ! this.settings.get('i18n.enable')) return;
+        if ( ! this.settings.get('i18n.enable')) { return; }
         const sub = this.i18n.localizationChange.subscribe(() => this.translate());
         this.translate();
         this.subscriptions.push(sub);
@@ -53,7 +53,7 @@ export class TranslateDirective implements AfterViewInit, OnDestroy {
             if (child.nodeType === Node.TEXT_NODE) {
                 return child.nodeValue = this.i18n.t(child.textContent);
             } else {
-                if (this.translateTextContent(child)) return;
+                if (this.translateTextContent(child)) { return; }
             }
         }
     }

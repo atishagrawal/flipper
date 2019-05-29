@@ -1,16 +1,16 @@
-import { Injectable, Injector } from "@angular/core";
-import { Observable } from "rxjs";;
+import { Injectable, Injector } from '@angular/core';
+import { Observable } from 'rxjs';
 import { PaginationResponse } from '../common/core/types/pagination-response';
 import { HttpCacheClient } from '../common/core/http/http-cache-client';
 import { Invoice } from './invoice';
 
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class InvoiceService {
-  ROOT_URL = "invoice";
-  DELETE_MULTIPLE="invoices/delete-multiple";
+  ROOT_URL = 'invoice';
+  DELETE_MULTIPLE = 'invoices/delete-multiple';
   protected http: HttpCacheClient;
   constructor(
     protected injector: Injector,
@@ -20,7 +20,7 @@ export class InvoiceService {
 
   get(params): Observable<PaginationResponse<Invoice>> {
 
-        return this.http.getWithCache(this.ROOT_URL,params);
+        return this.http.getWithCache(this.ROOT_URL, params);
   }
   create(invoice: Partial<Invoice>): Observable<Invoice> {
     return this.http.post(this.ROOT_URL, invoice);

@@ -1,5 +1,5 @@
 export function slugifyString(text: string): string {
-    if ( ! text) return text;
+    if ( ! text) { return text; }
 
     return text.trim()
         .replace(/["']/g, '')

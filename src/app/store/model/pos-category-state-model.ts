@@ -4,11 +4,11 @@ export interface PosCategoryState {
   data: Category[];
   loaded: boolean;
   loading: boolean;
-  payload?:any;
-  success?:boolean;
-  categoryId:number | 0;
-  category:Category;
-  meta:{
+  payload?: any;
+  success?: boolean;
+  categoryId: number | 0;
+  category: Category;
+  meta: {
   from: number;
   to: number;
   total: number;
@@ -23,7 +23,7 @@ export interface PosCategoryState {
   sort_column: SortColumn;
   sort_direction: SortDirection;
 
-  },
+  };
   queryParams?: CategoriesApiIndexParams;
 
 }
@@ -38,7 +38,7 @@ export const AVAILABLE_SORTS: PosSortOption[] = [
 ];
 
 export interface CategoryModel {
-  entries:Category[];
+  entries: Category[];
   meta: {
     currentPage: number;
     lastPage: number;

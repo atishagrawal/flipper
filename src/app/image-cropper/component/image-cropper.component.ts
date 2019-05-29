@@ -306,7 +306,7 @@ export class ImageCropperComponent implements OnChanges {
 
     private setCropperScaledMinHeight(): void {
         if (this.maintainAspectRatio) {
-            this.cropperScaledMinHeight = Math.max(20, this.cropperScaledMinWidth / this.aspectRatio)
+            this.cropperScaledMinHeight = Math.max(20, this.cropperScaledMinWidth / this.aspectRatio);
         } else if (this.cropperMinHeight > 0) {
             this.cropperScaledMinHeight = Math.max(20, this.cropperMinHeight / this.originalImage.height * this.maxSize.height);
         } else {
@@ -506,7 +506,7 @@ export class ImageCropperComponent implements OnChanges {
             y1: Math.round(this.cropper.y1 * ratio),
             x2: Math.min(Math.round(this.cropper.x2 * ratio), this.originalSize.width),
             y2: Math.min(Math.round(this.cropper.y2  * ratio), this.originalSize.height)
-        }
+        };
     }
 
     private cropToOutputType(outputType: OutputType, cropCanvas: HTMLCanvasElement, output: ImageCroppedEvent): ImageCroppedEvent | Promise<ImageCroppedEvent> {

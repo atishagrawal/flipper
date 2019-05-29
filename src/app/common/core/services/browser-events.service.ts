@@ -62,7 +62,7 @@ export class BrowserEvents {
         const inputs = ['input', 'textarea'],
               tagName = document.activeElement.tagName;
 
-        if ( ! tagName) return true;
+        if ( ! tagName) { return true; }
 
         return inputs.indexOf(tagName.toLowerCase()) > -1;
     }

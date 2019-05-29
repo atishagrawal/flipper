@@ -30,7 +30,7 @@ export class SalePointComponent implements OnInit {
   currently_stocks: Stock[] = [];
   pos$: Observable<Pos>;
   is_order_currently = false;
-  current_order = null; //TODO: why this has no type?
+  current_order = null; // TODO: why this has no type?
   ordered_items = [];
   order$: Observable<Orders[]>;
   order_items$: Observable<OrderItems[]>;
@@ -44,22 +44,22 @@ export class SalePointComponent implements OnInit {
   radius: number;
   color: string;
   warn = 'warn';
-  accent='accent';
-  primary='primary';
+  accent = 'accent';
+  primary = 'primary';
   mode = 'determinate';
-  constructor(private setupModelService:SetUpModelService,private bottomSheet: MatBottomSheet,private currentUser: CurrentUser, private orderItemModelService: OrderItemsModelService, private orderModelService: OrderModelService, private api: ApiPosService, private posModelService: PosModelService, private msterModelService: MasterModelService) {
+  constructor(private setupModelService: SetUpModelService, private bottomSheet: MatBottomSheet, private currentUser: CurrentUser, private orderItemModelService: OrderItemsModelService, private orderModelService: OrderModelService, private api: ApiPosService, private posModelService: PosModelService, private msterModelService: MasterModelService) {
 
    }
 
   category_selected: Category;
   is_categry_clicked = false;
-  customer_type:CustomerType=null;
+  customer_type: CustomerType = null;
 
   ngOnInit() {
     if (this.currentUser.user) {
       this.business = this.currentUser.user[0]; // ?
     }
-//modelSetUpService
+// modelSetUpService
     this.master$ = this.msterModelService.master$;
     this.pos$ = this.posModelService.pos$;
     this.order_items$ = this.orderItemModelService.order_items$;
@@ -70,23 +70,23 @@ export class SalePointComponent implements OnInit {
     this.getCategories();
 
   }
-checkingCustomerTypeExist(){
-  if (!this.pos$) return;
+checkingCustomerTypeExist() {
+  if (!this.pos$) { return; }
   this.pos$.subscribe(res => {
     if (res) {
-        if(res.customer_type_price===null){
+        if (res.customer_type_price === null) {
           this.updatePosSetPrice();
         }
     }
   });
 }
-updatePosSetPrice(){
-  if (!this.setup$) return;
+updatePosSetPrice() {
+  if (!this.setup$) { return; }
   this.setup$.subscribe(res => {
     if (res) {
-    if(res.customertypes.find(p=>p.is_active==0)){
-        const pos= this.posModelService.get();
-          pos.customer_type_price=res.customertypes.find(p=>p.is_active==0);
+    if (res.customertypes.find(p => p.is_active == 0)) {
+        const pos = this.posModelService.get();
+          pos.customer_type_price = res.customertypes.find(p => p.is_active == 0);
           this.posModelService.update(pos);
 
       }
@@ -95,7 +95,7 @@ updatePosSetPrice(){
   });
 }
   getCategories() {
-    if (!this.pos$) return;
+    if (!this.pos$) { return; }
     this.pos$.subscribe(res => {
       if (res) {
         this.categories = this.getRows(this.updateSalesPrices(res.stocks));
@@ -103,43 +103,43 @@ updatePosSetPrice(){
     });
   }
 
-getDefaultCustomerPrice(){
-  if (!this.pos$) return;
+getDefaultCustomerPrice() {
+  if (!this.pos$) { return; }
       this.pos$.subscribe(res => {
         if (res && res.customer_type_price) {
-          this.customer_type =res.customer_type_price?res.customer_type_price:null;
+          this.customer_type = res.customer_type_price ? res.customer_type_price : null;
         }
       });
 }
-updateSalesPrices(stocks:Array<Stock>):Stock[]{
-const updated:Stock[]=[];
-if(stocks.length > 0){
-  stocks.forEach(el=>{
-    if(el.customer_type_items.length > 0){
-        const prices=el.customer_type_items.find(p=>p['customer_type_id']==this.customer_type.id);
-              el.item.unit_sale=prices.sale_price_including_tax;
-              el.customer_type=prices.customer_type;
+updateSalesPrices(stocks: Array<Stock>): Stock[] {
+const updated: Stock[] = [];
+if (stocks.length > 0) {
+  stocks.forEach(el => {
+    if (el.customer_type_items.length > 0) {
+        const prices = el.customer_type_items.find(p => p['customer_type_id'] == this.customer_type.id);
+              el.item.unit_sale = prices.sale_price_including_tax;
+              el.customer_type = prices.customer_type;
           if (el) {
             updated.push(el);
           }
 
-    }else{
+    } else {
       if (el) {
-        el.customer_type=null;
+        el.customer_type = null;
         updated.push(el);
      }
     }
 
   });
   return updated;
-}else{
+} else {
 
   return updated;
 }
 }
 
   removeDups(names) {
-    let unique = {};
+    const unique = {};
     names.forEach(function (i) {
       if (!unique[i]) {
         unique[i] = true;
@@ -148,7 +148,7 @@ if(stocks.length > 0){
     return Object.keys(unique);
   }
   getRows(data: Array<any>) {
-    //console.log(data);
+    // console.log(data);
     let cat: Category[] = [];
     if (!data) {
       return [];
@@ -158,15 +158,15 @@ if(stocks.length > 0){
           cat.push(stock['category']);
         }
       });
-      let obj = {};
+      const obj = {};
       cat = Object.keys(cat.reduce((prev, next) => {
-        if (!obj[next.id]) obj[next.id] = next;
+        if (!obj[next.id]) { obj[next.id] = next; }
         return obj;
       }, obj)).map((i) => obj[i]);
       return cat;
-    };
+    }
   }
-  //TODO:Ithink this function is not useful check with Ganza
+  // TODO:Ithink this function is not useful check with Ganza
   pushCat(cat) {
     const cats = [];
     if (cat.length > 0) {
@@ -183,16 +183,16 @@ if(stocks.length > 0){
     this.posModelService.update({ panel_content: panel });
   }
   homeDir() {
-    this.is_categry_clicked = false
+    this.is_categry_clicked = false;
     this.updatePosLayout('home');
   }
 
   getCurrentOrder() {
-    if (!this.pos$) return;
-    this.current_order=null;
+    if (!this.pos$) { return; }
+    this.current_order = null;
     this.pos$.subscribe(res => {
       if (res) {
-        if(res.currently_ordered){
+        if (res.currently_ordered) {
           this.current_order = res.currently_ordered;
         }
       }
@@ -202,40 +202,40 @@ if(stocks.length > 0){
 
 
 
-saveToCartWithOrder(cart,stock:Stock){
-      if (!this.business) return;
+saveToCartWithOrder(cart, stock: Stock) {
+      if (!this.business) { return; }
     this.getCurrentOrder();
 
     if (this.is_categry_clicked) {
 
       if (cart.total_qty === 0) {
-        alert("Stock Quantity is unavailable");
+        alert('Stock Quantity is unavailable');
       } else {
-       const sale_price=stock.customer_type_items.find(p=>p.customer_type_id==stock.customer_type.id);
+       const sale_price = stock.customer_type_items.find(p => p.customer_type_id == stock.customer_type.id);
         const cart_data: OrderItems = {
-          batch_no:cart.batch_no,
+          batch_no: cart.batch_no,
           note: null,
           reason_id: null,
-          discount_value:this.customer_type?this.customer_type.discount_value:0.00,
-          tax_rate_id: stock?stock.tax_rate.id:null,
-          sale_price_id: sale_price?sale_price.id:null,
-          order_id: this.current_order?this.current_order.id:null,
-          stock_id: stock?stock.stock_id:null,
+          discount_value: this.customer_type ? this.customer_type.discount_value : 0.00,
+          tax_rate_id: stock ? stock.tax_rate.id : null,
+          sale_price_id: sale_price ? sale_price.id : null,
+          order_id: this.current_order ? this.current_order.id : null,
+          stock_id: stock ? stock.stock_id : null,
           discount_reason_id: null,
-          refund_reason_id:null,
+          refund_reason_id: null,
           qty: 1,
-          action:'add'
+          action: 'add'
         };
 
         if (this.current_order) {
           this.updateOrderItem(cart_data);
         } else {
-          const pos=this.posModelService.get();
+          const pos = this.posModelService.get();
         this.createNewOrder({ status: 'ordered',
           branch_id: parseInt(localStorage.getItem('active_branch')),
           user_id: this.currentUser.get('id'),
           business_id: this.currentUser.get('business')[0].id,
-          customer_id:pos.choose_customer?pos.choose_customer.customer_id:null,
+          customer_id: pos.choose_customer ? pos.choose_customer.customer_id : null,
           cart_data: cart_data });
         }
       }
@@ -245,31 +245,31 @@ saveToCartWithOrder(cart,stock:Stock){
   updateOrderItem(params) {
 
     this.api.updateOrderItem(params).pipe(finalize(() =>
-    this.posModelService.update(this.posModelService.get().loading=false))).subscribe(
+    this.posModelService.update(this.posModelService.get().loading = false))).subscribe(
       res => {
-      const order_item=res['order_item'] as OrderItems || null ;
+      const order_item = res['order_item'] as OrderItems || null ;
 
-        if(order_item){
-          const ordered_items:OrderItems[]=this.orderItemModelService.get();
+        if (order_item) {
+          const ordered_items: OrderItems[] = this.orderItemModelService.get();
 
-              if(ordered_items && ordered_items.length > 0){
+              if (ordered_items && ordered_items.length > 0) {
 
-                    ordered_items.forEach((item, i)=> {
+                    ordered_items.forEach((item, i) => {
 
-                          if (item.id===order_item.id){
+                          if (item.id === order_item.id) {
                                ordered_items[i] = order_item;
-                          }else{
+                          } else {
                             if (!ordered_items.includes(order_item)) {
                                     ordered_items.unshift(order_item);
                             }
                           }
                     });
 
-              }else{
+              } else {
                 ordered_items.unshift(order_item);
               }
-              let _ordered_items: OrderItems[] = this.removeDuplicate(ordered_items,'id');
-              this.orderItemModelService.update(_ordered_items,"all");
+              const _ordered_items: OrderItems[] = this.removeDuplicate(ordered_items, 'id');
+              this.orderItemModelService.update(_ordered_items, 'all');
 
             }
 
@@ -280,11 +280,11 @@ saveToCartWithOrder(cart,stock:Stock){
     );
   }
 
-  removeDuplicate(ordered_items:OrderItems[]= [],id){
-    let obj = {};
+  removeDuplicate(ordered_items: OrderItems[]= [], id) {
+    const obj = {};
     let _ordered_items: OrderItems[] = [];
     _ordered_items = Object.keys(ordered_items.reduce((prev, next) => {
-      if (!obj[next[id]]) obj[next[id]] = next;
+      if (!obj[next[id]]) { obj[next[id]] = next; }
       return obj;
     }, obj)).map((i) => obj[i]);
     return _ordered_items;
@@ -293,25 +293,25 @@ saveToCartWithOrder(cart,stock:Stock){
     this.posModelService.update({ loading: true });
     this.api.createOrder(params).pipe(finalize(() => this.posModelService.update({ loading: false }))).subscribe(
       res => {
-        if(res['order']){
+        if (res['order']) {
 
             const order: Orders = res['order'] as Orders;
-            const pos=this.posModelService.get();
+            const pos = this.posModelService.get();
 
-            pos.currently_ordered=order;
-            pos.loading=false;
+            pos.currently_ordered = order;
+            pos.loading = false;
             pos.orders.unshift(res['order']);
 
-            if(order && order.customer){
-              pos.choose_customer=order.customer;
-              pos.customer_type_price=order.customer_type;
-            }else{
-              pos.choose_customer=null;
-              pos.customer_type_price=null;
+            if (order && order.customer) {
+              pos.choose_customer = order.customer;
+              pos.customer_type_price = order.customer_type;
+            } else {
+              pos.choose_customer = null;
+              pos.customer_type_price = null;
             }
 
             this.posModelService.update(pos);
-              if(pos){
+              if (pos) {
                 this.orderItemModelService.update(order['order_items'], 'all');
               }
 
@@ -332,7 +332,7 @@ saveToCartWithOrder(cart,stock:Stock){
   //   }
   //   return color == '#ffffff' || color == '#303f9f' ? this.getRandomColor() : color;
   // }
-  //[style.color]="'#ffff'" [style.background-color]="getRandomColor()"
+  // [style.color]="'#ffff'" [style.background-color]="getRandomColor()"
   categoriesClicked(category) {
     this.category_selected = category;
     this.is_categry_clicked = true;
@@ -345,9 +345,9 @@ saveToCartWithOrder(cart,stock:Stock){
       });
     }
   }
-  percentage(num,num1) {
-    let sum=Math.round(parseInt(num) *100)/parseInt(num1);
-  return isNaN(sum)?0:sum.toFixed(1);
+  percentage(num, num1) {
+    const sum = Math.round(parseInt(num) * 100) / parseInt(num1);
+  return isNaN(sum) ? 0 : sum.toFixed(1);
 }
 }
 

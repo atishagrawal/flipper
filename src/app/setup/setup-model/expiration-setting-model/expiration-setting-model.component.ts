@@ -21,46 +21,46 @@ export class ExpirationSettingModelComponent implements OnInit {
   expirationSettingForm: FormGroup;
   public loading = new BehaviorSubject(false);
   details$: Observable<Details>;
-  need_to_add_new: boolean = true;
+  need_to_add_new = true;
   business: Business;
-  expiration_setting_id:number;
+  expiration_setting_id: number;
   numberPatern = '^[0-9.]+$';
-  colors:any[]=[{
-    value:'#0e0d0d',valueName:'Black',
-  },{
-    value:'#f44336',valueName:'Red',
+  colors: any[] = [{
+    value: '#0e0d0d', valueName: 'Black',
+  }, {
+    value: '#f44336', valueName: 'Red',
 
-  },{
-    value:'#490f0f',valueName:'Red - Dark',
+  }, {
+    value: '#490f0f', valueName: 'Red - Dark',
 
-  },{
-    value:'#4caf50',valueName:'Green',
+  }, {
+    value: '#4caf50', valueName: 'Green',
 
-  },{
-    value:'#1da1f2',valueName:'Blue Sky',
+  }, {
+    value: '#1da1f2', valueName: 'Blue Sky',
 
-  },{
-    value:'#3b5998',valueName:'Blue',
+  }, {
+    value: '#3b5998', valueName: 'Blue',
 
-  },{
-    value:'#b57541',valueName:'Coffee',
+  }, {
+    value: '#b57541', valueName: 'Coffee',
 
-  },{
-    value:'#b541a6',valueName:'Violet',
+  }, {
+    value: '#b541a6', valueName: 'Violet',
 
   }];
 
-  periods:any = [
-    {value:'today',valueName:'Today'},
-    {value:'yestarday',valueName:'Yestarday'},
-    {value:'tomorrow',valueName:'Tomorrow'}
-    ,{value:'day',valueName:'Day'}
-    ,{value:'week',valueName:'week'}
-    ,{value:'month',valueName:'Month'}
-    ,{value:'year',valueName:'Year'}
+  periods: any = [
+    {value: 'today', valueName: 'Today'},
+    {value: 'yestarday', valueName: 'Yestarday'},
+    {value: 'tomorrow', valueName: 'Tomorrow'}
+    , {value: 'day', valueName: 'Day'}
+    , {value: 'week', valueName: 'week'}
+    , {value: 'month', valueName: 'Month'}
+    , {value: 'year', valueName: 'Year'}
   ];
 
-  constructor(public currentUser: CurrentUser, private setupModelService: SetUpModelService, private toast: Toast, private api:ApiExpirationSettingService, private detailsService: DetailsService) { }
+  constructor(public currentUser: CurrentUser, private setupModelService: SetUpModelService, private toast: Toast, private api: ApiExpirationSettingService, private detailsService: DetailsService) { }
 
 
   ngOnInit() {
@@ -71,10 +71,10 @@ export class ExpirationSettingModelComponent implements OnInit {
     this.loadingFormGroup();
   }
 
-autoChange(event){
-  const inputed_value=event.target.value;
+autoChange(event) {
+  const inputed_value = event.target.value;
   console.log(inputed_value);
-  if(!this.expirationSettingForm.get('name').valid){
+  if (!this.expirationSettingForm.get('name').valid) {
     this.expirationSettingForm.get('name').setValue(inputed_value);
   }
 
@@ -89,10 +89,10 @@ autoChange(event){
       }
       this.expiration_setting_id = res.sender_data ? res.sender_data.id : 0;
       this.expirationSettingForm = new FormGroup({
-        name: new FormControl(res.sender_data ? res.sender_data.name : "", [Validators.required]),
-        description: new FormControl(res.sender_data ? res.sender_data.description : ""),
-        period: new FormControl(res.sender_data ? res.sender_data.period :"", [Validators.required]),
-        color: new FormControl(res.sender_data ? res.sender_data.tax_code : "", [Validators.required]),
+        name: new FormControl(res.sender_data ? res.sender_data.name : '', [Validators.required]),
+        description: new FormControl(res.sender_data ? res.sender_data.description : ''),
+        period: new FormControl(res.sender_data ? res.sender_data.period : '', [Validators.required]),
+        color: new FormControl(res.sender_data ? res.sender_data.tax_code : '', [Validators.required]),
         period_value: new FormControl(res.sender_data ? res.sender_data.period_value : 0, [Validators.required, Validators.pattern(this.numberPatern)])
       });
     });
@@ -101,27 +101,27 @@ autoChange(event){
 
   ///////////////////////////// Item
   get name() {
-    return this.expirationSettingForm.get("name");
+    return this.expirationSettingForm.get('name');
   }
 
   get description() {
-    return this.expirationSettingForm.get("description");
+    return this.expirationSettingForm.get('description');
   }
 
   get period() {
-    return this.expirationSettingForm.get("period");
+    return this.expirationSettingForm.get('period');
   }
   get period_value() {
-    return this.expirationSettingForm.get("period_value");
+    return this.expirationSettingForm.get('period_value');
   }
   get color() {
-    return this.expirationSettingForm.get("color");
+    return this.expirationSettingForm.get('color');
   }
 
 
   saveExpirationSetting() {
     if (this.expirationSettingForm.valid) {
-      this.loading.next(true)
+      this.loading.next(true);
       const data = {
         name: this.expirationSettingForm.value.name,
         description: this.expirationSettingForm.value.description,

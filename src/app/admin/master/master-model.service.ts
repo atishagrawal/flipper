@@ -14,11 +14,11 @@ export class MasterModelService {
     this.create();
     this.master$ = this.model.data$;
    }
-   public create(stateCreation:Master={loading:false,items:[],categories:[],brands:[],branchs:[]}){
+   public create(stateCreation: Master= {loading: false, items: [], categories: [], brands: [], branchs: []}) {
     this.model = this.modelFactory.create(stateCreation);
    }
 
-   public get(){
+   public get() {
        return this.model.get();
    }
    update(stateUpdates: any) {
@@ -28,7 +28,7 @@ export class MasterModelService {
     const newModel = { ...modelSnapshot, ...stateUpdates };
     // set new model data (after mutation)
     this.model.set(newModel);
-    //console.log('mastering',this.model.get());
+    // console.log('mastering',this.model.get());
   }
 
 

@@ -44,7 +44,7 @@ export class PaginatedDataTableSource<T> extends DataTableSource<T> {
      * Check if all table rows are selected.
      */
     public allRowsSelected(): boolean {
-        if ( ! this.config.dataPaginator.data || ! this.config.dataPaginator.data.length) return false;
+        if ( ! this.config.dataPaginator.data || ! this.config.dataPaginator.data.length) { return false; }
         return this.selectedRows.selected.length === this.config.dataPaginator.data.length;
     }
 
@@ -65,14 +65,14 @@ export class PaginatedDataTableSource<T> extends DataTableSource<T> {
     }
 
     public init(params?: object) {
-        if ( ! this.params) this.params = new BehaviorSubject({});
-        if (params) this.params.next(params);
-        if (this.config.initialData) this.setFilteredData(this.config.initialData);
+        if ( ! this.params) { this.params = new BehaviorSubject({}); }
+        if (params) { this.params.next(params); }
+        if (this.config.initialData) { this.setFilteredData(this.config.initialData); }
 
         this.searchQuery.valueChanges.pipe(
             debounceTime(400),
             distinctUntilChanged(),
-            map(query => {return {query}}),
+            map(query => ({query})),
         ).pipe(
             combineLatest(
                 this.params,
@@ -138,7 +138,7 @@ export class PaginatedDataTableSource<T> extends DataTableSource<T> {
 
         // search query
         params.query = params.query || this.searchQuery.value;
-        if ( ! params.query) delete params.query;
+        if ( ! params.query) { delete params.query; }
 
         delete params['length'];
         delete params['previousPageIndex'];

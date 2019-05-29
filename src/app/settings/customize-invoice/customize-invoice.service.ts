@@ -15,23 +15,23 @@ export class CustomizeInvoiceService {
     this.invoice$ = this.model.data$;
 
    }
-   public create(stateCreation:CustomizeInvoice){
+   public create(stateCreation: CustomizeInvoice) {
     this.model = this.modelFactory.create(stateCreation);
 
    }
 
-   public get(){
+   public get() {
        return this.model.get();
    }
    update(stateUpdates: any) {
-     if(stateUpdates){
+     if (stateUpdates) {
         this.model.set(stateUpdates);
-     }else{
+     } else {
       this.model.set({});
      }
 
   }
-  close(){
+  close() {
     this.update(null);
   }
 

@@ -14,32 +14,32 @@ import { MasterModelService } from '../master-model.service';
 import { ApiBranchService } from './api/api.service';
 
 @Component({
-  selector: "remove-dialog",
+  selector: 'remove-dialog',
   templateUrl: './remove-dialog.html',
-  styleUrls: ["./branch.component.scss"]
+  styleUrls: ['./branch.component.scss']
 })
 export class RemoveBranchDialog {
-  cat_deleted=[];
+  cat_deleted = [];
   public loading = new BehaviorSubject(false);
-  constructor(private msterModelService:MasterModelService,private toast: Toast,private api: ApiBranchService,
+  constructor(private msterModelService: MasterModelService, private toast: Toast, private api: ApiBranchService,
     public dialogRef: MatDialogRef<RemoveBranchDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     }
 
-    deleteBranch(){
+    deleteBranch() {
       this.loading.next(true);
         this.data.forEach(element => {
           this.api
           .delete(element.Branch_id).subscribe(
               res => {
-                  if(res.status=='success'){
-                    this.dialogRef.close({status:'success'});
-                    this.msterModelService.update({loading: false, categories: res['Branch']['data']?res['Branch']['data']:[]});
+                  if (res.status == 'success') {
+                    this.dialogRef.close({status: 'success'});
+                    this.msterModelService.update({loading: false, categories: res['Branch']['data'] ? res['Branch']['data'] : []});
                   }
               },
               _error => {
                 this.toast.open('Nothing deleted!');
-                this.dialogRef.close({status:'failed'});
+                this.dialogRef.close({status: 'failed'});
                 console.error(_error);
               }
           );
@@ -50,7 +50,7 @@ export class RemoveBranchDialog {
 
 
   close(): void {
-    this.dialogRef.close({status:'none'});
+    this.dialogRef.close({status: 'none'});
   }
 }
 @Component({
@@ -61,11 +61,11 @@ export class RemoveBranchDialog {
 export class BranchComponent implements OnInit {
 
   public loading = new BehaviorSubject(false);
-  can_delete=false;
+  can_delete = false;
 
-  constructor(private msterModelService:MasterModelService,public dialog: MatDialog,private detailsService:DetailsService,private api:ApiBranchService,private ref: ChangeDetectorRef) { }
+  constructor(private msterModelService: MasterModelService, public dialog: MatDialog, private detailsService: DetailsService, private api: ApiBranchService, private ref: ChangeDetectorRef) { }
   data: Branch[] = [];
-  displayedColumns: string[] = ['select', 'name','description'];
+  displayedColumns: string[] = ['select', 'name', 'description'];
   dataSource = new MatTableDataSource<Branch>([]);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -98,16 +98,16 @@ export class BranchComponent implements OnInit {
 
     this.master$ = this.msterModelService.master$;
 
-        this.master$.subscribe(res=>{
-          if(res.branchs.length  > 0){
-            this.data=res.branchs;
-            this.dataSource.data=this.data;
+        this.master$.subscribe(res => {
+          if (res.branchs.length  > 0) {
+            this.data = res.branchs;
+            this.dataSource.data = this.data;
           }
       });
 
   }
-  openDetails(title='New Branch',action='new',obj){
-     this.detailsService.update({title:title,sender_data:obj,module:'app-master',component:'app-Branch',action:action,detailsVisible:true});
+  openDetails(title= 'New Branch', action= 'new', obj) {
+     this.detailsService.update({title: title, sender_data: obj, module: 'app-master', component: 'app-Branch', action: action, detailsVisible: true});
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -121,7 +121,7 @@ export class BranchComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        if(result.status=="success"){
+        if (result.status == 'success') {
           this.selection = new SelectionModel<Branch>(true, []);
          }
       });
@@ -132,10 +132,10 @@ export class BranchComponent implements OnInit {
 
 
 
-  message(t){
-    return ''+t.trim().toLowerCase()+' is empty';
+  message(t) {
+    return '' + t.trim().toLowerCase() + ' is empty';
   }
-  subMessage(t){
-    return 'There are no '+t.trim().toLowerCase()+' currently.';
+  subMessage(t) {
+    return 'There are no ' + t.trim().toLowerCase() + ' currently.';
   }
 }

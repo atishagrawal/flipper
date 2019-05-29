@@ -22,7 +22,7 @@ const posRoutes: Routes = [
             pathMatch: 'full',
             },
             {
-              path: 'till-categories',component:ItemCategoriesComponent,
+              path: 'till-categories', component: ItemCategoriesComponent,
             },
             {
               path: 'till-category-items/:categoryId', component: PosProductsComponent
@@ -30,17 +30,17 @@ const posRoutes: Routes = [
 
             {
             path: 'till-orders',
-            loadChildren: 'app/orders/orders.module#OrdersModule',
+            loadChildren: () => import('../../app/orders/orders.module').then(m => m.OrdersModule),
             canActivate: [AuthGuard]
             },
             {
               path: 'till-customers',
-              loadChildren: 'app/customers/customers.module#CustomersModule',
+              loadChildren: () => import('../../app/customers/customers.module').then(m => m.CustomersModule),
               canActivate: [AuthGuard]
             },
             {
               path: 'till-pay',
-              loadChildren: 'app/pay/pay.module#PayModule',
+              loadChildren: () => import('../../app/pay/pay.module').then(m => m.PayModule),
               canActivate: [AuthGuard]
             }
         ]

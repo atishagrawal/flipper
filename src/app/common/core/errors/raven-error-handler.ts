@@ -8,14 +8,14 @@ export function ravenErrorHandlerFactory (settings: Settings, currentUser: Curre
 }
 
 export class RavenErrorHandler extends NoBackendErrorHandler {
-    
+
     /**
      * Http error codes that should not be reported.
      */
     protected dontReport = [
         401, 402, 403, 404, 422
     ];
-    
+
     /**
      * RavenErrorHandler Constructor.
      */
@@ -32,7 +32,7 @@ export class RavenErrorHandler extends NoBackendErrorHandler {
      */
     public handleError(err: any): void {
         // if there's no error, or it's a validation error, bail
-        if ( ! err || (err.type === 'http' && this.dontReport.indexOf(err.status) > -1)) return;
+        if ( ! err || (err.type === 'http' && this.dontReport.indexOf(err.status) > -1)) { return; }
 
         super.handleError(err, {
             extra: {user: this.currentUser.getModel()},

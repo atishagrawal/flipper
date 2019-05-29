@@ -17,7 +17,7 @@ export class Plan {
     available_space: number;
 
     constructor(params: Object = {}) {
-        for (let name in params) {
+        for (const name in params) {
             this[name] = params[name];
         }
     }

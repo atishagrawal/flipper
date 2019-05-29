@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,ViewEncapsulation, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { UrlAwarePaginator } from '../../../common/pagination/url-aware-paginator.service';
 import { PaginatedDataTableSource } from '../../../data-table/data/paginated-data-table-source';
@@ -19,19 +19,19 @@ import { GlobalVariables } from '../../../common/core/global-variables';
   providers: [UrlAwarePaginator],
   encapsulation: ViewEncapsulation.None,
 })
-export class BrandComponent implements   OnInit,OnDestroy {
-  //TODO: added { static: true } in @viewChild I do not know if this will impact our app.
-  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
-  @Input() public enableSelectButton:boolean=false;
-  @Input() public selectedId:number=0;
+export class BrandComponent implements   OnInit, OnDestroy {
+  // TODO: added { static: true } in @viewChild I do not know if this will impact our app.
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
+  @Input() public enableSelectButton = false;
+  @Input() public selectedId = 0;
 
   @Output() valueChange = new EventEmitter<Brand>();
   public dataSource: PaginatedDataTableSource<Brand>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public shared:SharedModelService,public paginator: UrlAwarePaginator,private modal: Modal,private api:ApiBrandService) { }
+  constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiBrandService) { }
 
   ngOnInit() {
-    if(!this.enableSelectButton){
+    if (!this.enableSelectButton) {
       this.v.webTitle('Manage Brands');
     }
 
@@ -69,7 +69,7 @@ ngOnDestroy() {
           body:  'Are you sure you want to delete selected brand(s)?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedBrands();
       });
   }
@@ -86,11 +86,11 @@ ngOnDestroy() {
           'crupdate-brand-modal-container'
       ).beforeClose().subscribe(data => {
         this.shared.remove();
-          if ( ! data) return;
+          if ( ! data) { return; }
           this.paginator.refresh();
       });
   }
-  selectBrand(brand:Brand){
+  selectBrand(brand: Brand) {
     return this.valueChange.emit(brand);
   }
 }

@@ -1,7 +1,8 @@
 {
-  "rulesDirectory": [
-    "node_modules/codelyzer"
-  ],
+  "extends": [
+    "@phenomnomnominal/angular-lazy-routes-fix"
+],
+"no-lazy-module-paths": [true],
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,

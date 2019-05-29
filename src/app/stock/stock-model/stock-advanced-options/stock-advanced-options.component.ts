@@ -36,8 +36,8 @@ import { ApiBranchService } from '../../../admin/master/branch/api/api.service';
 export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
   private _data: any;
   private _canAddNew: any;
-  private _item_id=0;
-  selected_row_id: number = 0;
+  private _item_id = 0;
+  selected_row_id = 0;
   expandedElement: Stock | null;
   stockFormGroup: FormGroup;
   branchList: Branch[] = [];
@@ -55,13 +55,13 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
 
 
   displayedColumns: string[] = [
-    "location",
-    "currenty_qty",
-    "min_stock",
-    "max_stock",
-    "on_order",
-    "unit_sale",
-    "show_alert",
+    'location',
+    'currenty_qty',
+    'min_stock',
+    'max_stock',
+    'on_order',
+    'unit_sale',
+    'show_alert',
     'action'
   ];
   displayedColumnsNewStock: string[] =
@@ -71,11 +71,11 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
   'stock_mvmts_reason',
   'expired_date',
   'transction_date',
-  "min_stock",
-  "max_stock",
-  "on_order",
-  "unit_sale",
-  "show_alert",
+  'min_stock',
+  'max_stock',
+  'on_order',
+  'unit_sale',
+  'show_alert',
    'operation'
   ];
   master$: Observable < Master > ;
@@ -84,7 +84,7 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
   details$: Observable<Details>;
   dataSource = new MatTableDataSource < any > ([]);
   public loading = new BehaviorSubject(false);
-  item:Item=null;
+  item: Item = null;
   reasons: Reason[] = [];
   min_stock_value_valid_value = 0;
 
@@ -102,7 +102,7 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
     this.step--;
   }
 
-  constructor(private bapi:ApiBranchService,private detailsService: DetailsService,private setupModelService: SetUpModelService,protected settings: Settings,public currentUser: CurrentUser, private _fb: FormBuilder, private toast: Toast, private api: ApiStockService, private msterModelService: MasterModelService) {}
+  constructor(private bapi: ApiBranchService, private detailsService: DetailsService, private setupModelService: SetUpModelService, protected settings: Settings, public currentUser: CurrentUser, private _fb: FormBuilder, private toast: Toast, private api: ApiStockService, private msterModelService: MasterModelService) {}
   rows: FormArray = this._fb.array([]);
   ngOnInit() {
     this.master$ = this.msterModelService.master$;
@@ -120,13 +120,13 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
   }
 
   delete(element) {
-    var r = confirm("Are you sure, you want to delete permantly this stock.");
+    const r = confirm('Are you sure, you want to delete permantly this stock.');
     if (r == true) {
 
       this.loading.next(true);
       this.api.delete(element.id).pipe(finalize(() => this.loading.next(false))).subscribe(
         res => {
-          this.detailsService.receiverData(res,true);
+          this.detailsService.receiverData(res, true);
           this.loadItemModelDetails();
           this.toast.open('Stock deleted Successfully!');
         },
@@ -136,10 +136,10 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
       );
     }
   }
-  loadItemModelDetails(){
+  loadItemModelDetails() {
     this.details$.subscribe(res => {
-      if(res.sender_data){
-        this.item=res.sender_data;
+      if (res.sender_data) {
+        this.item = res.sender_data;
         this.dataSource.data = res.sender_data.stocks;
         this.getNewStockAccordingToBranch(res.sender_data.stocks);
         this.loadNewStockFormGroup();
@@ -147,15 +147,15 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
     });
   }
 
-  getNewStockAccordingToBranch(data){
-    const arr:Branch[]=[];
+  getNewStockAccordingToBranch(data) {
+    const arr: Branch[] = [];
 
-    if(data.length == 0){
+    if (data.length == 0) {
       this.bapi.get().subscribe(res => {
                 if (res.branches.length > 0) {
                       res.branches.forEach(branch => {
-                        if(!this.dataSource.data.find(b=>b.branch_id==branch.branch_id)){
-                          if(!arr.find(b=>b.branch_id==branch.branch_id)){
+                        if (!this.dataSource.data.find(b => b.branch_id == branch.branch_id)) {
+                          if (!arr.find(b => b.branch_id == branch.branch_id)) {
                             this.addRow(branch, false);
                             arr.push(branch);
                           }
@@ -164,15 +164,15 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
                 }
           });
 
-    }else{
-      for (var i = 0; i <  data.length; i++) {
+    } else {
+      for (let i = 0; i <  data.length; i++) {
         this.bapi.get().subscribe(res => {
           if (res.branches.length > 0) {
 
             res.branches.forEach(branch => {
               if (branch && branch.branch_id !==  data[i].branch_id) {
-                if(!this.dataSource.data.find(b=>b.branch_id==branch.branch_id)){
-                  if(!arr.find(b=>b.branch_id==branch.branch_id)){
+                if (!this.dataSource.data.find(b => b.branch_id == branch.branch_id)) {
+                  if (!arr.find(b => b.branch_id == branch.branch_id)) {
 
                     this.addRow(branch, false);
                     arr.push(branch);
@@ -183,7 +183,7 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
             });
 
           }
-        })
+        });
 
       }
     }
@@ -200,10 +200,10 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
       newStock: this.rows
     });
   }
-  addRow(d ? : Branch, noUpdate ? : boolean) {
+  addRow(d ?: Branch, noUpdate ?: boolean) {
     const numberPatern = '^[0-9.,]+$';
     const row = new FormGroup({
-      item_id:new FormControl(this.item && this.item.id ? this.item.id : 0),
+      item_id: new FormControl(this.item && this.item.id ? this.item.id : 0),
       branch_id: new FormControl(d && d.branch_id ? d.branch_id : null, [Validators.required]),
       name: new FormControl(d && d.name ? d.name : null, [Validators.required]),
       qty: new FormControl(1, [Validators.required, Validators.pattern(numberPatern)]),
@@ -237,10 +237,10 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
     });
   }
 
-  uniqueObjectInArray(arr){
-    let obj = {};
+  uniqueObjectInArray(arr) {
+    const obj = {};
     arr = Object.keys(arr.reduce((prev, next) => {
-      if (!obj[next.branch_id]) obj[next.branch_id] = next;
+      if (!obj[next.branch_id]) { obj[next.branch_id] = next; }
       return obj;
     }, obj)).map((i) => obj[i]);
     return arr;
@@ -256,25 +256,25 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
     this.loadingFormGroup(element);
   }
   get branch_id() {
-    return this.stockFormGroup.get("branch_id");
+    return this.stockFormGroup.get('branch_id');
   }
   get unit_of_sale() {
-    return this.stockFormGroup.get("unit_of_sale");
+    return this.stockFormGroup.get('unit_of_sale');
   }
   get min_stock() {
-    return this.stockFormGroup.get("min_stock");
+    return this.stockFormGroup.get('min_stock');
   }
   get max_stock() {
-    return this.stockFormGroup.get("max_stock");
+    return this.stockFormGroup.get('max_stock');
   }
   get on_order() {
-    return this.stockFormGroup.get("on_order");
+    return this.stockFormGroup.get('on_order');
   }
   get show_alert() {
-    return this.stockFormGroup.get("show_alert");
+    return this.stockFormGroup.get('show_alert');
   }
   get unit_of_volume() {
-    return this.stockFormGroup.get("unit_of_volume");
+    return this.stockFormGroup.get('unit_of_volume');
   }
 
   getBranches() {
@@ -285,17 +285,17 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
     });
 
   }
-  qty(){
-    return this.newStockForm.get("qty");
+  qty() {
+    return this.newStockForm.get('qty');
   }
   saveStockUpdate(stock) {
     if (this.stockFormGroup.valid) {
       this.loading.next(true);
       this.api.update(this.stockFormGroup.value, stock.id).pipe(finalize(() => this.loading.next(false))).subscribe(
         res => {
-          if(res){
+          if (res) {
 
-            this.detailsService.receiverData(res,true);
+            this.detailsService.receiverData(res, true);
             this.loadItemModelDetails();
             this.toast.open('Stock updated Successfully!');
             this.valueChange.next(true);
@@ -311,25 +311,25 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
     }
 
   }
-  saveNewStock(element,all=false) {
+  saveNewStock(element, all= false) {
     if (this.newStockForm.valid) {
       this.loading.next(true);
-    const form_data:Stock[]=[];
-    this.newStockForm.value.newStock.forEach(form_item=>{
-        if(!all){
-          if(form_item.id===element.id){
-            form_data['_token']=this.settings.csrfToken;
+    const form_data: Stock[] = [];
+    this.newStockForm.value.newStock.forEach(form_item => {
+        if (!all) {
+          if (form_item.id === element.id) {
+            form_data['_token'] = this.settings.csrfToken;
             form_data.push(form_item);
           }
-        }else{
-          form_data['_token']=this.settings.csrfToken;
+        } else {
+          form_data['_token'] = this.settings.csrfToken;
           form_data.push(form_item);
         }
     });
-    const data= this.uniqueObjectInArray(form_data);
-    this.api.create({data:data}).pipe(finalize(() =>  this.loading.next(false))).subscribe(
+    const data = this.uniqueObjectInArray(form_data);
+    this.api.create({data: data}).pipe(finalize(() =>  this.loading.next(false))).subscribe(
       res => {
-        this.detailsService.receiverData(res,true);
+        this.detailsService.receiverData(res, true);
         this.loadItemModelDetails();
         this.toast.open('Stock created Successfully!');
         this.valueChange.next(true);
@@ -338,7 +338,7 @@ export class StockAdvancedOptionsComponent implements OnInit, OnChanges {
       console.error(_error);
       }
    );
-  }else{
+  } else {
     this.toast.open('Invalid some field(s) data');
   }
   }

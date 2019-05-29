@@ -6,14 +6,14 @@ export class CustomerType {
   customer_type_id?: number;
   is_active?: number;
   discount_value?: number;
-  description?:string;
+  description?: string;
   business_id?: number;
-  customer_type_items?:CustomerTypePrices[]=[];
+  customer_type_items?: CustomerTypePrices[] = [];
   created_at?: any;
   updated_at?: any;
 
   constructor(params: Object = {}) {
-    for (let name in params) {
+    for (const name in params) {
       this[name] = params[name];
     }
   }

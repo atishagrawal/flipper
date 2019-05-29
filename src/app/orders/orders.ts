@@ -13,13 +13,13 @@ export class Orders {
   all?: string;
   user?: any;
   customer?: Customer;
-  customer_type?:CustomerType;
+  customer_type?: CustomerType;
   order_items?: OrderItems[] = [];
   branch_id?: number;
   business_id?: number;
 
   constructor(params: Object = {}) {
-    for (let name in params) {
+    for (const name in params) {
       this[name] = params[name];
     }
   }

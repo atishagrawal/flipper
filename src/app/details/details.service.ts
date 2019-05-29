@@ -11,16 +11,16 @@ export class DetailsService {
   details$: Observable<Details>;
 
   constructor(private modelFactory: ModelFactory<Details>) {
-    this.create({title:null,receriver_data:null,sender_data:null,module:null,component:null,action:null,detailsVisible:false});
+    this.create({title: null, receriver_data: null, sender_data: null, module: null, component: null, action: null, detailsVisible: false});
     this.details$ = this.model.data$;
 
    }
-   public create(stateCreation:Details){
+   public create(stateCreation: Details) {
     this.model = this.modelFactory.create(stateCreation);
 
    }
 
-   public get(){
+   public get() {
        return this.model.get();
    }
    update(stateUpdates: any) {
@@ -34,14 +34,14 @@ export class DetailsService {
     this.model.set(newModel);
 
   }
-  close(){
-    this.update({title:null,receriver_data:null,sender_data:null,module:null,component:null,action:null,detailsVisible:false});
+  close() {
+    this.update({title: null, receriver_data: null, sender_data: null, module: null, component: null, action: null, detailsVisible: false});
   }
-  receiverData(data,close=false){
-    const g=this.get();
-    g.receriver_data=data;
-    if(close){
-      g.detailsVisible=false;
+  receiverData(data, close= false) {
+    const g = this.get();
+    g.receriver_data = data;
+    if (close) {
+      g.detailsVisible = false;
     }
     return this.update(g);
   }

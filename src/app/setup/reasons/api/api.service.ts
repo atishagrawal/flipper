@@ -23,11 +23,11 @@ export class ApiReasonService {
       return this.http.get(API_ROUTES_REASON.REASON);
   }
 
-  public update(id:number,params: Reason):  Observable<Reason> {
-    return this.http.put(API_ROUTES_REASON.REASON+'/'+id, params);
+  public update(id: number, params: Reason):  Observable<Reason> {
+    return this.http.put(API_ROUTES_REASON.REASON + '/' + id, params);
  }
- public delete(id:number): BackendResponse<{ data: Reason }> {
-  return this.http.delete(API_ROUTES_REASON.REASON+'/'+id);
+ public delete(id: number): BackendResponse<{ data: Reason }> {
+  return this.http.delete(API_ROUTES_REASON.REASON + '/' + id);
 }
 public deleteMultiple(ids: number[]) {
   return this.http.delete(API_ROUTES_REASON.DELETE_MULTIPLE, {ids});

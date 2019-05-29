@@ -24,23 +24,23 @@ export class ItemCategoriesComponent implements OnInit {
   radius: number;
   color: string;
   warn = 'warn';
-  accent='accent';
-  primary='primary';
+  accent = 'accent';
+  primary = 'primary';
   mode = 'determinate';
 
   @Select(PosCateoriesState.entries) entries$: Observable<Category[]>;
   @Select(PosCateoriesState.meta) meta$: Observable<any>;
   @Select(PosCateoriesState.loading) loading$: Observable<boolean>;
 
-  constructor(private localStorage: LocalStorage,  private router: Router,private store:Store) {}
+  constructor(private localStorage: LocalStorage,  private router: Router, private store: Store) {}
 
 
   ngOnInit() {
     this.localStorage.set('pos-load-data', 'ofCategories');
     this.store.dispatch(new ClosePosCategory());
-    const queryParams:Partial<CategoriesApiIndexParams>={
-      order_by:SET_POS_CAT_ORDERBY?SET_POS_CAT_ORDERBY:'updated_at',
-      order_dir: SET_POS_CAT_ORDERDIR?SET_POS_CAT_ORDERDIR:'desc',
+    const queryParams: Partial<CategoriesApiIndexParams> = {
+      order_by: SET_POS_CAT_ORDERBY ? SET_POS_CAT_ORDERBY : 'updated_at',
+      order_dir: SET_POS_CAT_ORDERDIR ? SET_POS_CAT_ORDERDIR : 'desc',
       categoryId:  '0',
       query: null,
       type: null,
@@ -49,9 +49,9 @@ export class ItemCategoriesComponent implements OnInit {
       };
       this.store.dispatch(new LoadCategoriesEntries(queryParams));
   }
-  loadItemsOfCategory(category:Category){
+  loadItemsOfCategory(category: Category) {
     this.localStorage.set('pos-categoryId', category.id);
-    return this.router.navigate(['/admin/pos/till-category-items',category.id]);
+    return this.router.navigate(['/admin/pos/till-category-items', category.id]);
   }
 
 }

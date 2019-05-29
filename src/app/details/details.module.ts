@@ -19,7 +19,7 @@ import { SetUpModelModule } from '../setup/setup-model/setup-model.module';
     StockModelModule,
     SetUpModelModule
   ],
-  exports:[DetailsComponent],
+  exports: [DetailsComponent],
   providers: [DetailsService],
 })
 export class DetailsModule { }

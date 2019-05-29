@@ -1,6 +1,6 @@
 import {AfterViewInit, Directive, ElementRef, Inject, Input, NgZone, OnDestroy, Renderer2} from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
-import {Subscription, Subject} from "rxjs";
+import {Subscription, Subject} from 'rxjs';
 import {BreakpointsService} from '../breakpoints.service';
 import {MutationObserverFactory} from '@angular/cdk/observers';
 import {Settings} from '../../config/settings.service';
@@ -67,7 +67,7 @@ export class CustomScrollbarDirective implements AfterViewInit, OnDestroy {
             this.renderer.addClass(this.el.nativeElement, 'scroll-container-x');
         }
 
-        if (this.shouldUseNative()) return;
+        if (this.shouldUseNative()) { return; }
 
         this.scrollbar = new PerfectScrollbar(this.el.nativeElement, {
             minScrollbarLength: this.minLength,
@@ -85,7 +85,7 @@ export class CustomScrollbarDirective implements AfterViewInit, OnDestroy {
      * Update custom scrollbar.
      */
     public update() {
-        if (this.native) return;
+        if (this.native) { return; }
         this.scrollbar.update();
     }
 
@@ -115,9 +115,9 @@ export class CustomScrollbarDirective implements AfterViewInit, OnDestroy {
      * Check whether native or custom scrollbar should be used.
      */
     private shouldUseNative(): boolean {
-        if (this.config.get('vebto.forceCustomScrollbar')) return false;
-        if (/Edge/.test(navigator.userAgent)) return false;
-        if (this.breakpoints.isMobile) return true;
+        if (this.config.get('vebto.forceCustomScrollbar')) { return false; }
+        if (/Edge/.test(navigator.userAgent)) { return false; }
+        if (this.breakpoints.isMobile) { return true; }
         return this.supportsNativeStyling;
     }
 

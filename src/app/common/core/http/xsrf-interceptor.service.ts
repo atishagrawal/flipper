@@ -1,15 +1,15 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
-import {Observable} from "rxjs";
-import {DOCUMENT} from "@angular/common";
+import {Observable} from 'rxjs';
+import {DOCUMENT} from '@angular/common';
 
-//TODO: get default angular XSRF-INTERCEPTOR to work
+// TODO: get default angular XSRF-INTERCEPTOR to work
 @Injectable()
 export class XsrfInterceptor implements HttpInterceptor {
 
     private headerName = 'X-XSRF-TOKEN';
 
-    private lastCookieString: string = '';
+    private lastCookieString = '';
 
     private lastToken: string|null = null;
 

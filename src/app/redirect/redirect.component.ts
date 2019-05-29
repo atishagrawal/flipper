@@ -10,7 +10,7 @@ import { GlobalVariables } from '../common/core/global-variables';
 })
 export class RedirectComponent implements OnInit {
 
-  constructor(private auth:CurrentUser, private router: Router, public v: GlobalVariables) {
+  constructor(private auth: CurrentUser, private router: Router, public v: GlobalVariables) {
 
      this.goTo();
   }
@@ -19,14 +19,14 @@ export class RedirectComponent implements OnInit {
     this.goTo();
   }
 
-  goTo(){
-    if(! this.auth.get('has_business_belongs') ){
-      return this.router.navigate(["/customer"]);
-    }else{
-      if(this.auth.get('roles')['name']=='admin'){
+  goTo() {
+    if (! this.auth.get('has_business_belongs') ) {
+      return this.router.navigate(['/customer']);
+    } else {
+      if (this.auth.get('roles')['name'] == 'admin') {
         this.v.webTitle('Admin -Flipper');
-        localStorage.setItem('active_menu','dashboard');
-        return this.router.navigate(["/admin"]);
+        localStorage.setItem('active_menu', 'dashboard');
+        return this.router.navigate(['/admin']);
       }
     }
 

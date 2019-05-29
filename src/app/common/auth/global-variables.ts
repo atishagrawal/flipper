@@ -12,7 +12,7 @@ export class GlobalVariables {
     public model: { email?: string; password?: string; remember?: boolean } = {
         remember: true
     };
-    constructor(private localStorage: LocalStorage){}
+    constructor(private localStorage: LocalStorage) {}
     public countries: String[] = [
         'Afghanistan',
         'Albania',
@@ -199,7 +199,7 @@ export class GlobalVariables {
         'Tajikistan',
         'Tanzania',
         'Thailand',
-        "Timor L'Este",
+        'Timor L\'Este',
         'Togo',
         'Tonga',
         'Trinidad & Tobago',
@@ -437,7 +437,7 @@ export class GlobalVariables {
         return this.redirect_url;
     }
     webTitle(title = 'Flipper') {
-        return this.localStorage.set('flipper-title',title);
+        return this.localStorage.set('flipper-title', title);
     }
 
     // set user(user: any) {

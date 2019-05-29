@@ -24,11 +24,11 @@ export class ApiCategoryService {
   public getCategories(): Observable<CategoryEntriesPaginationResponse> {
     return this.http.get(API_ROUTES.CATEGORY);
   }
-  public update(id:number,params: Category): Observable<Category> {
-    return this.http.put(API_ROUTES.CATEGORY+'/'+id, params);
+  public update(id: number, params: Category): Observable<Category> {
+    return this.http.put(API_ROUTES.CATEGORY + '/' + id, params);
  }
- public delete(id:number): BackendResponse<{ data: Category }> {
-  return this.http.delete(API_ROUTES.CATEGORY+'/'+id);
+ public delete(id: number): BackendResponse<{ data: Category }> {
+  return this.http.delete(API_ROUTES.CATEGORY + '/' + id);
 }
 
 public deleteMultiple(ids: number[]) {

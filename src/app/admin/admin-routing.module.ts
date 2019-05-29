@@ -4,11 +4,11 @@ import { AdminComponent } from './admin.component';
 import { AuthGuard } from '../common/guards/auth-guard.service';
 
 const routes: Routes = [
-  
+
     {path: '',
     component: AdminComponent,
     canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],data: {},
+    canActivateChild: [AuthGuard], data: {},
         children: [
           {
             path: '',
@@ -17,37 +17,37 @@ const routes: Routes = [
             },
             {
               path: 'dashboard',
-              loadChildren: 'app/admin/dashboard/dashboard.module#DashbordModule',
+              loadChildren: () => import('../../app/admin/dashboard/dashboard.module').then(m => m.DashbordModule),
               canActivate: [AuthGuard],
             },
             {
               path: 'master',
-              loadChildren: 'app/admin/master/master/master.module#MasterModule',
+              loadChildren: () => import('../../app/admin/master/master/master.module').then(m => m.MasterModule),
               canActivate: [AuthGuard],
             },
             {
               path: 'stock',
-              loadChildren: 'app/stock/stock.module#StockModule',
+              loadChildren: () => import('../../app/stock/stock.module').then(m => m.StockModule),
               canActivate: [AuthGuard]
             },
             {
               path: 'sales',
-              loadChildren: 'app/sales/sales.module#SalesModule',
+              loadChildren: () => import('../../app/sales/sales.module').then(m => m.SalesModule),
               canActivate: [AuthGuard]
             },
             {
               path: 'pos',
-              loadChildren: 'app/pos/pos.module#PosModule',
+              loadChildren: () => import('../../app/pos/pos.module').then(m => m.PosModule),
               canActivate: [AuthGuard]
             },
             {
               path: 'setup',
-              loadChildren: 'app/setup/setup.module#SetupModule',
+              loadChildren: () => import('../../app/setup/setup.module').then(m => m.SetupModule),
               canActivate: [AuthGuard]
             },
             {
               path: 'settings',
-              loadChildren: 'app/settings/settings.module#SettingsModule',
+              loadChildren: () => import('../../app/settings/settings.module').then(m => m.SettingsModule),
               canActivate: [AuthGuard]
             }
 

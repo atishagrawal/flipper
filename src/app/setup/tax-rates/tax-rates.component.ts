@@ -21,16 +21,16 @@ import { GlobalVariables } from '../../common/core/global-variables';
 export class TaxRatesComponent implements  OnInit, OnDestroy {
   @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<TAXRATE>;
-  @Input() public enableSelectButton:boolean=false;
-  @Input() public selectedId:number=0;
+  @Input() public enableSelectButton = false;
+  @Input() public selectedId = 0;
 
   @Output() valueChange = new EventEmitter<TAXRATE>();
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public paginator: UrlAwarePaginator,private modal: Modal,private api:ApiTaxRateService) { }
+  constructor(public v: GlobalVariables, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiTaxRateService) { }
 
 
   ngOnInit() {
-    if(!this.enableSelectButton){
+    if (!this.enableSelectButton) {
     this.v.webTitle('Manage Tax Rates');
     }
     this.dataSource = new PaginatedDataTableSource<TAXRATE>({
@@ -65,7 +65,7 @@ ngOnDestroy() {
           body:  'Are you sure you want to delete selected tax rate(s)?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedTaxRates();
       });
   }
@@ -81,12 +81,12 @@ ngOnDestroy() {
           {taxrate},
           'crupdate-tax-rate-modal-container'
       ).beforeClose().subscribe(data => {
-          if ( ! data) return;
+          if ( ! data) { return; }
           this.paginator.refresh();
       });
   }
 
-  selectTaxRate(taxrate:TAXRATE){
+  selectTaxRate(taxrate: TAXRATE) {
     return this.valueChange.emit(taxrate);
   }
 }

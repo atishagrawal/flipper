@@ -43,23 +43,24 @@ export function resizeCanvas(canvas: HTMLCanvasElement, width: number, height: n
                 for (let yy = yy_start; yy < yy_stop; yy++) {
                     const dy = Math.abs(center_y - yy) / ratio_h_half;
                     const center_x = i * ratio_w;
-                    const w0 = dy * dy; //pre-calc part of w
+                    const w0 = dy * dy; // pre-calc part of w
                     for (let xx = xx_start; xx < xx_stop; xx++) {
                         const dx = Math.abs(center_x - xx) / ratio_w_half;
                         const w = Math.sqrt(w0 + dx * dx);
                         if (w >= 1) {
-                            //pixel too far
+                            // pixel too far
                             continue;
                         }
-                        //hermite filter
+                        // hermite filter
                         weight = 2 * w * w * w - 3 * w * w + 1;
                         const pos_x = 4 * (xx + yy * width_source);
-                        //alpha
+                        // alpha
                         gx_a += weight * data[pos_x + 3];
                         weights_alpha += weight;
-                        //colors
-                        if (data[pos_x + 3] < 255)
+                        // colors
+                        if (data[pos_x + 3] < 255) {
                             weight = weight * data[pos_x + 3] / 250;
+                        }
                         gx_r += weight * data[pos_x];
                         gx_g += weight * data[pos_x + 1];
                         gx_b += weight * data[pos_x + 2];
@@ -72,16 +73,15 @@ export function resizeCanvas(canvas: HTMLCanvasElement, width: number, height: n
                 data2[x2 + 3] = gx_a / weights_alpha;
             }
         }
-        //clear and resize canvas
+        // clear and resize canvas
         if (resizeCanvas) {
             canvas.width = width;
             canvas.height = height;
-        }
-        else {
+        } else {
             ctx.clearRect(0, 0, width_source, height_source);
         }
 
-        //draw
+        // draw
         ctx.putImageData(img2, 0, 0);
     }
 }

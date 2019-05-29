@@ -8,13 +8,13 @@ import { ImageCropperModule } from '../image-cropper/image-cropper.module';
 
 @NgModule({
   imports: [
-    CommonModule,MaterialModule,
+    CommonModule, MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     UiModule,
     ImageCropperModule
   ],
   declarations: [NewBusinessComponent],
-  exports:[NewBusinessComponent]
+  exports: [NewBusinessComponent]
 })
 export class BusinessModule { }

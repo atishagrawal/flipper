@@ -11,16 +11,16 @@ import { LocalStorage } from '../../../common/core/services/local-storage.servic
   styleUrls: ['./analytics.component.scss']
 })
 export class AnalyticsComponent implements OnInit {
-  business:Business;
+  business: Business;
   branch: Branch;
 
-  constructor(private localStorage: LocalStorage,public v: GlobalVariables,public currentUser: CurrentUser) { }
+  constructor(private localStorage: LocalStorage, public v: GlobalVariables, public currentUser: CurrentUser) { }
 
   ngOnInit() {
     this.localStorage.set('active_menu', 'dashboard');
-    this.v.webTitle("Analytics DashBoard - Flipper");
-    this.business=this.currentUser.get('business')[0];
-    this.branch=this.currentUser.get('branches').find(b=>b.id==parseInt(localStorage.getItem('active_branch')));
+    this.v.webTitle('Analytics DashBoard - Flipper');
+    this.business = this.currentUser.get('business')[0];
+    this.branch = this.currentUser.get('branches').find(b => b.id == parseInt(localStorage.getItem('active_branch')));
   }
 
 }

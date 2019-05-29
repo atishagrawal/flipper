@@ -13,12 +13,12 @@ export class DetailsComponent implements OnInit {
 
   subscription: Observable<Details>;
   details$: Observable<Details>;
-  constructor(public shared:SharedModelService,private detailsService:DetailsService) {
+  constructor(public shared: SharedModelService, private detailsService: DetailsService) {
    }
 
-   close(){
+   close() {
     this.shared.remove();
-    this.detailsService.update({title:null,receriver_data:null,sender_data:null,module:null,component:null,action:null,detailsVisible:false});
+    this.detailsService.update({title: null, receriver_data: null, sender_data: null, module: null, component: null, action: null, detailsVisible: false});
   }
   ngOnInit() {
     this.subscription = this.details$ = this.detailsService.details$;

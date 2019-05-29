@@ -6,7 +6,7 @@ export class Page {
 	updated_at?: string;
 
 	constructor(params: Object = {}) {
-        for (let name in params) {
+        for (const name in params) {
             this[name] = params[name];
         }
     }

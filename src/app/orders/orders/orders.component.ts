@@ -30,7 +30,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   business: Business;
   routeLinks: any[];
   activeLinkIndex = -1;
-  constructor(public currentUser: CurrentUser,private api: ApiPosService, private orderItemModelService: OrderItemsModelService, private orderModelService: OrderModelService, private posModelService: PosModelService, private db: NgxService,private router: Router) {
+  constructor(public currentUser: CurrentUser, private api: ApiPosService, private orderItemModelService: OrderItemsModelService, private orderModelService: OrderModelService, private posModelService: PosModelService, private db: NgxService, private router: Router) {
     this.routeLinks = [
         {
             label: 'PENDING',
@@ -73,22 +73,22 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   updateOrdered(currently_ordered) {
-    currently_ordered.status = "ordered";
+    currently_ordered.status = 'ordered';
     currently_ordered.is_currently_processing = '1';
     this.api.updateOrder(currently_ordered, currently_ordered.id).subscribe(
       res => {
         if (res.status == 'success') {
 
-          const pos=this.posModelService.get();
-          pos.orders=res["orders"].length > 0 ? res['orders'] as Orders[]:[];
-          pos.currently_ordered=currently_ordered;
+          const pos = this.posModelService.get();
+          pos.orders = res['orders'].length > 0 ? res['orders'] as Orders[] : [];
+          pos.currently_ordered = currently_ordered;
 
-              if(currently_ordered.customer){
-                pos.choose_customer=currently_ordered.customer;
-                pos.customer_type_price=currently_ordered.customer_type;
-              }else{
-                pos.choose_customer=null;
-                pos.customer_type_price=null;
+              if (currently_ordered.customer) {
+                pos.choose_customer = currently_ordered.customer;
+                pos.customer_type_price = currently_ordered.customer_type;
+              } else {
+                pos.choose_customer = null;
+                pos.customer_type_price = null;
               }
 
           this.posModelService.update(pos);
@@ -107,22 +107,22 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   deleteOrdered(order) {
-    let result = confirm("Are you sure,you want to delete this order?");
+    const result = confirm('Are you sure,you want to delete this order?');
     if (result) {
       this.api.deleteOrder(order.id).subscribe(
         res => {
           if (res.status == 'success') {
-            if(res['deleted']){
-              const pos= this.posModelService.get();
+            if (res['deleted']) {
+              const pos = this.posModelService.get();
               const orders = pos.orders.filter(obj => {
                     return obj.id !== order.id;
               });
-                pos.currently_ordered=null;
-                pos.choose_customer=null;
-                pos.customer_type_price=null;
-                pos.loading=false;
-                pos.panel_content='home';
-                pos.orders=orders;
+                pos.currently_ordered = null;
+                pos.choose_customer = null;
+                pos.customer_type_price = null;
+                pos.loading = false;
+                pos.panel_content = 'home';
+                pos.orders = orders;
                 this.posModelService.update(pos);
                 this.orderItemModelService.update([], 'all');
 

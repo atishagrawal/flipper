@@ -22,15 +22,15 @@ import { ApiPosService } from '../../../pos/api/api.service';
   providers: [UrlAwarePaginator],
   encapsulation: ViewEncapsulation.None,
   animations: [
-    trigger("detailExpand", [
+    trigger('detailExpand', [
       state(
-        "collapsed",
-        style({ height: "0px", minHeight: "0", display: "none" })
+        'collapsed',
+        style({ height: '0px', minHeight: '0', display: 'none' })
       ),
-      state("expanded", style({ height: "*" })),
+      state('expanded', style({ height: '*' })),
       transition(
-        "expanded <=> collapsed",
-        animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
       )
     ])
   ]
@@ -38,21 +38,21 @@ import { ApiPosService } from '../../../pos/api/api.service';
 export class OrderListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Orders>;
-  @Input() public enableSelectButton:boolean=false;
-  @Input() public selectedId:number=0;
+  @Input() public enableSelectButton = false;
+  @Input() public selectedId = 0;
 
   @Output() valueChange = new EventEmitter<Orders>();
   public loading = new BehaviorSubject(false);
-  @Input() public url:string='pending';
+  @Input() public url = 'pending';
   business: Business;
-  @Input() public status:string;
+  @Input() public status: string;
 
   @Select(PosOrderState.entries) entries$: Observable<Orders[]>;
   @Select(PosOrderState.meta) meta$: Observable<any>;
 
   @Select(PosOrderState.loading) loading$: Observable<boolean>;
-  panelOpenState:boolean=false;
-  constructor(private router: Router,private api: ApiPosService,private store:Store,public currentUser: CurrentUser,public paginator: UrlAwarePaginator) { }
+  panelOpenState = false;
+  constructor(private router: Router, private api: ApiPosService, private store: Store, public currentUser: CurrentUser, public paginator: UrlAwarePaginator) { }
 
   ngOnInit() {
     if (this.currentUser.user) {
@@ -66,16 +66,16 @@ export class OrderListComponent implements OnInit, OnDestroy {
     this.loadOrder();
   }
 
-  loadOrder(){
-    const queryParams:Partial<OrdersApiIndexParams>={
-      order_by:SET_POS_ORDER_ORDERBY?SET_POS_ORDER_ORDERBY:'updated_at',
-      order_dir: SET_POS_ORDER_ORDERDIR?SET_POS_ORDER_ORDERDIR:'desc',
+  loadOrder() {
+    const queryParams: Partial<OrdersApiIndexParams> = {
+      order_by: SET_POS_ORDER_ORDERBY ? SET_POS_ORDER_ORDERBY : 'updated_at',
+      order_dir: SET_POS_ORDER_ORDERDIR ? SET_POS_ORDER_ORDERDIR : 'desc',
       categoryId:  '0',
       query: null,
       type: null,
       per_page: 30,
       page: 0,
-      url:this.url
+      url: this.url
       };
       this.store.dispatch(new LoadOrderEntries(queryParams));
   }
@@ -85,9 +85,9 @@ export class OrderListComponent implements OnInit, OnDestroy {
   }
 
   total(data, arg) {
-    var total = 0;
+    let total = 0;
     if (data.length > 0) {
-      for (var i = 0, _len = data.length; i < _len; i++) {
+      for (let i = 0, _len = data.length; i < _len; i++) {
         total += data[i][arg];
       }
     }
@@ -97,21 +97,21 @@ export class OrderListComponent implements OnInit, OnDestroy {
   }
 
   updateHeldOrder(order) {
-    order.status = "pending";
+    order.status = 'pending';
     order.is_currently_processing = 1;
     this.updateOrder(order);
     this.loadOrder();
     return this.router.navigate(['/admin/pos/till-categories']);
   }
-  updateResumedOrder(order){
-    order.status = "pending";
+  updateResumedOrder(order) {
+    order.status = 'pending';
     order.is_currently_processing = 1;
     this.updateOrder(order);
     this.loadOrder();
     return this.router.navigate(['/admin/pos/till-categories']);
   }
 
-  updateOrder(params:Orders) {
+  updateOrder(params: Orders) {
     this.api.updateOrder(params, params.id).subscribe(
       res => {
           this.store.dispatch(new CurrentOrder());
@@ -122,12 +122,12 @@ export class OrderListComponent implements OnInit, OnDestroy {
     );
   }
   deleteOrdered(order) {
-    let result = confirm("Are you sure,you want to delete this current transction?");
+    const result = confirm('Are you sure,you want to delete this current transction?');
     if (result) {
       this.api.deleteOrder(order.id).subscribe(
         res => {
           if (res.status == 'success') {
-            if(res['deleted']){
+            if (res['deleted']) {
               this.store.dispatch(new CurrentOrder());
               this.loadOrder();
             }

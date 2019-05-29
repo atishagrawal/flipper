@@ -14,7 +14,7 @@ import { MaterialModule } from '../material/material.module';
         PopupImageCropperModelComponent
     ],
     exports: [
-        ImageCropperComponent,PopupImageCropperModelComponent
+        ImageCropperComponent, PopupImageCropperModelComponent
     ],
     entryComponents: [PopupImageCropperModelComponent]
 })

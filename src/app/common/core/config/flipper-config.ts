@@ -66,7 +66,7 @@ export interface FlipperConfig {
     // backend stuff
     base_url?: string;
     version?: string;
-    appearance?:Appearance
+    appearance?: Appearance;
     'homepage.type'?: string;
     'homepage.value'?: string;
     'logging.sentry_public'?: string;

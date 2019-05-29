@@ -1,5 +1,5 @@
 export function strContains(haystack: string | string[], needle: string): boolean {
-    if (!haystack || !needle) return false;
+    if (!haystack || !needle) { return false; }
 
     needle = needle.toLowerCase();
 
@@ -8,7 +8,7 @@ export function strContains(haystack: string | string[], needle: string): boolea
     }
 
     for (let i = 0; i < haystack.length; i++) {
-        if (haystack[i].toLowerCase().indexOf(needle) > -1) return true;
+        if (haystack[i].toLowerCase().indexOf(needle) > -1) { return true; }
     }
 
     return false;

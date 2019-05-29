@@ -5,14 +5,14 @@ import { ExpirationSetting } from './expiration_setting/api/expiration_setting';
 
 
 export class SetUp {
-  id?:number;
-  loading:boolean;
-  taxRates:TAXRATE[]=[];
-  reasons:Reason[]=[];
-  expirationSetting:ExpirationSetting[]=[]
-  customertypes:CustomerType[]=[];
+  id?: number;
+  loading: boolean;
+  taxRates: TAXRATE[] = [];
+  reasons: Reason[] = [];
+  expirationSetting: ExpirationSetting[] = [];
+  customertypes: CustomerType[] = [];
     constructor(params: Object = {}) {
-      for (let name in params) {
+      for (const name in params) {
           this[name] = params[name];
       }
     }

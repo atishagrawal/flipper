@@ -19,15 +19,15 @@ export class ApiExpirationSettingService {
   public create(params: ExpirationSetting): Observable<ExpirationSetting> {
         return this.http.post(API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING, params);
     }
-  public get(): BackendResponse<{data:any}> {
+  public get(): BackendResponse<{data: any}> {
       return this.http.get(API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING);
   }
 
-  public update(id:number,params: ExpirationSetting): Observable<ExpirationSetting> {
-    return this.http.put(API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING+'/'+id, params);
+  public update(id: number, params: ExpirationSetting): Observable<ExpirationSetting> {
+    return this.http.put(API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING + '/' + id, params);
  }
- public delete(id:number): BackendResponse<{data:any}> {
-  return this.http.delete(API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING+'/'+id);
+ public delete(id: number): BackendResponse<{data: any}> {
+  return this.http.delete(API_ROUTES_EXPIRATIONSETTING.EXPIRATIONSETTING + '/' + id);
 }
 public deleteMultiple(ids: number[]) {
   return this.http.delete(API_ROUTES_EXPIRATIONSETTING.DELETE_MULTIPLE, {ids});

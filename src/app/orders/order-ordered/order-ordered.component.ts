@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-ordered.component.scss']
 })
 export class OrderOrderedComponent implements OnInit {
-url='';
+url = '';
   constructor() {
-    this.url='orders/pending/'+parseInt(localStorage.getItem('active_branch'));
+    this.url = 'orders/pending/' + parseInt(localStorage.getItem('active_branch'));
    }
 
   ngOnInit() {
-       this.url='orders/pending/'+parseInt(localStorage.getItem('active_branch'));
+       this.url = 'orders/pending/' + parseInt(localStorage.getItem('active_branch'));
 
   }
 

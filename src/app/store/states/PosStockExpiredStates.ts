@@ -14,7 +14,7 @@ import { ApiExpiredItemService } from '../../stock/expired-stock/api/api.service
 })
 
 export class PosStockExpiredStates {
-  constructor(private api: ApiExpiredItemService,private store:Store) { }
+  constructor(private api: ApiExpiredItemService, private store: Store) { }
   @Selector()
   static entries(state: PosStockExpiredState) {
     return state.data;
@@ -66,10 +66,12 @@ export class PosStockExpiredStates {
       order_dir: meta.sort_direction,
       ...params
     };
-    if (meta.query)
+    if (meta.query) {
       queryParams.query = meta.query;
-    if (meta.type)
+    }
+    if (meta.type) {
       queryParams.type = meta.type;
+    }
     return queryParams;
   }
 
@@ -94,13 +96,13 @@ export class PosStockExpiredStates {
           ...newState.meta,
           last_page: response.last_page,
           current_page: response.current_page,
-          from:response.from,
-          to:response.to,
+          from: response.from,
+          to: response.to,
           total: response.total,
           per_page: response.per_page,
           path: response.path,
           next_page_url: response.next_page_url,
-          prev_page_url:response.prev_page_url
+          prev_page_url: response.prev_page_url
         },
         loading: false
       } as Partial<PosStockExpiredState>;

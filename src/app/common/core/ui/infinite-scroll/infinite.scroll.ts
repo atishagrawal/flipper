@@ -14,7 +14,7 @@ export abstract class InfiniteScroll implements OnInit {
     }
 
     protected onScroll(target: HTMLElement) {
-        if ( ! this.canLoadMore() || this.isLoading()) return;
+        if ( ! this.canLoadMore() || this.isLoading()) { return; }
 
         const offset = parseInt(this.threshold as string);
 

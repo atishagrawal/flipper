@@ -33,7 +33,7 @@ export class SvgIconComponent implements OnInit {
     constructor(private el: ElementRef, private renderer: Renderer2, private settings: Settings) {}
 
     ngOnInit() {
-        //this.path = this.settings.getAssetUrl('icons/merged.svg') + '#' + this.name;
+        // this.path = this.settings.getAssetUrl('icons/merged.svg') + '#' + this.name;
 
         // start 'icon-{icon-name}' class to svg-icon component
         // so it's possible to target specific icons via css

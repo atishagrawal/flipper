@@ -26,7 +26,7 @@ export class ApiOrderService {
       return this.http.get(params.url, params);
     }
     public getCurrentOrder(): Observable<Orders> {
-      return this.http.get('order/'+parseInt(localStorage.getItem('active_branch')));
+      return this.http.get('order/' + parseInt(localStorage.getItem('active_branch')));
     }
     public createInvoice(params: Invoice = {}): Observable<Invoice> {
       return this.http.post('invoice', params);

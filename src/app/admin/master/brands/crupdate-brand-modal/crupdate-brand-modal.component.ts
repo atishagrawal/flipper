@@ -20,7 +20,7 @@ export interface CrupdatBrandModalData {
 })
 export class CrupdateBrandModalComponent implements OnInit {
     public brandForm: FormGroup;
-    public model:Brand;
+    public model: Brand;
     public errors: any = {};
     public loading = new BehaviorSubject(false);
     /**
@@ -36,7 +36,7 @@ export class CrupdateBrandModalComponent implements OnInit {
     constructor(
         private dialogRef: MatDialogRef<CrupdateBrandModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CrupdatBrandModalData,
-        private api:ApiBrandService,
+        private api: ApiBrandService,
         private toast: Toast
     ) {
         this.resetState();
@@ -57,8 +57,8 @@ export class CrupdateBrandModalComponent implements OnInit {
      * Create a new user or update existing one.
      */
     public confirm() {
-        if (!this.brandForm.valid) return;
-        let request, payload:Brand = this.getPayload();
+        if (!this.brandForm.valid) { return; }
+        let request, payload: Brand = this.getPayload();
 
         this.loading.next(true);
 
@@ -90,9 +90,9 @@ export class CrupdateBrandModalComponent implements OnInit {
      * Get payload for updating or creating a user.
      */
     private getPayload() {
-        const payload:Brand ={
-             name:this.brandForm.value.name
-        }
+        const payload: Brand = {
+             name: this.brandForm.value.name
+        };
         return payload;
     }
 
@@ -108,7 +108,7 @@ export class CrupdateBrandModalComponent implements OnInit {
      */
     private hydrateModel(category) {
       this.brandForm = new FormGroup({
-        name: new FormControl(category?category.name:"", [Validators.required])
+        name: new FormControl(category ? category.name : '', [Validators.required])
       });
     }
 
@@ -120,7 +120,7 @@ export class CrupdateBrandModalComponent implements OnInit {
     }
       ///////////////////////////// Category
   get name() {
-    return this.brandForm.get("name");
+    return this.brandForm.get('name');
   }
 
 }

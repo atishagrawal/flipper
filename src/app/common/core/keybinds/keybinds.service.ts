@@ -31,8 +31,8 @@ export class Keybinds {
 
     private executeBindings(e: KeyboardEvent) {
         this.bindings.forEach(binding => {
-            if ( ! this.bindingMatches(binding.keybind, e)) return;
-            if (binding.preventDefault && e.preventDefault) e.preventDefault();
+            if ( ! this.bindingMatches(binding.keybind, e)) { return; }
+            if (binding.preventDefault && e.preventDefault) { e.preventDefault(); }
             binding.callback(e);
         });
     }

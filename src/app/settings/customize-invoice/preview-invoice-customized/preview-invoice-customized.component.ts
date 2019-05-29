@@ -12,7 +12,7 @@ export class PreviewInvoiceCustomizedComponent implements OnInit {
   subscription: Observable<CustomizeInvoice>;
   invoice$: Observable<CustomizeInvoice>;
 
-  constructor(private serviceModel:CustomizeInvoiceService) { }
+  constructor(private serviceModel: CustomizeInvoiceService) { }
 
   ngOnInit() {
     this.subscription = this.invoice$ = this.serviceModel.invoice$;

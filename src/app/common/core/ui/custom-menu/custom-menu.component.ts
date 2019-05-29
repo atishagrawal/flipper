@@ -42,7 +42,7 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
 
         // re-render if menu setting is changed
         const sub = this.settings.onChange.subscribe(name => {
-            if (name === 'menus') this.initMenu(true);
+            if (name === 'menus') { this.initMenu(true); }
         });
 
         this.subscriptions.push(sub);
@@ -59,7 +59,7 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
      * Check if menu item should be displayed.
      */
     public shouldShow(item: MenuItem): boolean {
-        if ( ! item) return false;
+        if ( ! item) { return false; }
 
         switch (item.condition) {
             case 'auth':
@@ -80,11 +80,11 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
 
         // get stored custom menus
         const menus = JSON.parse(json);
-        if ( ! menus) return this.shouldHide = true;
+        if ( ! menus) { return this.shouldHide = true; }
 
         // find first menu for specified position
         const menuConfig = menus.find(menu => menu.position === this.position);
-        if ( ! menuConfig) return this.shouldHide = true;
+        if ( ! menuConfig) { return this.shouldHide = true; }
 
         this.menu = new Menu(menuConfig);
 

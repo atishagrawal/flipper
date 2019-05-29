@@ -5,6 +5,6 @@
 
 export const AppConfig = {
   production: false,
-  environment: "DEV",
-  url: "https://flipper.yegobox.rw/"
+  environment: 'DEV',
+  url: 'https://flipper.yegobox.rw/'
 };

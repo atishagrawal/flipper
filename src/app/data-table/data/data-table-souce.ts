@@ -50,10 +50,12 @@ export class DataTableSource<T> implements DataSource<T> {
                 }
 
                 const sortedData = this.filteredData.slice().sort((a, b) => {
-                    if (a[sort.active] < b[sort.active])
+                    if (a[sort.active] < b[sort.active]) {
                         return -1;
-                    if (a[sort.active] > b[sort.active])
+                    }
+                    if (a[sort.active] > b[sort.active]) {
                         return 1;
+                    }
                     return 0;
                 });
 
@@ -83,7 +85,7 @@ export class DataTableSource<T> implements DataSource<T> {
     }
 
     public resetSort() {
-        if ( ! this.config.matSort) return;
+        if ( ! this.config.matSort) { return; }
         this.config.matSort.sort({id: '', start: 'asc', disableClear: false});
     }
 

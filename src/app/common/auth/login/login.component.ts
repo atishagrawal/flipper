@@ -5,16 +5,16 @@ import {
   Output,
   EventEmitter,
   OnInit
-} from "@angular/core";
-import * as Raven from "raven-js";
+} from '@angular/core';
+import * as Raven from 'raven-js';
 Raven.config(
-  "https://dff6a3f171414762ac4f1c7e084289c3@sentry.io/1323436"
+  'https://dff6a3f171414762ac4f1c7e084289c3@sentry.io/1323436'
 ).install();
 
 @Component({
-  selector: "login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  selector: 'login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
     // Raven.showReportDialog();
   }
   constructor() {}
-  @Input() label = "login";
-  @Input() token = "";
-  @Input() appname = "YeGoBox";
-  @Input() redirecturl = "/home";
+  @Input() label = 'login';
+  @Input() token = '';
+  @Input() appname = 'YeGoBox';
+  @Input() redirecturl = '/home';
   @Output() action = new EventEmitter<any>();
   user = {};
   next_step = false;

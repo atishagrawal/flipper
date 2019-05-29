@@ -16,15 +16,15 @@ import { ConfirmModalComponent } from '../../common/core/ui/confirm-modal/confir
   providers: [UrlAwarePaginator],
   encapsulation: ViewEncapsulation.None
 })
-export class DiplayExpiredStockComponent implements OnInit,OnDestroy {
-//entries
+export class DiplayExpiredStockComponent implements OnInit, OnDestroy {
+// entries
 @ViewChild(MatSort) matSort: MatSort;
 public dataSource: PaginatedDataTableSource<StockMovements>;
 public loading = new BehaviorSubject(false);
 
-@Input() type: string='all';
-@Input() url:string;
-constructor(private cd: ChangeDetectorRef,public paginator: UrlAwarePaginator,private api:ApiStockService,private modal: Modal) {}
+@Input() type = 'all';
+@Input() url: string;
+constructor(private cd: ChangeDetectorRef, public paginator: UrlAwarePaginator, private api: ApiStockService, private modal: Modal) {}
 
 
   ngOnInit() {
@@ -53,7 +53,7 @@ this.modal.show(ConfirmModalComponent, {
     body:  'Are you sure you want to delete selected stock expired?',
     ok:    'Delete'
 }).afterClosed().subscribe(confirmed => {
-    if ( ! confirmed) return;
+    if ( ! confirmed) { return; }
     this.deleteSelectedStocks();
 });
 }

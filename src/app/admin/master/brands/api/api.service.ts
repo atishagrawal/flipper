@@ -22,11 +22,11 @@ export class ApiBrandService {
       return this.http.get(API_ROUTES_BRAND.BRAND);
   }
 
-  public update(id:number,params: Brand): Observable<Brand> {
-    return this.http.put(API_ROUTES_BRAND.BRAND+'/'+id, params);
+  public update(id: number, params: Brand): Observable<Brand> {
+    return this.http.put(API_ROUTES_BRAND.BRAND + '/' + id, params);
  }
- public delete(id:number): BackendResponse<{ data: Brand }> {
-  return this.http.delete(API_ROUTES_BRAND.BRAND+'/'+id);
+ public delete(id: number): BackendResponse<{ data: Brand }> {
+  return this.http.delete(API_ROUTES_BRAND.BRAND + '/' + id);
 }
 public deleteMultiple(ids: number[]) {
   return this.http.delete(API_ROUTES_BRAND.DELETE_MULTIPLE, {ids});

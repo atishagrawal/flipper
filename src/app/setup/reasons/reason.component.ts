@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-reason',
@@ -6,13 +6,13 @@ import { Component, OnInit,ViewEncapsulation } from '@angular/core';
   styleUrls: ['./reason.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ReasonComponent implements OnInit{
+export class ReasonComponent implements OnInit {
   links: any[] = [
     {
-      label:'Stock Movements',url:'reasons/stock_movements',reason_type:'stock_movements',
+      label: 'Stock Movements', url: 'reasons/stock_movements', reason_type: 'stock_movements',
     },
     {
-      label:'Discounts',url:'reasons/discount',reason_type:'discount',
+      label: 'Discounts', url: 'reasons/discount', reason_type: 'discount',
     }
   ];
    constructor() {

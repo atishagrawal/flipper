@@ -9,7 +9,7 @@ export class utils {
      * Convert "2018-02-05 13:51:1" into {date, time} object.
      */
     static splitDateTime(dateTime: string): { date: string, time: string } {
-        if (!dateTime) return {date: null, time: null};
+        if (!dateTime) { return {date: null, time: null}; }
         const split = dateTime.split(' ');
         return {date: split[0], time: split[1]};
     }
@@ -18,9 +18,9 @@ export class utils {
      * Get object property via dot notation string.
      */
     static getObjectProp(obj: Object, prop: string): any {
-        if (!obj) return null;
+        if (!obj) { return null; }
         const arr = prop.split('.');
-        while (arr.length && (obj = obj[arr.shift()])) ;
+        while (arr.length && (obj = obj[arr.shift()])) {  }
         return obj;
     }
 
@@ -39,17 +39,11 @@ export class utils {
         const endTime = Number(new Date()) + timeout;
 
         const checkCondition = (resolve, reject) => {
-            //If the condition is met, we're done!
+            // If the condition is met, we're done!
             const result = fn();
-            if (result) resolve(result);
-
-            //If the condition isn't met but the timeout hasn't elapsed, go again
-            else if (Number(new Date()) < endTime) {
+            if (result) { resolve(result); } else if (Number(new Date()) < endTime) {
                 setTimeout(checkCondition, interval, resolve, reject);
-            }
-
-            //Didn't match and too much time, reject!
-            else {
+            } else {
                 reject(new Error('timed out for ' + fn));
             }
         };

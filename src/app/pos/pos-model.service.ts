@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Model, ModelFactory } from "ngx-model";
-import { Pos } from "./pos";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Model, ModelFactory } from 'ngx-model';
+import { Pos } from './pos';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class PosModelService {
   pos$: Observable<Pos>;
@@ -14,7 +14,7 @@ export class PosModelService {
     this.pos$ = this.model.data$;
   }
 
-  public create(stateCreation: Pos={loading:false,currently_ordered:null,choose_customer:null,panel_content:'home',stocks:[],orders:[],customer_type_price:null}) {
+  public create(stateCreation: Pos= {loading: false, currently_ordered: null, choose_customer: null, panel_content: 'home', stocks: [], orders: [], customer_type_price: null}) {
     this.model = this.modelFactory.create(stateCreation);
   }
 

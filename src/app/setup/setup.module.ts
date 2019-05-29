@@ -31,8 +31,8 @@ import { SelectCustomerTypeModalComponent } from './select-customer-type-modal/s
 import { SelectReasonModalComponent } from './reasons/select-reason-modal/select-reason-modal.component';
 
 @NgModule({
-  declarations: [ReasonComponent,SetupComponent, TaxRatesComponent,NoEntryFoundSetUpComponent,CustomerTypeComponent,ExpirationSettingComponent, MenuListItemComponent,CrupdateCustomerTypeModalComponent, CrupdateTaxRateModalComponent, CrupdateReasonModalComponent, ReasonDataTableComponent, CrupdatePeriodModalComponent, SelectTaxrateModalComponent, SelectCustomerTypeModalComponent, SelectReasonModalComponent],
-  exports: [ReasonComponent,SetupComponent, TaxRatesComponent,ExpirationSettingComponent,NoEntryFoundSetUpComponent,CustomerTypeComponent,CrupdateCustomerTypeModalComponent,CrupdateTaxRateModalComponent,SelectTaxrateModalComponent,SelectCustomerTypeModalComponent,SelectReasonModalComponent],
+  declarations: [ReasonComponent, SetupComponent, TaxRatesComponent, NoEntryFoundSetUpComponent, CustomerTypeComponent, ExpirationSettingComponent, MenuListItemComponent, CrupdateCustomerTypeModalComponent, CrupdateTaxRateModalComponent, CrupdateReasonModalComponent, ReasonDataTableComponent, CrupdatePeriodModalComponent, SelectTaxrateModalComponent, SelectCustomerTypeModalComponent, SelectReasonModalComponent],
+  exports: [ReasonComponent, SetupComponent, TaxRatesComponent, ExpirationSettingComponent, NoEntryFoundSetUpComponent, CustomerTypeComponent, CrupdateCustomerTypeModalComponent, CrupdateTaxRateModalComponent, SelectTaxrateModalComponent, SelectCustomerTypeModalComponent, SelectReasonModalComponent],
   imports: [
     CommonModule,
     SetupRoutingModule,

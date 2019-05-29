@@ -1,7 +1,7 @@
-import * as appConfig from "electron-settings";
+import * as appConfig from 'electron-settings';
 import { screen } from 'electron';
-///building this.windowStateKeeper
-///building windowStateKeeper
+/// building this.windowStateKeeper
+/// building windowStateKeeper
 
 export function windowStateKeeper(windowName) {
   let window, windowState;

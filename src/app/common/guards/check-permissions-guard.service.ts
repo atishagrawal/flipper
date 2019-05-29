@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   CanActivateChild,
   Router,
   CanActivate
-} from "@angular/router";
-import { CurrentUser } from "../auth/current-user";
-import { AuthService } from "../auth/auth.service";
+} from '@angular/router';
+import { CurrentUser } from '../auth/current-user';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CheckPermissionsGuard implements CanActivate, CanActivateChild {
   constructor(
@@ -38,14 +38,14 @@ export class CheckPermissionsGuard implements CanActivate, CanActivateChild {
     }
 
     // user can access this route, bail
-    if (hasPermission) return true;
+    if (hasPermission) { return true; }
 
     // redirect to login page, if user is not logged in
     if (!this.currentUser.isLoggedIn()) {
       this.currentUser.redirectUri = state.url;
-      this.router.navigate(["login"]);
+      this.router.navigate(['login']);
     } else {
-      console.log("we are logged in");
+      console.log('we are logged in');
       this.router.navigate([this.auth.getRedirectUri()]);
     }
 

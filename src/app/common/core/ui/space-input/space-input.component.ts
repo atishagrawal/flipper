@@ -50,7 +50,7 @@ export class SpaceInputComponent implements ControlValueAccessor, OnInit {
 
     private fromBytes(bytes: number) {
         const pretty = prettyBytes(bytes);
-        if ( ! pretty) return {amount: null, unit: 'MB'};
+        if ( ! pretty) { return {amount: null, unit: 'MB'}; }
         return {amount: pretty.split(' ')[0], unit: pretty.split(' ')[1]};
     }
 }

@@ -3,18 +3,18 @@ import { ApiPosService } from '../../pos/api/api.service';
 import { POS_CATEGORY_STATE_MODEL_DEFAULTS } from '../model/pos-category-state';
  import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { LoadCategoriesEntriesAction, LoadMoreCategoriesEntries, LoadCategoriesEntries, OpenPosCategory, CategoryIdAction, ClosePosCategory } from '../actions/pos-categories.action';
-import { tap } from 'rxjs/internal/operators/tap';import { Category } from '../../admin/master/categories/api/category';
+import { tap } from 'rxjs/internal/operators/tap'; import { Category } from '../../admin/master/categories/api/category';
 import { LoadStockEntries } from '../actions/pos-Stock.action';
 import { SET_POS_STOCK_ORDERBY, SET_POS_STOCK_ORDERDIR } from '../model/pos-stock-state';
 import { StockApiIndexParams } from '../model/pos-stock-state-model';
-;
+
 @State<PosCategoryState>({
   name: 'CATEGORY',
   defaults: POS_CATEGORY_STATE_MODEL_DEFAULTS,
 })
 
 export class PosCateoriesState {
-  constructor(private api: ApiPosService,private store:Store) { }
+  constructor(private api: ApiPosService, private store: Store) { }
   @Selector()
   static entries(state: PosCategoryState) {
     return state.data;
@@ -63,10 +63,12 @@ export class PosCateoriesState {
       order_dir: meta.sort_direction,
       ...params
     };
-    if (meta.query)
+    if (meta.query) {
       queryParams.query = meta.query;
-    if (meta.type)
+    }
+    if (meta.type) {
       queryParams.type = meta.type;
+    }
     return queryParams;
   }
 
@@ -91,13 +93,13 @@ export class PosCateoriesState {
           ...newState.meta,
           last_page: response.last_page,
           current_page: response.current_page,
-          from:response.from,
-          to:response.to,
+          from: response.from,
+          to: response.to,
           total: response.total,
           per_page: response.per_page,
           path: response.path,
           next_page_url: response.next_page_url,
-          prev_page_url:response.prev_page_url
+          prev_page_url: response.prev_page_url
         },
         loading: false
       } as Partial<PosCategoryState>;
@@ -110,43 +112,43 @@ export class PosCateoriesState {
 
   @Action(ClosePosCategory)
   closePosCategory(ctx: StateContext<PosCategoryState>) {
-    const currentState= ctx.getState();
-    currentState.category=null;
+    const currentState = ctx.getState();
+    currentState.category = null;
     ctx.patchState(currentState as Partial<PosCategoryState>);
   }
   @Action(OpenPosCategory)
-  openPosCategory(ctx: StateContext<PosCategoryState>, action:CategoryIdAction) {
-    const currentState= ctx.getState();
+  openPosCategory(ctx: StateContext<PosCategoryState>, action: CategoryIdAction) {
+    const currentState = ctx.getState();
     ctx.patchState({ loading: true });
 
-    if (currentState.data.length > 0){
-      currentState.category=currentState.data.find(category=>category.id==action.categoryId);
-      currentState.loading=false;
+    if (currentState.data.length > 0) {
+      currentState.category = currentState.data.find(category => category.id == action.categoryId);
+      currentState.loading = false;
          ctx.patchState(currentState as Partial<PosCategoryState>);
 
          return this.store.dispatch(new LoadStockEntries(
           {
-             order_by:SET_POS_STOCK_ORDERBY?SET_POS_STOCK_ORDERBY:'updated_at',
-             order_dir: SET_POS_STOCK_ORDERDIR?SET_POS_STOCK_ORDERDIR:'desc',
+             order_by: SET_POS_STOCK_ORDERBY ? SET_POS_STOCK_ORDERBY : 'updated_at',
+             order_dir: SET_POS_STOCK_ORDERDIR ? SET_POS_STOCK_ORDERDIR : 'desc',
              categoryId:  action.categoryId,
-             customerTypeId:action.customerTypeId,
+             customerTypeId: action.customerTypeId,
              query: null,
              type: null,
              per_page: 35,
              page: 0
              } as Partial<StockApiIndexParams>
           ));
-    }else{
+    } else {
       return this.api.showCategoriesEntries(action.categoryId).pipe(tap(response => {
-          currentState.category=response as Category;
-          currentState.loading=false;
+          currentState.category = response as Category;
+          currentState.loading = false;
          ctx.patchState(currentState as Partial<PosCategoryState>);
          return this.store.dispatch(new LoadStockEntries(
          {
-            order_by:SET_POS_STOCK_ORDERBY?SET_POS_STOCK_ORDERBY:'updated_at',
-            order_dir: SET_POS_STOCK_ORDERDIR?SET_POS_STOCK_ORDERDIR:'desc',
+            order_by: SET_POS_STOCK_ORDERBY ? SET_POS_STOCK_ORDERBY : 'updated_at',
+            order_dir: SET_POS_STOCK_ORDERDIR ? SET_POS_STOCK_ORDERDIR : 'desc',
             categoryId:  action.categoryId,
-            customerTypeId:action.customerTypeId,
+            customerTypeId: action.customerTypeId,
             query: null,
             type: null,
             per_page: 35,

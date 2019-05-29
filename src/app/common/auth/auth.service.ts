@@ -1,17 +1,17 @@
-import { Injectable, NgZone } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { CurrentUser } from "./current-user";
-import { Toast } from "../core/ui/toast.service";
-import { User } from "../core/types/models/User";
-import { Observable } from "rxjs";
-import { Settings } from "../core/config/settings.service";
-import { AppHttpClient } from "../core/http/app-http-client.service";
-import { ApiService } from "../../api/api.service";
-import { YLocalStorage } from "../classes/local-storage";
-import { GlobalVariables } from "../core/global-variables";
+import { Injectable, NgZone } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CurrentUser } from './current-user';
+import { Toast } from '../core/ui/toast.service';
+import { User } from '../core/types/models/User';
+import { Observable } from 'rxjs';
+import { Settings } from '../core/config/settings.service';
+import { AppHttpClient } from '../core/http/app-http-client.service';
+import { ApiService } from '../../api/api.service';
+import { YLocalStorage } from '../classes/local-storage';
+import { GlobalVariables } from '../core/global-variables';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthService {
   /**
@@ -39,23 +39,23 @@ export class AuthService {
     private localstorage: YLocalStorage = null,
     protected config: Settings = null
   ) {
-    this.redirectUri = this.config.get("vebto.auth.redirectUri");
-    this.adminRedirectUri = this.config.get("vebto.auth.adminRedirectUri");
+    this.redirectUri = this.config.get('vebto.auth.redirectUri');
+    this.adminRedirectUri = this.config.get('vebto.auth.adminRedirectUri');
   }
 
   /**
    * Log user in with specified credentials.
    */
   public login(credentials: Object): Observable<any> {
-    this.httpClient.prefix = "secure";
-    return this.httpClient.post("auth/login", credentials);
+    this.httpClient.prefix = 'secure';
+    return this.httpClient.post('auth/login', credentials);
   }
   /**
    * Verify user email before login.
    */
   public verifyUserEmail(credentials: Object): Observable<any> {
-    this.httpClient.prefix = "secure";
-    return this.httpClient.post("verify/email", credentials);
+    this.httpClient.prefix = 'secure';
+    return this.httpClient.post('verify/email', credentials);
   }
 
   /**
@@ -64,16 +64,16 @@ export class AuthService {
   public register(
     credentials: Object
   ): Observable<{ data?: User; type?: string }> {
-    return this.httpClient.post("auth/register", credentials);
+    return this.httpClient.post('auth/register', credentials);
   }
 
   /**
    * Log current user out.
    */
-  public logOut() : Observable<any> {
-    this.httpClient.prefix = "secure";
-    let parms={logout:true};
-    return this.httpClient.post("auth/logout",parms);
+  public logOut(): Observable<any> {
+    this.httpClient.prefix = 'secure';
+    const parms = {logout: true};
+    return this.httpClient.post('auth/logout', parms);
   }
 
   /**
@@ -82,14 +82,14 @@ export class AuthService {
   public sendPasswordResetLink(
     credentials: Object
   ): Observable<{ data: string }> {
-    return this.httpClient.post("auth/password/email", credentials);
+    return this.httpClient.post('auth/password/email', credentials);
   }
 
   /**
    * Reset user password.
    */
   public resetPassword(credentials: Object): Observable<{ data: User }> {
-    return this.httpClient.post("auth/password/reset", credentials);
+    return this.httpClient.post('auth/password/reset', credentials);
   }
 
   /**
@@ -107,32 +107,32 @@ export class AuthService {
     }
   }
 
-  //TOO: i kept their login and tried to embed our own logic too! try to find common ground
+  // TOO: i kept their login and tried to embed our own logic too! try to find common ground
 
   sendToken(token: string) {
-    this.localstorage.save("auth_token", token);
+    this.localstorage.save('auth_token', token);
     return true;
   }
 
   setRedirectUrl(url) {
     if (url) {
-      this.localstorage.save("redirect_url", url);
+      this.localstorage.save('redirect_url', url);
     }
   }
   getRedirectUrl() {
-    return this.localstorage.get("redirect_url");
+    return this.localstorage.get('redirect_url');
   }
   getToken() {
-    return this.localstorage.get("auth_token");
+    return this.localstorage.get('auth_token');
   }
 
   isLoggednIn() {
-    return this.localstorage.get("auth_token") !== null;
+    return this.localstorage.get('auth_token') !== null;
   }
   checkSession() {
     if (!this.isLoggednIn()) {
-      return this.router.navigate(["login"], {
-        queryParams: { redirect: this.localstorage.get("redirect_url") }
+      return this.router.navigate(['login'], {
+        queryParams: { redirect: this.localstorage.get('redirect_url') }
       });
     }
   }
@@ -143,11 +143,11 @@ export class AuthService {
   //   this.clearAll();
   // }
   clearAll() {
-    this.localstorage.remove("auth_token");
-    this.localstorage.remove("redirect_url");
-    if (this.localstorage.get("redirect_url")) {
-      this.localstorage.remove("redirect_url");
+    this.localstorage.remove('auth_token');
+    this.localstorage.remove('redirect_url');
+    if (this.localstorage.get('redirect_url')) {
+      this.localstorage.remove('redirect_url');
     }
-    this.router.navigate(["login"]);
+    this.router.navigate(['login']);
   }
 }

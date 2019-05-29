@@ -10,7 +10,7 @@ import { ChangeCustomerTypePricesComponent } from './change-customer-type-prices
 
 @NgModule({
   declarations:
-  [EditItemDialog,MasterModelComponent,ItemModelComponent, ChangeCustomerTypePricesComponent
+  [EditItemDialog, MasterModelComponent, ItemModelComponent, ChangeCustomerTypePricesComponent
   ],
   imports: [
     CommonModule,
@@ -19,8 +19,8 @@ import { ChangeCustomerTypePricesComponent } from './change-customer-type-prices
     ReactiveFormsModule,
     StockModelModule
  ],
-  exports:[
-    EditItemDialog,MasterModelComponent,ItemModelComponent
+  exports: [
+    EditItemDialog, MasterModelComponent, ItemModelComponent
   ],
   entryComponents: [EditItemDialog]
 })

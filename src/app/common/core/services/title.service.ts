@@ -45,7 +45,7 @@ export class TitleService {
                 filter(e => e instanceof NavigationEnd),
                 map(() => {
                     let route = this.router.routerState.root;
-                    while (route.firstChild) route = route.firstChild;
+                    while (route.firstChild) { route = route.firstChild; }
                     return route;
                 }),
                 filter(route => route.outlet === 'primary'),

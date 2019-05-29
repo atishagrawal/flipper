@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 })
 export class ListItemHeaderComponent implements OnInit {
   @Select(PosCateoriesState.category) category$: Observable<Category>;
-  constructor(private store:Store,private router: Router) { }
+  constructor(private store: Store, private router: Router) { }
 
   ngOnInit() {
   }
-  goBackToCategory(){
+  goBackToCategory() {
     this.store.dispatch(new ClosePosCategory());
     return this.router.navigate(['/admin/pos/till-categories']);
   }

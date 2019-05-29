@@ -4,9 +4,9 @@ import {
   ViewEncapsulation,
   ViewChild,
   OnDestroy
-} from "@angular/core";
-import { ApiItemService } from "./api/api.service";
-import { DetailsService } from "../../../details/details.service";
+} from '@angular/core';
+import { ApiItemService } from './api/api.service';
+import { DetailsService } from '../../../details/details.service';
 import { Router } from '@angular/router';
 import { UrlAwarePaginator } from '../../../common/pagination/url-aware-paginator.service';
 import { MatSort } from '@angular/material/sort';
@@ -20,18 +20,18 @@ import { finalize } from 'rxjs/operators';
 import { GlobalVariables } from '../../../common/core/global-variables';
 
 @Component({
-  selector: "app-items",
-  templateUrl: "./items.component.html",
-  styleUrls: ["./items.component.scss"],
+  selector: 'app-items',
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.scss'],
   providers: [UrlAwarePaginator],
   encapsulation: ViewEncapsulation.None,
 })
-export class ItemsComponent implements  OnInit,OnDestroy {
+export class ItemsComponent implements  OnInit, OnDestroy {
   @ViewChild(MatSort) matSort: MatSort;
 
   public dataSource: PaginatedDataTableSource<Item>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public shared:SharedModelService,public paginator: UrlAwarePaginator,private modal: Modal,private router: Router,private detailsService:DetailsService,private api: ApiItemService) {
+  constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private router: Router, private detailsService: DetailsService, private api: ApiItemService) {
   }
 
   ngOnInit() {
@@ -47,23 +47,23 @@ export class ItemsComponent implements  OnInit,OnDestroy {
 ngOnDestroy() {
   this.paginator.destroy();
 }
-  openDetails(title='New Items',action='new',obj){
+  openDetails(title= 'New Items', action= 'new', obj) {
     this.shared.update(obj);
-     this.detailsService.update({title:title,sender_data:obj,module:'app-master',component:'app-items',action:action,detailsVisible:true});
+     this.detailsService.update({title: title, sender_data: obj, module: 'app-master', component: 'app-items', action: action, detailsVisible: true});
   }
-viewUpCommingData(){
-this.detailsService.details$.subscribe(response=>{
-  if(response.receriver_data){
+viewUpCommingData() {
+this.detailsService.details$.subscribe(response => {
+  if (response.receriver_data) {
     this.paginator.refresh();
-    const g=this.detailsService.get();
-    g.receriver_data=null;
+    const g = this.detailsService.get();
+    g.receriver_data = null;
     this.detailsService.update(g);
   }
-})
+});
 
 }
-  addItem(){
-    this.router.navigate(["/admin/setup/add-item"]);
+  addItem() {
+    this.router.navigate(['/admin/setup/add-item']);
   }
 /**
      * Delete currently selected users.
@@ -86,7 +86,7 @@ this.detailsService.details$.subscribe(response=>{
           body:  'Are you sure you want to delete selected product(s)? the stock related will be deleted too! ',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedProducts();
       });
   }

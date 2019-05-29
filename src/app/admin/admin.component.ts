@@ -13,41 +13,41 @@ const {BrowserWindow} = require('electron').remote;
 export class AdminComponent implements OnInit {
 public appearance;
 activeLinkIndex = -1;
-  
-    public leftColumnIsHidden = false;
-    isOpened:boolean=true;
 
-  constructor(public localStorage: LocalStorage,private router: Router,public setting:Settings,private changeDetectionRef: ChangeDetectorRef) {
-    
+    public leftColumnIsHidden = false;
+    isOpened = true;
+
+  constructor(public localStorage: LocalStorage, private router: Router, public setting: Settings, private changeDetectionRef: ChangeDetectorRef) {
+
   }
 
 
   ngOnInit() {
-    this.appearance=this.setting.getAll().appearance;
+    this.appearance = this.setting.getAll().appearance;
   }
-  onWinMin(){
-    var window = BrowserWindow.getFocusedWindow();
-           return window.minimize();  
+  onWinMin() {
+    const window = BrowserWindow.getFocusedWindow();
+           return window.minimize();
 }
-onWinMax(){
-    var window = BrowserWindow.getFocusedWindow();
-    if(window.isMaximized()){
+onWinMax() {
+    const window = BrowserWindow.getFocusedWindow();
+    if (window.isMaximized()) {
         window.unmaximize();
-    }else{
+    } else {
         window.maximize();
-    } 
+    }
 }
-onWinClose(){
-    var window = BrowserWindow.getFocusedWindow();
+onWinClose() {
+    const window = BrowserWindow.getFocusedWindow();
     window.close();
 }
   public toggleLeftSidebar() {
     this.isOpened = !this.isOpened;
 }
 
-  navigation(path){
+  navigation(path) {
     this.localStorage.set('active_menu', path);
-    this.router.navigate(["/admin/"+path]);
+    this.router.navigate(['/admin/' + path]);
 
   }
 }

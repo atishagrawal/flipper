@@ -20,12 +20,12 @@ const salesRoutes: Routes = [
             },
             {
               path: 'invoices',
-              loadChildren: 'app/invoices/invoices.module#InvoicesModule',
+              loadChildren: () => import('../../app/invoices/invoices.module').then(m => m.InvoicesModule),
               canActivate: [AuthGuard]
             },
             {
               path: 'customers',
-              loadChildren: 'app/customers/customers.module#CustomersModule',
+              loadChildren: () => import('../../app/customers/customers.module').then(m => m.CustomersModule),
               canActivate: [AuthGuard]
             },
 

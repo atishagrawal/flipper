@@ -8,7 +8,7 @@ import { PaginatedDataTableSource } from '../../data-table/data/paginated-data-t
 import { ApiStockService } from '../api/api.service';
 import { Modal } from '../../common/core/ui/dialogs/modal.service';
 import { ConfirmModalComponent } from '../../common/core/ui/confirm-modal/confirm-modal.component';
-import{SharedModelService} from "../../shared-model/shared-model-service";
+import{SharedModelService} from '../../shared-model/shared-model-service';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { GlobalVariables } from '../../common/core/global-variables';
@@ -19,17 +19,17 @@ import { GlobalVariables } from '../../common/core/global-variables';
   providers: [UrlAwarePaginator],
   encapsulation: ViewEncapsulation.None,
 })
-export class StockMovementComponent implements OnInit,OnDestroy {
+export class StockMovementComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<StockMovements>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public shared:SharedModelService,public paginator: UrlAwarePaginator,private detailsService:DetailsService,private api:ApiStockService,private modal: Modal) {}
+  constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private detailsService: DetailsService, private api: ApiStockService, private modal: Modal) {}
 
 
   ngOnInit() {
     this.v.webTitle('Stock Movements');
       this.dataSource = new PaginatedDataTableSource<StockMovements>({
-        uri: "stock-movement/"+parseInt(localStorage.getItem('active_branch')),
+        uri: 'stock-movement/' + parseInt(localStorage.getItem('active_branch')),
         dataPaginator: this.paginator,
         matSort: this.matSort
     });
@@ -40,28 +40,28 @@ export class StockMovementComponent implements OnInit,OnDestroy {
     this.paginator.destroy();
   }
 
-  viewUpCommingData(){
-    this.detailsService.details$.subscribe(response=>{
-      if(response.receriver_data){
+  viewUpCommingData() {
+    this.detailsService.details$.subscribe(response => {
+      if (response.receriver_data) {
         this.paginator.refresh();
-        const g=this.detailsService.get();
-        g.receriver_data=null;
+        const g = this.detailsService.get();
+        g.receriver_data = null;
         this.detailsService.update(g);
       }
-    })
+    });
 
 
     }
-  percentage(num,num1) {
-      let sum=Math.round(parseInt(num) *100)/parseInt(num1);
-    return isNaN(sum)?0:sum.toFixed(1);
+  percentage(num, num1) {
+      const sum = Math.round(parseInt(num) * 100) / parseInt(num1);
+    return isNaN(sum) ? 0 : sum.toFixed(1);
 }
 
 
 
-  openDetails(title='Stock Details',action='info',obj,component='app-info-stock-model'){
+  openDetails(title= 'Stock Details', action= 'info', obj, component= 'app-info-stock-model') {
     this.shared.update(obj);
-    this.detailsService.update({title:title,sender_data:obj,module:'app-stock',component:component,action:action,detailsVisible:true});
+    this.detailsService.update({title: title, sender_data: obj, module: 'app-stock', component: component, action: action, detailsVisible: true});
  }
  /**
      * Delete currently selected users.
@@ -80,7 +80,7 @@ export class StockMovementComponent implements OnInit,OnDestroy {
         body:  'Are you sure you want to delete selected stock movement(s)?',
         ok:    'Delete'
     }).afterClosed().subscribe(confirmed => {
-        if ( ! confirmed) return;
+        if ( ! confirmed) { return; }
         this.deleteSelectedStocks();
     });
 }

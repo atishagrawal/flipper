@@ -4,11 +4,11 @@ export interface PosStockState {
   data: Stock[];
   loaded: boolean;
   loading: boolean;
-  payload?:any;
-  success?:boolean;
-  stock:Stock;
-  itemId:number | 0;
-  meta:{
+  payload?: any;
+  success?: boolean;
+  stock: Stock;
+  itemId: number | 0;
+  meta: {
   from: number;
   to: number;
   total: number;
@@ -23,7 +23,7 @@ export interface PosStockState {
   sort_column: SortColumn;
   sort_direction: SortDirection;
 
-  },
+  };
   queryParams?: StockApiIndexParams;
 
 }
@@ -36,7 +36,7 @@ export const AVAILABLE_SORTS: PosSortOption[] = [
 ];
 
 export interface StockModel {
-  entries:Stock[];
+  entries: Stock[];
   meta: {
     currentPage: number;
     lastPage: number;
@@ -60,7 +60,7 @@ export interface StockApiIndexParams {
   order_by?: SortColumn;
   order_dir?: SortDirection;
   categoryId?: number | '0';
-  customerTypeId?:number;
+  customerTypeId?: number;
   query?: string;
   type?: string;
   per_page?: number;

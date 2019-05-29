@@ -21,7 +21,7 @@ export class PreviewApp {
      * running under appearance preview iframe.
      */
     public init() {
-        if ( ! this.tokenIsValid()) return;
+        if ( ! this.tokenIsValid()) { return; }
 
         // parent app is waiting for preview app to load
         if (window['angularReadyResolve']) {

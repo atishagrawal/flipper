@@ -19,12 +19,12 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
   providers: [UrlAwarePaginator],
   encapsulation: ViewEncapsulation.None,
 })
-export class InvoiceComponent implements OnInit, OnDestroy{
+export class InvoiceComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) matSort: MatSort;
 
   public dataSource: PaginatedDataTableSource<Invoice>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public shared:SharedModelService, public paginator: UrlAwarePaginator,private modal: Modal,private api:InvoiceService,private localStorage: LocalStorage) {
+  constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private api: InvoiceService, private localStorage: LocalStorage) {
     this.localStorage.set('sales-path', 'invoices');
   }
 
@@ -32,7 +32,7 @@ export class InvoiceComponent implements OnInit, OnDestroy{
           this.v.webTitle('Manage Invoices');
 
         this.dataSource = new PaginatedDataTableSource<Invoice>({
-          uri: 'invoices/'+parseInt(localStorage.getItem('active_branch')),
+          uri: 'invoices/' + parseInt(localStorage.getItem('active_branch')),
           dataPaginator: this.paginator,
           matSort: this.matSort
       });
@@ -64,7 +64,7 @@ export class InvoiceComponent implements OnInit, OnDestroy{
           body:  'Are you sure you want to delete selected invoices?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedInvoices();
       });
   }

@@ -1,6 +1,6 @@
 export class Brand {
   name?: string;
-  description?:string;
+  description?: string;
   id?: number;
   brand_id?: number;
   active?: number;
@@ -9,7 +9,7 @@ export class Brand {
   updated_at?: any;
 
   constructor(params: Object = {}) {
-    for (let name in params) {
+    for (const name in params) {
       this[name] = params[name];
     }
   }

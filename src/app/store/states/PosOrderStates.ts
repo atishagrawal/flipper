@@ -15,7 +15,7 @@ import { Invoice } from '../../invoices/invoice';
 })
 
 export class PosOrderState {
-  constructor(private api: ApiOrderService,private store:Store) { }
+  constructor(private api: ApiOrderService, private store: Store) { }
   @Selector()
   static entries(state: PosOrdersState) {
     return state.data;
@@ -34,7 +34,7 @@ export class PosOrderState {
   static meta(state: PosOrdersState) {
     return state.meta;
   }
-//CustomerOrder
+// CustomerOrder
 @Selector()
   static customerOrder(state: PosOrdersState) {
     return state.customer;
@@ -73,28 +73,30 @@ export class PosOrderState {
       order_dir: meta.sort_direction,
       ...params
     };
-    if (meta.query)
+    if (meta.query) {
       queryParams.query = meta.query;
-    if (meta.type)
+    }
+    if (meta.type) {
       queryParams.type = meta.type;
+    }
     return queryParams;
   }
 
   @Action(CustomerOrder)
-  customerOrder(ctx: StateContext<PosOrdersState>, action: CustomerAction){
+  customerOrder(ctx: StateContext<PosOrdersState>, action: CustomerAction) {
     const oldState = ctx.getState();
-           oldState.customer=action.customer;
-           oldState.loading=false;
+           oldState.customer = action.customer;
+           oldState.loading = false;
         return ctx.patchState(oldState);
   }
   @Action(CreateInvoice)
-  createInvoices(ctx: StateContext<PosOrdersState>, action: InvoiceAction){
-    const currentState= ctx.getState();
+  createInvoices(ctx: StateContext<PosOrdersState>, action: InvoiceAction) {
+    const currentState = ctx.getState();
     ctx.patchState({ loading: true });
 
    return this.api.createInvoice(action.invoice).pipe(tap(response => {
-      currentState.invoice=response as Invoice;
-      currentState.loading=false;
+      currentState.invoice = response as Invoice;
+      currentState.loading = false;
         ctx.patchState(currentState as Partial<PosOrdersState>);
         return  this.store.dispatch(new CurrentOrder());
     }));
@@ -121,13 +123,13 @@ export class PosOrderState {
           ...newState.meta,
           last_page: response.last_page,
           current_page: response.current_page,
-          from:response.from,
-          to:response.to,
+          from: response.from,
+          to: response.to,
           total: response.total,
           per_page: response.per_page,
           path: response.path,
           next_page_url: response.next_page_url,
-          prev_page_url:response.prev_page_url
+          prev_page_url: response.prev_page_url
         },
         loading: false
       } as Partial<PosOrdersState>;
@@ -140,19 +142,19 @@ export class PosOrderState {
 
   @Action(CurrentOrder)
   showCurrentOrder(ctx: StateContext<PosOrdersState>) {
-    const currentState= ctx.getState();
+    const currentState = ctx.getState();
     ctx.patchState({ loading: true });
 
           return this.api.getCurrentOrder().pipe(tap(response => {
-           if(response){
-            currentState.order=response as Orders;
-            currentState.loading=false;
-            currentState.customer=currentState.order.customer;
+           if (response) {
+            currentState.order = response as Orders;
+            currentState.loading = false;
+            currentState.customer = currentState.order.customer;
              ctx.patchState(currentState as Partial<PosOrdersState>);
-           }else{
-            currentState.order=null;
-            currentState.loading=false;
-            currentState.customer=null;
+           } else {
+            currentState.order = null;
+            currentState.loading = false;
+            currentState.customer = null;
              ctx.patchState(currentState as Partial<PosOrdersState>);
            }
 

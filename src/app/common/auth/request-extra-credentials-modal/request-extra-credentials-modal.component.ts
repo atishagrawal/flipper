@@ -1,8 +1,8 @@
 import {Component, NgZone, ViewEncapsulation, OnInit, Inject} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export interface RequestExtraCredentialsModalData {
-    credentials: string[]
+    credentials: string[];
 }
 
 @Component({
@@ -61,9 +61,9 @@ export class RequestExtraCredentialsModalComponent implements OnInit {
     }
 
     public handleErrors(response: {messages: object}) {
-        //we need to request user extra credentials again, for example
-        //if email address user supplied previously already exists
-        //we might need to request password for account with that email
+        // we need to request user extra credentials again, for example
+        // if email address user supplied previously already exists
+        // we might need to request password for account with that email
         if (response['messages']['email']) {
             this.credentialsToRequest.push('password');
         }

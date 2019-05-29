@@ -14,11 +14,11 @@ export class SetUpModelService {
     this.create();
     this.setup$ = this.model.data$;
    }
-   public create(stateCreation:SetUp={loading:false,taxRates:[],reasons:[],customertypes:[],expirationSetting:[]}){
+   public create(stateCreation: SetUp= {loading: false, taxRates: [], reasons: [], customertypes: [], expirationSetting: []}) {
     this.model = this.modelFactory.create(stateCreation);
    }
 
-   public get(){
+   public get() {
        return this.model.get();
    }
    update(stateUpdates: any) {
@@ -28,7 +28,7 @@ export class SetUpModelService {
     const newModel = { ...modelSnapshot, ...stateUpdates };
     // set new model data (after mutation)
     this.model.set(newModel);
-    //console.log('mastering',this.model.get());
+    // console.log('mastering',this.model.get());
   }
 
 

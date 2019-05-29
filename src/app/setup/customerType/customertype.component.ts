@@ -19,20 +19,20 @@ import { GlobalVariables } from '../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class CustomerTypeComponent implements  OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort
-  @Input() public enableSelectButton:boolean=false;
-  @Input() public selectedId:number=0;
+  @ViewChild(MatSort) matSort: MatSort;
+  @Input() public enableSelectButton = false;
+  @Input() public selectedId = 0;
   @Output() valueChange = new EventEmitter<CustomerType>();
 
   public dataSource: PaginatedDataTableSource<CustomerType>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public paginator: UrlAwarePaginator,private modal: Modal,private api:ApiCustomerTypeService) {
+  constructor(public v: GlobalVariables, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiCustomerTypeService) {
 
    }
 
 
   ngOnInit() {
-    if(!this.enableSelectButton){
+    if (!this.enableSelectButton) {
     this.v.webTitle('Manage Customer Types');
     }
     this.dataSource = new PaginatedDataTableSource<CustomerType>({
@@ -66,7 +66,7 @@ ngOnDestroy() {
           body:  'Are you sure you want to delete selected customer type(s)?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedCustomerTypes();
       });
   }
@@ -82,12 +82,12 @@ ngOnDestroy() {
           {customertype},
           'crupdate-customer-type-modal-container'
       ).beforeClose().subscribe(data => {
-          if ( ! data) return;
+          if ( ! data) { return; }
           this.paginator.refresh();
       });
   }
 
-  selectCustomerType(customertype:CustomerType){
+  selectCustomerType(customertype: CustomerType) {
     return this.valueChange.emit(customertype);
   }
 }

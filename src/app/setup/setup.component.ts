@@ -16,33 +16,33 @@ export class SetupComponent implements OnInit {
 
   links: any[] = [
     {
-      menu:'Products',icon:'settings',path:'item',
+      menu: 'Products', icon: 'settings', path: 'item',
     },
     {
-      menu:'Categories',icon:'settings',path:'category',
+      menu: 'Categories', icon: 'settings', path: 'category',
     },
     {
-      menu:'Brands',icon:'settings',path:'brand',
+      menu: 'Brands', icon: 'settings', path: 'brand',
     },
     {
-      menu:'Customer Types',icon:'settings',path:'customertype',
+      menu: 'Customer Types', icon: 'settings', path: 'customertype',
     },
     {
-      menu:'Tax rates',icon:'settings',path:'tax-rate',
+      menu: 'Tax rates', icon: 'settings', path: 'tax-rate',
     },
     {
-      menu:'Reasons',icon:'settings',path:'reason',
+      menu: 'Reasons', icon: 'settings', path: 'reason',
     },
 
     {
-      menu:'Periods',icon:'settings',path:'expiration_setting',
+      menu: 'Periods', icon: 'settings', path: 'expiration_setting',
     },
 
   ];
 
-toggled=false;
-isMobile=false;
-leftColumnIsHidden=false;
+toggled = false;
+isMobile = false;
+leftColumnIsHidden = false;
 details$: Observable<Details>;
 constructor(private detailsService: DetailsService) {
 }

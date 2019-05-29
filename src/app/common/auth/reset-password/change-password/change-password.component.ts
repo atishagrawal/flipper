@@ -1,25 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Validators, FormGroup, FormControl } from "@angular/forms";
-import { AuthService } from "../../auth.service";
-import { Settings } from "../../../core/config/settings.service";
-import { CurrentUser } from "../../current-user";
-import { Toast } from "../../../core/ui/toast.service";
-import { GlobalVariables } from "../../global-variables";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../../auth.service';
+import { Settings } from '../../../core/config/settings.service';
+import { CurrentUser } from '../../current-user';
+import { Toast } from '../../../core/ui/toast.service';
+import { GlobalVariables } from '../../global-variables';
 
 @Component({
-  selector: "app-change-password",
-  templateUrl: "./change-password.component.html",
-  styleUrls: ["./change-password.component.scss"]
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
   loading = false;
   checked = false;
   response = {};
-  error_token = "";
+  error_token = '';
 
-  error_pass = "";
-  error_email = "";
+  error_pass = '';
+  error_email = '';
   form;
   is_token_expired: boolean;
   does_match_password: boolean;
@@ -36,19 +36,19 @@ export class ChangePasswordComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required]),
-      password_confirmation: new FormControl("", [Validators.required])
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+      password_confirmation: new FormControl('', [Validators.required])
     });
   }
   get email() {
-    return this.form.get("email");
+    return this.form.get('email');
   }
   get password() {
-    return this.form.get("password");
+    return this.form.get('password');
   }
   get password_confirmation() {
-    return this.form.get("password_confirmation");
+    return this.form.get('password_confirmation');
   }
 
   changePassword() {
@@ -58,9 +58,9 @@ export class ChangePasswordComponent implements OnInit {
         this.does_match_password = true;
         return;
       }
-      this.error_email = "";
-      this.error_pass = "";
-      this.error_token = "";
+      this.error_email = '';
+      this.error_pass = '';
+      this.error_token = '';
       this.loading = true;
       const data = {
         token: this.route.snapshot.params.token,
@@ -71,7 +71,7 @@ export class ChangePasswordComponent implements OnInit {
       this.auth.resetPassword(data).subscribe(
         response => {
           this.loading = false;
-          this.toast.open("Your password has been reset.");
+          this.toast.open('Your password has been reset.');
           this.user.assignCurrent(response.data);
           this.router.navigate([this.auth.getRedirectUri()]);
 
@@ -81,9 +81,9 @@ export class ChangePasswordComponent implements OnInit {
           this.loading = false;
           this.error_pass = _error.messages.password
             ? _error.messages.password
-            : "";
-          this.error_email = _error.messages.email ? _error.messages.email : "";
-          this.error_token = _error.messages.token ? _error.messages.token : "";
+            : '';
+          this.error_email = _error.messages.email ? _error.messages.email : '';
+          this.error_token = _error.messages.token ? _error.messages.token : '';
         }
       );
     }

@@ -20,15 +20,15 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     styleUrls: ['./data-table.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations: [
-      trigger("detailExpand", [
+      trigger('detailExpand', [
         state(
-          "collapsed",
-          style({ height: "0px", minHeight: "0", display: "none" })
+          'collapsed',
+          style({ height: '0px', minHeight: '0', display: 'none' })
         ),
-        state("expanded", style({ height: "*" })),
+        state('expanded', style({ height: '*' })),
         transition(
-          "expanded <=> collapsed",
-          animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")
+          'expanded <=> collapsed',
+          animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
         )
       ])
     ]
@@ -38,8 +38,8 @@ export class DataTableComponent<T> implements OnInit, AfterContentInit {
   centered = false;
   disabled = false;
   unbounded = false;
-  radius: number=100;
-  color: string='#e8f0fe';
+  radius = 100;
+  color = '#e8f0fe';
 
     /**
      * Instance of material table.
@@ -66,29 +66,29 @@ export class DataTableComponent<T> implements OnInit, AfterContentInit {
      */
     @Input() public itemsName: string;
 
-    @Input() public hiddenCheckBox: boolean=false;
-    @Input() public isLoading: boolean=false;
-    @Input() public canExpandedDetail:boolean=false;
+    @Input() public hiddenCheckBox = false;
+    @Input() public isLoading = false;
+    @Input() public canExpandedDetail = false;
     /**
      * Columns that should be displayed in data table.
      */
     public columns: string[] = ['select'];
     public sharedModel$: Observable<SharedModel>;
-    enableRowSelected=null;
-    constructor(private sharedModelService:SharedModelService){}
+    enableRowSelected = null;
+    constructor(private sharedModelService: SharedModelService) {}
     ngOnInit() {
         this.dataSource.config.matPaginator = this.matPaginator;
         this.dataSource.config.matSort.start = 'desc';
         this.sharedModel$ = this.sharedModelService.shared$;
-        if ( ! this.dataSource.config.delayInit) this.dataSource.init();
+        if ( ! this.dataSource.config.delayInit) { this.dataSource.init(); }
         this.updateSelectedRow();
     }
-    updateSelectedRow(){
-          this.sharedModel$.subscribe(shared=>{
-                if(shared.data){
-                   this.enableRowSelected=shared.data;
-                }else{
-                  this.enableRowSelected=null;
+    updateSelectedRow() {
+          this.sharedModel$.subscribe(shared => {
+                if (shared.data) {
+                   this.enableRowSelected = shared.data;
+                } else {
+                  this.enableRowSelected = null;
                 }
       });
 

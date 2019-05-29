@@ -1,18 +1,18 @@
-import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
-import { Observable, BehaviorSubject, Subject } from "rxjs";
-import { Pos } from "../pos";
-import { PosModelService } from "../pos-model.service";
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Pos } from '../pos';
+import { PosModelService } from '../pos-model.service';
 import {
   trigger,
   state,
   style,
   transition,
   animate
-} from "@angular/animations";
-import { OrderItems } from "../cart/order_items";
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
-import { MatTableDataSource } from "@angular/material/table";
-import { Customer } from "../../customers/customer";
+} from '@angular/animations';
+import { OrderItems } from '../cart/order_items';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { Customer } from '../../customers/customer';
 import { ApiPosService } from '../api/api.service';
 import { Orders } from '../../orders/orders';
 import { CurrentUser } from '../../common/auth/current-user';
@@ -26,9 +26,9 @@ import { SelectCustomerModelComponent } from '../../customers/manage-customer/se
 import { OpenPosCategory } from '../../store/actions/pos-categories.action';
 import { LocalStorage } from '../../common/core/services/local-storage.service';
 @Component({
-  selector: "cart-dialog",
+  selector: 'cart-dialog',
   templateUrl: './cart-dialog.html',
-  styleUrls: ["./cart-item.component.scss"]
+  styleUrls: ['./cart-item.component.scss']
 })
 export class CartDialog implements OnInit {
   item_deleted = [];
@@ -40,14 +40,14 @@ export class CartDialog implements OnInit {
   centered = true;
   disabled = false;
   unbounded = false;
-  radius: number=50;
-  color: string='green';
-default_qty:number=0;
+  radius = 50;
+  color = 'green';
+default_qty = 0;
   constructor(
     public dialogRef: MatDialogRef<CartDialog>,
     @Inject(MAT_DIALOG_DATA) private data: any) {
-      const _data=this.data;
-    this.default_qty=_data.data.qty as number;
+      const _data = this.data;
+    this.default_qty = _data.data.qty as number;
     this.cart_item = _data.data as OrderItems;
     this.status = this.data.status;
   }
@@ -60,7 +60,7 @@ default_qty:number=0;
       if (nums == 'x') {
         this.cart_item.qty = 0;
       } else {
-        const converted=parseInt(this.cart_item.qty + '' + nums);
+        const converted = parseInt(this.cart_item.qty + '' + nums);
         if ( converted > this.cart_item.available_qty) {
           alert('Quantity will create a negative stock level');
         } else {
@@ -69,7 +69,7 @@ default_qty:number=0;
       }
     } else {
       if (nums == 'x') {
-        //this.cart_item.discount = 0;
+        // this.cart_item.discount = 0;
       } else {
        // this.cart_item.discount = this.cart_item.discount == 0 ? nums : this.cart_item.discount + '' + nums;
       }
@@ -78,7 +78,7 @@ default_qty:number=0;
   }
   increaseDecrease(sign) {
     if (sign == '+') {
-      //case of puls
+      // case of puls
       if (this.status == 'Quantity') {
         this.cart_item.qty += 1;
         if (this.cart_item.qty > this.cart_item.available_qty) {
@@ -97,40 +97,40 @@ default_qty:number=0;
         }
       }
     }
-    this.cart_item.action=this.default_qty < this.cart_item.qty?'add':'remove';
+    this.cart_item.action = this.default_qty < this.cart_item.qty ? 'add' : 'remove';
   }
 
 
   update() {
-    if(this.default_qty == this.cart_item.qty && this.status=='Quantity'){
-        alert("Nothing Updated. Quantity didn't changed");
+    if (this.default_qty == this.cart_item.qty && this.status == 'Quantity') {
+        alert('Nothing Updated. Quantity didn\'t changed');
     }
-    const params:OrderItems=this.cart_item;
+    const params: OrderItems = this.cart_item;
     const cart_data: OrderItems = {
-      batch_no:params.batch_no,
+      batch_no: params.batch_no,
       note: params.note,
       reason_id: params.reason_id,
-      discount_value:params.customer_type_discount_value || 0.00,
-      tax_rate_id:params.tax_rate?params.tax_rate.id:null || null,
+      discount_value: params.customer_type_discount_value || 0.00,
+      tax_rate_id: params.tax_rate ? params.tax_rate.id : null || null,
       sale_price_id: params.sale_price_id || null,
       order_id: params.order_id || null,
       stock_id: params.stock_id || null,
       discount_reason_id: params.discount_reason_id || null,
-      refund_reason_id:params.refund_reason_id || null,
+      refund_reason_id: params.refund_reason_id || null,
       qty: this.cart_item.qty,
-      action:params.action
+      action: params.action
     };
-if(this.status=='Note'){
-  cart_data.action="note";
+if (this.status == 'Note') {
+  cart_data.action = 'note';
 }
 return this.dialogRef.close(cart_data);
 }
 
-  removeDuplicate(ordered_items:OrderItems[]= [],id){
-    let obj = {};
+  removeDuplicate(ordered_items: OrderItems[]= [], id) {
+    const obj = {};
     let _ordered_items: OrderItems[] = [];
     _ordered_items = Object.keys(ordered_items.reduce((prev, next) => {
-      if (!obj[next[id]]) obj[next[id]] = next;
+      if (!obj[next[id]]) { obj[next[id]] = next; }
       return obj;
     }, obj)).map((i) => obj[i]);
     return _ordered_items;
@@ -142,19 +142,19 @@ return this.dialogRef.close(cart_data);
 }
 
 @Component({
-  selector: "app-cart-item",
-  templateUrl: "./cart-item.component.html",
-  styleUrls: ["./cart-item.component.scss"],
+  selector: 'app-cart-item',
+  templateUrl: './cart-item.component.html',
+  styleUrls: ['./cart-item.component.scss'],
   animations: [
-    trigger("detailExpand", [
+    trigger('detailExpand', [
       state(
-        "collapsed",
-        style({ height: "0px", minHeight: "0", display: "none" })
+        'collapsed',
+        style({ height: '0px', minHeight: '0', display: 'none' })
       ),
-      state("expanded", style({ height: "*" })),
+      state('expanded', style({ height: '*' })),
       transition(
-        "expanded <=> collapsed",
-        animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
       )
     ])
   ]
@@ -167,29 +167,29 @@ export class CartItemComponent implements OnInit, OnDestroy {
   business: Business;
   @Select(PosOrderState.selectedOrders) current_order$: Observable<Orders>;
   @Select(PosOrderState.loading) loading$: Observable<boolean>;
-  current_order:Orders=null;
+  current_order: Orders = null;
 
 @Select(PosOrderState.customerOrder) customer$: Observable<Customer>;
-customer:Customer=null;
+customer: Customer = null;
   sub: any;
   id: any;
 
   constructor(
     private localStorage: LocalStorage,
-    private route:ActivatedRoute,
-    private store:Store,
+    private route: ActivatedRoute,
+    private store: Store,
     private router: Router,
     public currentUser: CurrentUser,
     private api: ApiPosService,
     private posModelService: PosModelService,
     public dialog: MatDialog,
-    public db: NgxService //TODO: this line no unit test for it
+    public db: NgxService // TODO: this line no unit test for it
   ) { }
-  columnsToDisplay = ["item", "qty", "each", "total"];
+  columnsToDisplay = ['item', 'qty', 'each', 'total'];
   expandedElement: OrderItems | null;
 
   private unsubscribe$: Subject<void> = new Subject<void>();
-  //TODO:use this strategy of unsubscribing to orders.components
+  // TODO:use this strategy of unsubscribing to orders.components
   ngOnDestroy(): void {
     // for declarative unsubscription
     this.unsubscribe$.next();
@@ -207,25 +207,25 @@ customer:Customer=null;
     if (this.current_order$) {
       this.loadCartItem();
     }
-    this.customer$.subscribe(customer=>{
-      if(customer){
-        this.customer= customer as Customer;
-      }else{
-        this.customer=null;
+    this.customer$.subscribe(customer => {
+      if (customer) {
+        this.customer = customer as Customer;
+      } else {
+        this.customer = null;
       }
 });
   }
-  loadCartItem(){
+  loadCartItem() {
     this.current_order$.subscribe(res => {
       if (res) {
-        this.current_order=res?res:null;
-        this.data = res.order_items.length > 0?res.order_items:[];
+        this.current_order = res ? res : null;
+        this.data = res.order_items.length > 0 ? res.order_items : [];
         this.expandedElement = this.data
           ? this.data[this.data.length - 1]
           : null;
-      }else{
-        this.data=[];
-        this.current_order=null;
+      } else {
+        this.data = [];
+        this.current_order = null;
         this.total('qty');
         this.total('total_amount_discount');
         this.total('total_amount');
@@ -242,21 +242,21 @@ customer:Customer=null;
 
   payOrdered() {
 
-    //TODO: ask ganza the service that complete payment action
+    // TODO: ask ganza the service that complete payment action
     this.posModelService.update({ panel_content: 'pay' });
   }
 
   deleteOrdered() {
-    let result = confirm("Are you sure,you want to delete this current transction?");
+    const result = confirm('Are you sure,you want to delete this current transction?');
     if (result) {
       this.api.deleteOrder(this.current_order.id).subscribe(
         res => {
           if (res.status == 'success') {
-            if(res['deleted']){
+            if (res['deleted']) {
               this.store.dispatch(new CurrentOrder());
-              this.current_order=null;
+              this.current_order = null;
               this.loadCartItem();
-              this.data=[];
+              this.data = [];
               this.total('qty');
               this.total('total_amount_discount');
               this.total('total_amount');
@@ -271,19 +271,19 @@ customer:Customer=null;
     }
   }
   holdOrdered() {
-    this.current_order.status = "hold";
+    this.current_order.status = 'hold';
     this.current_order.is_currently_processing = 0;
     this.updateOrder(this.current_order);
     this.loadCartItem();
-    this.data=[];
+    this.data = [];
     this.total('qty');
     this.total('total_amount_discount');
     this.total('total_amount');
     this.total('taxable_vat');
-    this.current_order=null;
+    this.current_order = null;
   }
 
-  updateOrder(params:Orders) {
+  updateOrder(params: Orders) {
     this.api.updateOrder(params, params.id).subscribe(
       res => {
 
@@ -297,7 +297,7 @@ customer:Customer=null;
   createNewOrder(params) {
     this.api.createOrder(params).subscribe(
       res => {
-        if(res['order']){
+        if (res['order']) {
           this.store.dispatch(new CurrentOrder());
          }
       },
@@ -311,7 +311,7 @@ customer:Customer=null;
   updateOrderItems(params) {
     this.api.updateOrderItem(params).subscribe(
       res => {
-          if(res['status']){
+          if (res['status']) {
              this.store.dispatch(new CurrentOrder());
           }
       },
@@ -321,20 +321,20 @@ customer:Customer=null;
     );
   }
 
-  updateQty(params:OrderItems,action) {
+  updateQty(params: OrderItems, action) {
     const cart_data: OrderItems = {
-      batch_no:params.batch_no,
+      batch_no: params.batch_no,
       note: params.note,
       reason_id: params.reason_id,
-      discount_value:params.customer_type_discount_value,
-      tax_rate_id:params.tax_rate?params.tax_rate.id:null,
-      sale_price_id: params.sale_price_id?params.sale_price_id:null,
+      discount_value: params.customer_type_discount_value,
+      tax_rate_id: params.tax_rate ? params.tax_rate.id : null,
+      sale_price_id: params.sale_price_id ? params.sale_price_id : null,
       order_id: params.order_id || null,
       stock_id: params.stock_id || null,
       discount_reason_id: params.discount_reason_id || null,
-      refund_reason_id:params.refund_reason_id || null,
+      refund_reason_id: params.refund_reason_id || null,
       qty: 1,
-      action:action
+      action: action
     };
     return this.updateOrderItems(cart_data);
   }
@@ -343,7 +343,7 @@ customer:Customer=null;
 
   deleteOrderedItem(element) {
     this.api.deleteOrderedItem(element.id).subscribe(res => {
-        if(res['deleted']){
+        if (res['deleted']) {
           this.store.dispatch(new CurrentOrder());
 
         }
@@ -358,7 +358,7 @@ customer:Customer=null;
       });
 
       dialogRef.afterClosed().subscribe(cart_data => {
-        if ( ! cart_data) return;
+        if ( ! cart_data) { return; }
         return this.updateOrderItems(cart_data);
 
       });
@@ -368,60 +368,60 @@ customer:Customer=null;
   }
 
   total(prop) {
-    var total = 0;
+    let total = 0;
     if (this.data.length > 0) {
-      for (var i = 0, _len = this.data.length; i < _len; i++) {
-        total += this.data[i][prop]
+      for (let i = 0, _len = this.data.length; i < _len; i++) {
+        total += this.data[i][prop];
       }
     }
-    const s=total.toString();
+    const s = total.toString();
     return  parseFloat(s).toFixed(2);
 
   }
-convertToDecimal(total:number){
-  const s=total.toString();
+convertToDecimal(total: number) {
+  const s = total.toString();
   return  parseFloat(s).toFixed(2);
 }
- textEllipsis(str, maxLength, { side = "end", ellipsis = "..." } = {}) {
+ textEllipsis(str, maxLength, { side = 'end', ellipsis = '...' } = {}) {
   if (str.length > maxLength) {
     switch (side) {
-      case "start":
+      case 'start':
         return ellipsis + str.slice(-(maxLength - ellipsis.length));
-      case "end":
+      case 'end':
       default:
         return str.slice(0, maxLength - ellipsis.length) + ellipsis;
     }
   }
   return str;
 }
-//till-pay
-goto(r){
-  return this.router.navigate(["/admin/pos/"+r]);
+// till-pay
+goto(r) {
+  return this.router.navigate(['/admin/pos/' + r]);
 }
   chooseCustomer() {
     this.dialog.open(SelectCustomerModelComponent, {
       width: '1200px',
-      data: {enabled:true,customer_id:this.customer?this.customer.id:null}
+      data: {enabled: true, customer_id: this.customer ? this.customer.id : null}
     }).afterClosed().subscribe(customer  => {
-      if ( ! customer) return;
-           const _customer=customer as Customer;
-              if(this.current_order){
-                const order:Orders=this.current_order;
-                order.customer_id=customer.id;
-                order.is_currently_processing=1;
-                order.status = "pending";
+      if ( ! customer) { return; }
+           const _customer = customer as Customer;
+              if (this.current_order) {
+                const order: Orders = this.current_order;
+                order.customer_id = customer.id;
+                order.is_currently_processing = 1;
+                order.status = 'pending';
                 this.updateOrder(order);
-              }else{
+              } else {
                 this.createNewOrder({ status: 'pending',
                 branch_id: parseInt(localStorage.getItem('active_branch')),
                 user_id: this.currentUser.get('id'),
                 business_id: this.currentUser.get('business')[0].id,
-                customer_id:_customer?_customer.id:null,
+                customer_id: _customer ? _customer.id : null,
                 cart_data: [] });
               }
-              const customer_type_id=_customer.customer_type?_customer.customer_type.id:null;
+              const customer_type_id = _customer.customer_type ? _customer.customer_type.id : null;
               this.localStorage.set('pos-customerTypeId', customer_type_id);
-              this.store.dispatch(new OpenPosCategory(this.localStorage.get('pos-categoryId'),null));
+              this.store.dispatch(new OpenPosCategory(this.localStorage.get('pos-categoryId'), null));
 
 
 

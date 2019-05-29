@@ -23,7 +23,7 @@ export class ExpirationSettingComponent implements OnInit, OnDestroy {
 
   public dataSource: PaginatedDataTableSource<ExpirationSetting>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public paginator: UrlAwarePaginator,private modal: Modal,private api:ApiExpirationSettingService) { }
+  constructor(public v: GlobalVariables, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiExpirationSettingService) { }
 
   ngOnInit() {
     this.v.webTitle('Manage Periods');
@@ -61,7 +61,7 @@ ngOnDestroy() {
           body:  'Are you sure you want to delete selected period(s)?',
           ok:    'Delete'
       }).afterClosed().subscribe(confirmed => {
-          if ( ! confirmed) return;
+          if ( ! confirmed) { return; }
           this.deleteSelectedPeriods();
       });
   }
@@ -76,7 +76,7 @@ ngOnDestroy() {
           {period},
           'crupdate-period-modal-container'
       ).beforeClose().subscribe(data => {
-          if ( ! data) return;
+          if ( ! data) { return; }
           this.paginator.refresh();
       });
   }

@@ -38,18 +38,18 @@ export class AdHostComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        if (this.settings.get('ads.disable') || this.currentUser.isSubscribed()) return;
+        if (this.settings.get('ads.disable') || this.currentUser.isSubscribed()) { return; }
 
         this.randomId = randomString();
         this.setAdCode();
-        if ( ! this.adCode) return;
+        if ( ! this.adCode) { return; }
         this.appendAdHtml();
         this.loadAdScripts().then(() => {
             this.executeAdJavascript();
         });
 
         setTimeout(() => {
-            if ( ! this.el.nativeElement.children.length) return;
+            if ( ! this.el.nativeElement.children.length) { return; }
             this.renderer.setStyle(this.el.nativeElement, 'display', 'flex');
         });
     }
@@ -82,7 +82,7 @@ export class AdHostComponent implements OnInit {
 
         while (content = pattern.exec(this.adCode)) {
             if (content[1]) {
-                const r = "var d = document.createElement('div'); d.innerHTML = $1; document.getElementById('"+this.randomId+"').appendChild(d.firstChild);";
+                const r = 'var d = document.createElement(\'div\'); d.innerHTML = $1; document.getElementById(\'' + this.randomId + '\').appendChild(d.firstChild);';
                 const toEval = content[1].replace(/document.write\((.+?)\);/, r);
                 eval(toEval);
             }

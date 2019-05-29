@@ -7,7 +7,7 @@ export class Setting {
 	private: boolean;
 
 	constructor(params: Object = {}) {
-        for (let name in params) {
+        for (const name in params) {
             this[name] = params[name];
         }
     }

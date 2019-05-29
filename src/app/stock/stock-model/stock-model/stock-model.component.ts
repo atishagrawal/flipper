@@ -13,7 +13,7 @@ export class StockModelComponent implements OnInit {
   subscription: Observable<Details>;
   details$: Observable<Details>;
 
-  constructor(private detailsService:DetailsService) {
+  constructor(private detailsService: DetailsService) {
    }
 
     ngOnInit() {

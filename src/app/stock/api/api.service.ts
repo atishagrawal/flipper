@@ -18,22 +18,22 @@ export class ApiStockService {
     public addOrRemoveExistingItem(params: any): BackendResponse<{ data: any }> {
       return this.http.post(API_ROUTES.ADD_OR_REMOVE_EXISTING_ITEM, params);
   }
-  public update(params: any,id:number):  Observable<Stock> {
-    return this.http.put(API_ROUTES.STOCK+'/'+id, params);
+  public update(params: any, id: number):  Observable<Stock> {
+    return this.http.put(API_ROUTES.STOCK + '/' + id, params);
  }
- public delete(id:number):  Observable<Stock> {
-  return this.http.delete(API_ROUTES.STOCK+'/'+id);
+ public delete(id: number):  Observable<Stock> {
+  return this.http.delete(API_ROUTES.STOCK + '/' + id);
 }
 
     public get(): BackendResponse<{ data: any }> {
       return this.http.get(API_ROUTES.STOCK);
     }
-    public getStockByBranch(branch_id:number,status:string): BackendResponse<{ data: any }> {
+    public getStockByBranch(branch_id: number, status: string): BackendResponse<{ data: any }> {
       // here we can get stock available when status = 1 , damage(like expired by date(by stytem task) or branch mananger (can update the stock item damaged)) status= 3 and soldout  status=2
-      return this.http.get(API_ROUTES.BRANCH_STOCK+'/'+branch_id+'/'+status);
+      return this.http.get(API_ROUTES.BRANCH_STOCK + '/' + branch_id + '/' + status);
     }
     public getNewStockItem(branch_id): BackendResponse<{ data: any []}> {
-      return this.http.get(API_ROUTES.NEW_STOCK_ITEM+'/'+branch_id);
+      return this.http.get(API_ROUTES.NEW_STOCK_ITEM + '/' + branch_id);
   }
   public deleteMultiple(ids: number[]) {
     return this.http.delete(API_ROUTES.DELETE_MULTIPLE, {ids});
@@ -41,5 +41,5 @@ export class ApiStockService {
   public deleteMultipleStockMovement(ids: number[]) {
     return this.http.delete(API_ROUTES.DELETE_MULTIPLE_STOCKMOVEMENT, {ids});
   }
-    //new-item
+    // new-item
 }

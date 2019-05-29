@@ -15,11 +15,11 @@ private model: Model<Pay>;
     this.pay$ = this.model.data$;
    }
 
-   public create(stateCreation){
+   public create(stateCreation) {
     this.model = this.modelFactory.create(stateCreation);
    }
 
-   public get(){
+   public get() {
        return this.model.get();
    }
 
@@ -30,7 +30,7 @@ private model: Model<Pay>;
     const newModel = { ...modelSnapshot, ...stateUpdates };
     // set new model data (after mutation)
     this.model.set(newModel);
-    //console.log('am here booss',this.model.get());
+    // console.log('am here booss',this.model.get());
   }
 
 

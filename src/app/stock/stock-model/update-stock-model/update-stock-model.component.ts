@@ -27,77 +27,77 @@ export class UpdateStockModelComponent implements OnInit {
   subscription: Observable<Details>;
   details$: Observable<Details>;
   stockForm: FormGroup;
-  stock:Stock;
+  stock: Stock;
   setup$: Observable<SetUp>;
   reasons: Reason[] = [];
   public loading = new BehaviorSubject(false);
-  current_stock:number=0;
-  found_stock:boolean=false;
+  current_stock = 0;
+  found_stock = false;
   // action:any;
-  constructor(public shared:SharedModelService,private toast: Toast,private setupModelService: SetUpModelService,private modal: Modal,private detailsService:DetailsService,private api:ApiStockService,public dialogRef: MatDialogRef<UpdateStockModelComponent>,
+  constructor(public shared: SharedModelService, private toast: Toast, private setupModelService: SetUpModelService, private modal: Modal, private detailsService: DetailsService, private api: ApiStockService, public dialogRef: MatDialogRef<UpdateStockModelComponent>,
     @Inject(MAT_DIALOG_DATA) public action: any) {
    }
    close(): void {
-    this.dialogRef.close({status:'none'});
+    this.dialogRef.close({status: 'none'});
   }
 
     ngOnInit() {
       this.subscription = this.details$ = this.detailsService.details$;
       this.details$ = this.detailsService.details$;
       this.setup$ = this.setupModelService.setup$;
-      this.details$.subscribe(res=>{
-        if(res){
+      this.details$.subscribe(res => {
+        if (res) {
         const numberPatern = '^[0-9.,]+$';
-        this.stock=res.sender_data;
+        this.stock = res.sender_data;
         this.stockForm = new FormGroup({
-            qty:this.action && this.action==='add'?new FormControl(1, Validators.compose([Validators.required, Validators.pattern(numberPatern), Validators.min(1)])):
+            qty: this.action && this.action === 'add' ? new FormControl(1, Validators.compose([Validators.required, Validators.pattern(numberPatern), Validators.min(1)])) :
             new FormControl(1, Validators.compose([Validators.required, Validators.pattern(numberPatern), Validators.min(1)])),
             transction_date: new FormControl(new Date(), [Validators.required]),
             expired_date: new FormControl(),
             manufacture_date: new FormControl(),
-            batch_no:new FormControl(this.stock.item.sku,[Validators.required]),
-            comments:new FormControl('no comments'),
+            batch_no: new FormControl(this.stock.item.sku, [Validators.required]),
+            comments: new FormControl('no comments'),
             action: new FormControl(this.action),
             in_stock_qty: new FormControl(0),
             total_qty: new FormControl(0),
             stock_id: new FormControl(res.sender_data && res.sender_data.stock_id),
-            reason_id:new FormControl(null),
-            reason:new FormControl('', [Validators.required]),
+            reason_id: new FormControl(null),
+            reason: new FormControl('', [Validators.required]),
           });
         }
        });
        this.checkEmpty(0);
     }
 
-    empty(){
+    empty() {
       this.stockForm.get('batch_no').setValue('');
     }
-    checkEmpty(event){
-      const input=event==0?this.stock.item.sku:event.target.value;
+    checkEmpty(event) {
+      const input = event == 0 ? this.stock.item.sku : event.target.value;
 
-      if(input =='' || null){
+      if (input == '' || null) {
         this.stockForm.get('batch_no').setValue(this.stock.item.sku);
-      }else{
-        const arrays=this.stock.stock_transctions.filter(sk=>sk.batch_no==input);
-        if(arrays.length > 0){
-            this.current_stock=this.arrayAdd(this.arrayGetColumn(arrays,'in_qty'))-this.arrayAdd(this.arrayGetColumn(arrays,'out_qty'));
+      } else {
+        const arrays = this.stock.stock_transctions.filter(sk => sk.batch_no == input);
+        if (arrays.length > 0) {
+            this.current_stock = this.arrayAdd(this.arrayGetColumn(arrays, 'in_qty')) - this.arrayAdd(this.arrayGetColumn(arrays, 'out_qty'));
         }
-        if(this.action=='add'){
-          this.found_stock=true;
-        }else{
-          this.found_stock=arrays.length > 0?true:false;
+        if (this.action == 'add') {
+          this.found_stock = true;
+        } else {
+          this.found_stock = arrays.length > 0 ? true : false;
         }
 
       }
 
     }
-arrayAdd(arrays){
+arrayAdd(arrays) {
     return arrays.reduce((total, amount) => total + amount);
 }
-arrayRemove(arrays){
+arrayRemove(arrays) {
   return arrays.reduce((total, amount) => total - amount);
 }
-arrayGetColumn(array,column){
+arrayGetColumn(array, column) {
   const result = [];
   array.forEach(e => {
     result.push(e[column]);
@@ -107,40 +107,40 @@ arrayGetColumn(array,column){
 
   ///////////////////////////// Item
   get qty() {
-    return this.stockForm.get("qty");
+    return this.stockForm.get('qty');
   }
   get transction_date() {
-    return this.stockForm.get("transction_date");
+    return this.stockForm.get('transction_date');
   }
   get expired_date() {
-    return this.stockForm.get("expired_date");
+    return this.stockForm.get('expired_date');
   }
   get manufacture_date() {
-    return this.stockForm.get("manufacture_date");
+    return this.stockForm.get('manufacture_date');
   }
   get batch_no() {
-    return this.stockForm.get("batch_no");
+    return this.stockForm.get('batch_no');
   }
   get comments() {
-    return this.stockForm.get("comments");
+    return this.stockForm.get('comments');
   }
   get reason_id() {
-    return this.stockForm.get("reason_id");
+    return this.stockForm.get('reason_id');
   }
   get reason() {
-    return this.stockForm.get("reason");
+    return this.stockForm.get('reason');
   }
 
-  updateStock(){
+  updateStock() {
 
     if (this.stockForm.valid) {
       this.loading.next(true);
-      this.stockForm.value.in_stock_qty=this.stockForm.value.action=='add'?this.stock.in_stock_qty+parseInt(this.stockForm.value.qty):this.stock.in_stock_qty-parseInt(this.stockForm.value.qty);
-      this.stockForm.value.available_stock_qty=this.calculateTQty(this.stockForm.value.action);
-      this.api.addOrRemoveExistingItem(this.stockForm.value).pipe(finalize(() =>this.loading.next(false)))
+      this.stockForm.value.in_stock_qty = this.stockForm.value.action == 'add' ? this.stock.in_stock_qty + parseInt(this.stockForm.value.qty) : this.stock.in_stock_qty - parseInt(this.stockForm.value.qty);
+      this.stockForm.value.available_stock_qty = this.calculateTQty(this.stockForm.value.action);
+      this.api.addOrRemoveExistingItem(this.stockForm.value).pipe(finalize(() => this.loading.next(false)))
       .subscribe(
             res => {
-                  this.detailsService.receiverData(res,true);
+                  this.detailsService.receiverData(res, true);
                   this.toast.open('Stock updated Successfully!');
                   this.shared.remove();
               this.close();
@@ -151,21 +151,21 @@ arrayGetColumn(array,column){
      );
     }
   }
-  calculateTQty(action){
-    return action=='add'?this.stock.available_stock_qty+parseInt(this.qty.value):this.stock.available_stock_qty-parseInt(this.qty.value);
+  calculateTQty(action) {
+    return action == 'add' ? this.stock.available_stock_qty + parseInt(this.qty.value) : this.stock.available_stock_qty - parseInt(this.qty.value);
   }
   showChooseReasonModal() {
     this.modal.open(
       SelectReasonModelComponent,
-        {enabled:true,
-          reason_id:this.stockForm.value.reason_id?this.stockForm.value.reason_id:null,
-          reason_type:'stock_movements',
-          url:'reasons/stock_movements',
-         reason_name:'Stock Movements Reason'
+        {enabled: true,
+          reason_id: this.stockForm.value.reason_id ? this.stockForm.value.reason_id : null,
+          reason_type: 'stock_movements',
+          url: 'reasons/stock_movements',
+         reason_name: 'Stock Movements Reason'
       },
         'select-reason-modal'
     ).beforeClose().subscribe(data => {
-        if ( ! data) return;
+        if ( ! data) { return; }
         this.stockForm.get('reason_id').setValue(data.id);
         this.stockForm.get('reason').setValue(data.name);
     });

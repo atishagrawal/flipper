@@ -1,6 +1,6 @@
 export class Branch {
   name?: string;
-  description?:string;
+  description?: string;
   id?: number;
   branch_id?: number;
   active?: number;
@@ -9,7 +9,7 @@ export class Branch {
   updated_at?: any;
 
   constructor(params: Object = {}) {
-    for (let name in params) {
+    for (const name in params) {
       this[name] = params[name];
     }
   }

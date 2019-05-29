@@ -25,10 +25,10 @@ export class LocalStorage {
      * Retrieve specified item from local storage.
      */
     public get<T>(key: string, defaultValue?: T): any|T {
-        if ( ! this.storage) return defaultValue;
+        if ( ! this.storage) { return defaultValue; }
 
         let value;
-        try { value = JSON.parse(this.storage.getItem(key)) } catch(e) {}
+        try { value = JSON.parse(this.storage.getItem(key)); } catch (e) {}
 
         return value == null ? defaultValue : value;
     }
@@ -37,7 +37,7 @@ export class LocalStorage {
      * Store specified item in local storage.
      */
     public set(key: string, value: any) {
-        if ( ! this.storage) return null;
+        if ( ! this.storage) { return null; }
         this.storage.setItem(key, JSON.stringify(value));
     }
 
@@ -45,7 +45,7 @@ export class LocalStorage {
      * Remove specified item from local storage.
      */
     public remove(key: string) {
-        if ( ! this.storage) return null;
+        if ( ! this.storage) { return null; }
         this.storage.removeItem(key);
     }
 
@@ -59,7 +59,7 @@ export class LocalStorage {
             localStorage.setItem(test, test);
             localStorage.removeItem(test);
             return true;
-        } catch(e) {
+        } catch (e) {
             return false;
         }
     }

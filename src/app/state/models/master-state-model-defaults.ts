@@ -1,4 +1,4 @@
-import { MasterStateModel } from "./master-state-model";
+import { MasterStateModel } from './master-state-model';
 
 
 export const MASTER_STATE_MODEL_DEFAULTS: MasterStateModel = {
@@ -6,5 +6,5 @@ export const MASTER_STATE_MODEL_DEFAULTS: MasterStateModel = {
     items: [],
     loading: false,
     currentUser: null,
-    details:null
+    details: null
 };

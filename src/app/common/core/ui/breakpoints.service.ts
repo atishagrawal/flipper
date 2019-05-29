@@ -4,7 +4,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 @Injectable()
 export class BreakpointsService {
 
-    public isMobile: boolean = false;
+    public isMobile = false;
 
     constructor(private breakpointObserver: BreakpointObserver) {
         this.breakpointObserver.observe(Breakpoints.Handset).subscribe(result => {

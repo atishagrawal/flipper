@@ -21,9 +21,9 @@ export class TaxRateModelComponent implements OnInit {
   taxtRateForm: FormGroup;
   public loading = new BehaviorSubject(false);
   details$: Observable<Details>;
-  need_to_add_new: boolean = true;
+  need_to_add_new = true;
   business: Business;
-  tax_rate_id:number;
+  tax_rate_id: number;
   numberPatern = '^[0-9.]+$';
   tax_types: string[];
 
@@ -48,10 +48,10 @@ export class TaxRateModelComponent implements OnInit {
       }
       this.tax_rate_id = res.sender_data ? res.sender_data.tax_rate_id : 0;
       this.taxtRateForm = new FormGroup({
-        name: new FormControl(res.sender_data ? res.sender_data.name : "", [Validators.required]),
-        description: new FormControl(res.sender_data ? res.sender_data.description : ""),
-        tax_type: new FormControl(res.sender_data ? res.sender_data.tax_type :"", [Validators.required]),
-        tax_code: new FormControl(res.sender_data ? res.sender_data.tax_code : "", [Validators.required]),
+        name: new FormControl(res.sender_data ? res.sender_data.name : '', [Validators.required]),
+        description: new FormControl(res.sender_data ? res.sender_data.description : ''),
+        tax_type: new FormControl(res.sender_data ? res.sender_data.tax_type : '', [Validators.required]),
+        tax_code: new FormControl(res.sender_data ? res.sender_data.tax_code : '', [Validators.required]),
         percentage: new FormControl(res.sender_data ? res.sender_data.percentage : 0.00, [Validators.required, Validators.pattern(this.numberPatern)])
       });
     });
@@ -60,26 +60,26 @@ export class TaxRateModelComponent implements OnInit {
 
   ///////////////////////////// Item
   get name() {
-    return this.taxtRateForm.get("name");
+    return this.taxtRateForm.get('name');
   }
 
   get description() {
-    return this.taxtRateForm.get("description");
+    return this.taxtRateForm.get('description');
   }
 
   get tax_type() {
-    return this.taxtRateForm.get("tax_type");
+    return this.taxtRateForm.get('tax_type');
   }
   get tax_code() {
-    return this.taxtRateForm.get("tax_code");
+    return this.taxtRateForm.get('tax_code');
   }
   get percentage() {
-    return this.taxtRateForm.get("percentage");
+    return this.taxtRateForm.get('percentage');
   }
 
   saveTaxRate() {
     if (this.taxtRateForm.valid) {
-      this.loading.next(true)
+      this.loading.next(true);
       const data = {
         name: this.taxtRateForm.value.name,
         description: this.taxtRateForm.value.description,
