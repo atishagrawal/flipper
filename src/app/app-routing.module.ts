@@ -10,7 +10,7 @@ const routes: Routes = [
     {path: '', pathMatch: 'full', component: RedirectComponent, canActivate: [AuthGuard]},
     {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
     {path: 'customer', component: NewBusinessComponent, canActivate: [AuthGuard]},
-    {path: 'admin', loadChildren: () => import('app/admin/admin.module').then(m => m.AdminModule), canLoad: [AuthGuard]},
+    {path: 'admin', loadChildren: () => import('../app/admin/admin.module').then(m => m.AdminModule), canLoad: [AuthGuard]},
 ];
 
 @NgModule({

@@ -2,7 +2,6 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {AuthService} from '../../../auth/auth.service';
 import {CurrentUser} from '../../../auth/current-user';
 import { Router } from '@angular/router';
-import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 import { ElectronService } from 'ngx-electron';
 
 @Component({

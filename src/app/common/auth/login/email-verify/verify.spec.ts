@@ -18,7 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '../../../core/http/http.module';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NgxModelModule } from 'ngx-model';
 
 // level up testing
 // 1)
@@ -56,8 +55,8 @@ describe('VerifyEmailComponent', () => {
         ReactiveFormsModule,
         HttpModule,
         RouterTestingModule,
-        MatSnackBarModule,
-        NgxModelModule
+        MatSnackBarModule
+        
       ]
     });
   });

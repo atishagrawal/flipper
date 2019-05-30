@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var appConfig = require("electron-settings");
 var electron_1 = require("electron");
-///building this.windowStateKeeper
-///building windowStateKeeper
+/// building this.windowStateKeeper
+/// building windowStateKeeper
 function windowStateKeeper(windowName) {
     var window, windowState;
     function setBounds() {

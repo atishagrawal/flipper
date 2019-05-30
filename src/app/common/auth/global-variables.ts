@@ -292,7 +292,7 @@ export class GlobalVariables {
     public loaing_on_scroll = false;
     public folder_infiniteScrollPage: number;
     public file_infiniteScrollPage: number;
-    @ViewChild('filePicker')
+    @ViewChild('filePicker',{ static: true })
     public filePicker: ElementRef;
     @Input()
     fireupload = false;

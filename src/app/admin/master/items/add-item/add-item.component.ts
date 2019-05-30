@@ -58,8 +58,8 @@ export class AddItemComponent implements OnInit {
   rows: FormArray = this._formBuilder.array([]);
 
   panelOpenState = false;
-  @ViewChild(MatSort) matSort: MatSort;
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
+  @ViewChild('stepper',{ static: true }) stepper: MatStepper;
   public dataSource: PaginatedDataTableSource<CustomerType>;
 
   branchList: Branch[] = [];

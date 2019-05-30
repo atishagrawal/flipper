@@ -19,7 +19,7 @@ import { GlobalVariables } from '../../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class ReasonDataTableComponent  implements OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Reason>;
   @Input() public reasonName = 'Reason';
   @Input() public reasonType = 'stock_movements';

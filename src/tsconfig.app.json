@@ -1,12 +1,14 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "enableIvy": true,
     "outDir": "../out-tsc/app",
-    "module": "es2015",
+    "module": "commonjs",
     "baseUrl": "",
-    "target":"es2015",
     "types": []
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "target":"commonjs"
   },
   "exclude": [
     "**/*.spec.ts"

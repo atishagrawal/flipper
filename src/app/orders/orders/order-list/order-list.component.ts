@@ -36,7 +36,7 @@ import { ApiPosService } from '../../../pos/api/api.service';
   ]
 })
 export class OrderListComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Orders>;
   @Input() public enableSelectButton = false;
   @Input() public selectedId = 0;

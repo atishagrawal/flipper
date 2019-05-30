@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewEncapsulation, ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../../../../admin/master/categories/api/category';
 import { Select, Store } from '@ngxs/store';

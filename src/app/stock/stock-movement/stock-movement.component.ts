@@ -20,7 +20,7 @@ import { GlobalVariables } from '../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class StockMovementComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<StockMovements>;
   public loading = new BehaviorSubject(false);
   constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private detailsService: DetailsService, private api: ApiStockService, private modal: Modal) {}

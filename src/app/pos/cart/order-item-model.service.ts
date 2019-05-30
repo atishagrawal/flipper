@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Model, ModelFactory } from 'ngx-model';
+import { Model, ModelFactory } from '@angular-extensions/model';
 import { OrderItems } from './order_items';
 import { ApiPosService } from '../api/api.service';
 

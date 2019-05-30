@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Model, ModelFactory } from 'ngx-model';
+import { Model, ModelFactory } from '@angular-extensions/model';
 import { Master } from './master';
 
 @Injectable({

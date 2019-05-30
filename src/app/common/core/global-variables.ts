@@ -289,7 +289,7 @@ export class GlobalVariables {
   public loaing_on_scroll = false;
   public folder_infiniteScrollPage: number;
   public file_infiniteScrollPage: number;
-  @ViewChild('filePicker') public filePicker: ElementRef;
+  @ViewChild('filePicker',{ static: true }) public filePicker: ElementRef;
   @Input() fireupload = false;
 
   // tslint:disable-next-line:max-line-length

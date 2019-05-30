@@ -20,7 +20,7 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class InvoiceComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
 
   public dataSource: PaginatedDataTableSource<Invoice>;
   public loading = new BehaviorSubject(false);

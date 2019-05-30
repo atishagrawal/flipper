@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailsComponent } from './details/details.component';
-import { NgxModelModule } from 'ngx-model';
 import { DetailsService } from './details.service';
 import { MaterialModule } from '../material/material.module';
 import { DetailsPanelComponent } from './details-panel/details-panel.component';
@@ -13,7 +12,6 @@ import { SetUpModelModule } from '../setup/setup-model/setup-model.module';
   declarations: [DetailsComponent, DetailsPanelComponent],
   imports: [
     CommonModule,
-    NgxModelModule,
     MaterialModule,
     MasterModelModule,
     StockModelModule,

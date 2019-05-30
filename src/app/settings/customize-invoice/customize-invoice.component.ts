@@ -18,7 +18,7 @@ import { GlobalVariables } from '../../common/core/global-variables';
   styleUrls: ['./customize-invoice.component.scss']
 })
 export class CustomizeInvoiceComponent implements OnInit {
-  @ViewChild(MatSort) matSort: MatSort;
+  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<CustomizeInvoice>;
   public loading = new BehaviorSubject(false);
   constructor(public v: GlobalVariables, private router: Router, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiCustomizeInvoiceService) { }

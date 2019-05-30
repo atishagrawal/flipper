@@ -13,7 +13,7 @@ import { CartItemComponent, CartDialog } from './cart-item/cart-item.component';
 import { ApiPosService } from './api/api.service';
 
 import {  HttpClientModule } from '@angular/common/http';
-import { ModelFactory } from 'ngx-model';
+import { ModelFactory } from '@angular-extensions/model';
 import { PayModule } from '../pay/pay.module';
 import { CustomersModule } from '../customers/customers.module';
 import { InvoicesModule } from '../invoices/invoices.module';

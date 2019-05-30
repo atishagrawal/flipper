@@ -10,7 +10,6 @@ import { UiModule } from '../common/core/ui/ui.module';
 import { DataTableModule } from '../data-table/data-table/data-table.module';
 import { BusinessModule } from '../business/business.module';
 import { CrupdateInvoiceCustomizationComponent } from './customize-invoice/crupdate-invoice-customization/crupdate-invoice-customization.component';
-import { NgxModelModule } from 'ngx-model';
 import { PreviewInvoiceCustomizedComponent } from './customize-invoice/preview-invoice-customized/preview-invoice-customized.component';
 
 @NgModule({
@@ -23,8 +22,7 @@ import { PreviewInvoiceCustomizedComponent } from './customize-invoice/preview-i
     ReactiveFormsModule,
     UiModule,
     DataTableModule,
-    BusinessModule,
-    NgxModelModule
+    BusinessModule
   ],
   exports:
   [SettingsComponent, SetCompanyComponent, CustomizeInvoiceComponent, PreviewInvoiceCustomizedComponent]
