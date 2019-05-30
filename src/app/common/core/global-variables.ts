@@ -1,5 +1,6 @@
-import { Injectable, Input, ViewChild, ElementRef } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable, Input, ViewChild, ElementRef } from "@angular/core";
+import { Observable, BehaviorSubject } from "rxjs";
+import { LocalStorage } from './services/local-storage.service';
 // import { YFContract } from '@app/contracts/YFContract';
 // import { environment } from '@environments/environment';
 // import { FileUploader } from 'nupload';
@@ -8,6 +9,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 // import { YFile } from '@app/classes/files';
 @Injectable({ providedIn: 'root' })
 export class GlobalVariables {
+  
+  constructor(public localStorage: LocalStorage) { }
   public model: { email?: string; password?: string; remember?: boolean } = {
     remember: true
   };
@@ -442,8 +445,8 @@ export class GlobalVariables {
   get redirectUrl(): string {
     return this.redirect_url;
   }
-  webTitle(title = 'Flipper') {
-    return (document.title = title.charAt(0).toUpperCase() + title.slice(1));
+  webTitle(title = "Flipper") {
+    return this.localStorage.set('flipper-title',title);
   }
 
   // set user(user: any) {

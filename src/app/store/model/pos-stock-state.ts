@@ -2,11 +2,10 @@ import { SortColumn } from './pos-category-state-model';
 import { SortDirection } from '@angular/material/sort';
 import { PosStockState } from './pos-stock-state-model';
 
-
-export const SET_POS_STOCK_ORDERBY = localStorage.getItem('PosStockSortColumn') as SortColumn;
-export const SET_POS_STOCK_ORDERDIR = localStorage.getItem('PosStockSortDirection') as SortDirection;
+export const SET_POS_STOCK_ORDERBY=localStorage.getItem('PosStockSortColumn') as SortColumn;
+export const SET_POS_STOCK_ORDERDIR=localStorage.getItem('PosStockSortDirection') as SortDirection;
 export const POS_STOCK_STATE_MODEL_DEFAULTS: PosStockState = {
-    data: [],
+  data: [],
   loaded: false,
   loading: false,
   payload: null,
@@ -24,10 +23,9 @@ export const POS_STOCK_STATE_MODEL_DEFAULTS: PosStockState = {
   query: null,
   type: null,
   next_page_url: null,
-  prev_page_url: null,
-  sort_column: null,
-  sort_direction: null,
-
+  prev_page_url:null,
+  sort_column:null,
+  sort_direction:null,
  },
  queryParams: {
   order_by: SET_POS_STOCK_ORDERBY ? SET_POS_STOCK_ORDERBY : 'updated_at',

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorage } from '../../common/core/services/local-storage.service';
+import { GlobalVariables } from '../../common/core/global-variables';
 
 @Component({
   selector: 'app-sale',
@@ -20,16 +21,18 @@ export class SalesComponent implements OnInit {
     }
   ];
 
-  toggled = false;
-  isMobile = false;
-  leftColumnIsHidden = false;
-  constructor(private localStorage: LocalStorage) {
+  toggled=false;
+  isMobile=false;
+  leftColumnIsHidden=false;
+  constructor(private localStorage: LocalStorage,public v: GlobalVariables) {
         this.localStorage.set('sales-path', 'invoices');
   }
 
     ngOnInit() {
 
     }
-
+    updateTitle(title){
+      this.v.webTitle(title);
+    }
 
   }

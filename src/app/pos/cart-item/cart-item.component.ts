@@ -218,8 +218,9 @@ customer: Customer = null;
   loadCartItem() {
     this.current_order$.subscribe(res => {
       if (res) {
-        this.current_order = res ? res : null;
-        this.data = res.order_items.length > 0 ? res.order_items : [];
+        this.current_order=res?res:null;
+        console.log(this.current_order);
+        this.data = res.order_items.length > 0?res.order_items:[];
         this.expandedElement = this.data
           ? this.data[this.data.length - 1]
           : null;
@@ -374,12 +375,13 @@ customer: Customer = null;
         total += this.data[i][prop];
       }
     }
-    const s = total.toString();
-    return  parseFloat(s).toFixed(2);
+    return total;
 
   }
-convertToDecimal(total: number) {
-  const s = total.toString();
+
+ 
+convertToDecimal(total:number){
+  const s=total.toString();
   return  parseFloat(s).toFixed(2);
 }
  textEllipsis(str, maxLength, { side = 'end', ellipsis = '...' } = {}) {
