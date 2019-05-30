@@ -14,10 +14,10 @@ export class LoadMoreStockEntries implements LoadStockEntriesAction {
 
     }
 }
-export class LoadSearchableStockEntries implements LoadStockEntriesAction{
+export class LoadSearchableStockEntries implements LoadStockEntriesAction {
   static readonly type = '[STOCK] Load Searchable Stock Entries';
 
-  constructor(public queryParams: StockApiIndexParams = {}){
+  constructor(public queryParams: StockApiIndexParams = {}) {
 
     }
 }

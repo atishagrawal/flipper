@@ -13,7 +13,7 @@ import { InvoicePreviewComponent } from './invoice-preview/invoice-preview.compo
 import { PrintOutModule } from '../print-out/print-out.module';
 
 @NgModule({
-  declarations: [InvoiceComponent,NoEntryFoundMasterComponent, InvoicePreviewComponent],
+  declarations: [InvoiceComponent, NoEntryFoundMasterComponent, InvoicePreviewComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -22,7 +22,7 @@ import { PrintOutModule } from '../print-out/print-out.module';
     FormsModule,
     UiModule,
     PrintOutModule,
-    InvoiceRoutingModule,DataTableModule
+    InvoiceRoutingModule, DataTableModule
   ],
   entryComponents: [InvoicePreviewComponent],
   bootstrap: [InvoiceComponent]

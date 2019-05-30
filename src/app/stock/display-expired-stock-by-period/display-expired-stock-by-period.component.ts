@@ -25,7 +25,7 @@ import { LocalStorage } from '../../common/core/services/local-storage.service';
 export class DisplayExpiredStockByPeriodComponent implements OnInit {
 
 // entries
-@ViewChild(MatSort,{ static: true }) matSort: MatSort;
+@ViewChild(MatSort, { static: true }) matSort: MatSort;
 public dataSource = new MatTableDataSource<StockExpired>([]);
 public loading = new BehaviorSubject(false);
 

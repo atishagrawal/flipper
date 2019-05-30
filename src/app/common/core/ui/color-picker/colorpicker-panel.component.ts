@@ -8,7 +8,7 @@ import {OverlayPanelRef} from '../overlay-panel/overlay-panel-ref';
     encapsulation: ViewEncapsulation.None,
 })
 export class ColorpickerPanelComponent implements OnInit {
-    @ViewChild('trigger',{ static: true }) trigger: ElementRef;
+    @ViewChild('trigger', { static: true }) trigger: ElementRef;
 
     public color: string;
 

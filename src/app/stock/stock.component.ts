@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/takeUntil';
-import { Select } from "@ngxs/store";
-import { MasterState } from "../state/master-state";
-import { DetailsService } from "../details/details.service";
-import { Details } from "../details/details";
+import { Select } from '@ngxs/store';
+import { MasterState } from '../state/master-state';
+import { DetailsService } from '../details/details.service';
+import { Details } from '../details/details';
 import { GlobalVariables } from '../common/core/global-variables';
 
 @Component({
@@ -44,13 +44,13 @@ export class StockComponent implements OnInit {
   details$: Observable<Details>;
 
 
-  constructor(private detailsService: DetailsService,public v: GlobalVariables) {
+  constructor(private detailsService: DetailsService, public v: GlobalVariables) {
   }
 
   ngOnInit() {
     this.subscription = this.details$ = this.detailsService.details$;
   }
-  updateTitle(title){
+  updateTitle(title) {
     this.v.webTitle(title);
   }
 

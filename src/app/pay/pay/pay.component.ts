@@ -19,13 +19,13 @@ export class PayComponent implements OnInit {
   business: Business;
   data: OrderItems[] = [];
 
-  numeric_selector:any=0;
-  amount_return:number=0;
-  d_amount_return:number=0;
-  amount_return_color:string='black';
-  d_amount_return_color:string='black';
-  currently_ordered:Orders=null;
-  preview:boolean=false;
+  numeric_selector: any = 0;
+  amount_return = 0;
+  d_amount_return = 0;
+  amount_return_color = 'black';
+  d_amount_return_color = 'black';
+  currently_ordered: Orders = null;
+  preview = false;
   @Select(PosOrderState.selectedOrders) current_order$: Observable<Orders>;
   @Select(PosOrderState.loading) loading$: Observable<boolean>;
   @Select(PosOrderState.customerOrder) customer$: Observable<Customer>;
@@ -153,18 +153,18 @@ loadCustomer() {
      if (this.currently_ordered) {
       if (this.amount_return_color == 'red') {
           alert('Amount paid is less than amount due.');
-      }else{
+      } else {
         this.store.dispatch(new InvoiceDetails(null));
-        const forming_invoice:Invoice={
-          invoice_no:randomString(6),
-          invoice_date:new Date(),
-          total_discounts:this._total('total_amount_discount'),
-          total_items:this._total('qty'),
-          taxable_vat:this._total('taxable_vat'),
-          total_amount:this._total('total_amount'),
-          amount_given:parseInt(this.numeric_selector==0?this.total('total_amount'):this.numeric_selector),
-          amount_return:this.amount_return,
-          status:Status.COMPLETE,
+        const forming_invoice: Invoice = {
+          invoice_no: randomString(6),
+          invoice_date: new Date(),
+          total_discounts: this._total('total_amount_discount'),
+          total_items: this._total('qty'),
+          taxable_vat: this._total('taxable_vat'),
+          total_amount: this._total('total_amount'),
+          amount_given: parseInt(this.numeric_selector == 0 ? this.total('total_amount') : this.numeric_selector),
+          amount_return: this.amount_return,
+          status: Status.COMPLETE,
           branch_id: parseInt(localStorage.getItem('active_branch')),
           payment_method: PaymentMethod.CASH,
           order: this.currently_ordered ? this.currently_ordered : null,
@@ -180,7 +180,7 @@ loadCustomer() {
     }
 
     }
-   
+
 
 
 

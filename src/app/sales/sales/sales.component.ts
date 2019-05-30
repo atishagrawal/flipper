@@ -21,17 +21,17 @@ export class SalesComponent implements OnInit {
     }
   ];
 
-  toggled=false;
-  isMobile=false;
-  leftColumnIsHidden=false;
-  constructor(private localStorage: LocalStorage,public v: GlobalVariables) {
+  toggled = false;
+  isMobile = false;
+  leftColumnIsHidden = false;
+  constructor(private localStorage: LocalStorage, public v: GlobalVariables) {
         this.localStorage.set('sales-path', 'invoices');
   }
 
     ngOnInit() {
 
     }
-    updateTitle(title){
+    updateTitle(title) {
       this.v.webTitle(title);
     }
 

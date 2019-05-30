@@ -1,5 +1,5 @@
-import { Injectable, Input, ViewChild, ElementRef } from "@angular/core";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Injectable, Input, ViewChild, ElementRef } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { LocalStorage } from './services/local-storage.service';
 // import { YFContract } from '@app/contracts/YFContract';
 // import { environment } from '@environments/environment';
@@ -9,7 +9,7 @@ import { LocalStorage } from './services/local-storage.service';
 // import { YFile } from '@app/classes/files';
 @Injectable({ providedIn: 'root' })
 export class GlobalVariables {
-  
+
   constructor(public localStorage: LocalStorage) { }
   public model: { email?: string; password?: string; remember?: boolean } = {
     remember: true
@@ -292,7 +292,7 @@ export class GlobalVariables {
   public loaing_on_scroll = false;
   public folder_infiniteScrollPage: number;
   public file_infiniteScrollPage: number;
-  @ViewChild('filePicker',{ static: true }) public filePicker: ElementRef;
+  @ViewChild('filePicker', { static: true }) public filePicker: ElementRef;
   @Input() fireupload = false;
 
   // tslint:disable-next-line:max-line-length
@@ -445,8 +445,8 @@ export class GlobalVariables {
   get redirectUrl(): string {
     return this.redirect_url;
   }
-  webTitle(title = "Flipper") {
-    return this.localStorage.set('flipper-title',title);
+  webTitle(title = 'Flipper') {
+    return this.localStorage.set('flipper-title', title);
   }
 
   // set user(user: any) {

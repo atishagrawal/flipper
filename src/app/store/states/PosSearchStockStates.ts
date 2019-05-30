@@ -13,13 +13,13 @@ import { Stock } from '../../stock/api/stock';
 })
 
 export class PosSearchStockStates {
-  constructor(private api: ApiPosService,private store:Store) { }
+  constructor(private api: ApiPosService, private store: Store) { }
   @Selector()
   static entries(state: PosSearchStockState) {
     return state.data;
   }
 
-  
+
   @Selector()
   static selectedStock(state: PosSearchStockState) {
     return state.stock;
@@ -63,10 +63,12 @@ export class PosSearchStockStates {
       order_dir: meta.sort_direction,
       ...params
     };
-    if (meta.query)
+    if (meta.query) {
       queryParams.query = meta.query;
-    if (meta.type)
+    }
+    if (meta.type) {
       queryParams.type = meta.type;
+    }
     return queryParams;
   }
 
@@ -83,8 +85,8 @@ loadSearchabletockEntries(ctx: StateContext<PosSearchStockState>, action: LoadSt
   const params = this.transformQueryParams({
     ...action.queryParams
   });
- 
-if(params.query){
+
+if (params.query) {
   return this.api.searchStockEntries(params).pipe(tap(response => {
     const entries = action.loadMore ? oldState.data : [];
     const state = {
@@ -93,13 +95,13 @@ if(params.query){
         ...newState.meta,
         last_page: response.last_page,
         current_page: response.current_page,
-        from:response.from,
-        to:response.to,
+        from: response.from,
+        to: response.to,
         total: response.total,
         per_page: response.per_page,
         path: response.path,
         next_page_url: response.next_page_url,
-        prev_page_url:response.prev_page_url
+        prev_page_url: response.prev_page_url
       },
       loading: false
     } as Partial<PosSearchStockState>;
@@ -108,7 +110,7 @@ if(params.query){
   }, () => {
     return ctx.patchState({ loading: false });
   }));
-}else{
+} else {
   return this.api.getMostSoldStockEntries(params).pipe(tap(response => {
     const entries = action.loadMore ? oldState.data : [];
     const state = {
@@ -117,13 +119,13 @@ if(params.query){
         ...newState.meta,
         last_page: response.last_page,
         current_page: response.current_page,
-        from:response.from,
-        to:response.to,
+        from: response.from,
+        to: response.to,
         total: response.total,
         per_page: response.per_page,
         path: response.path,
         next_page_url: response.next_page_url,
-        prev_page_url:response.prev_page_url
+        prev_page_url: response.prev_page_url
       },
       loading: false
     } as Partial<PosSearchStockState>;
@@ -137,12 +139,12 @@ if(params.query){
 }
 
 removeDups(data: Array<any>) {
-    let obj = {};
-    if(data.length==0) return [];
+    const obj = {};
+    if (data.length == 0) { return []; }
     data = Object.keys(data.reduce((prev, next) => {
-      if (!obj[next.id]) obj[next.id] = next;
+      if (!obj[next.id]) { obj[next.id] = next; }
       return obj;
     }, obj)).map((i) => obj[i]);
     return data.reverse();
-  };
+  }
  }

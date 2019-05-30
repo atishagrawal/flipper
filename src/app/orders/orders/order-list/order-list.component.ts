@@ -38,7 +38,7 @@ import { MatDialog, MatSort } from '@angular/material';
   ]
 })
 export class OrderListComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Orders>;
   @Input() public enableSelectButton = false;
   @Input() public selectedId = 0;
@@ -53,8 +53,8 @@ export class OrderListComponent implements OnInit, OnDestroy {
   @Select(PosOrderState.meta) meta$: Observable<any>;
 
   @Select(PosOrderState.loading) loading$: Observable<boolean>;
-  panelOpenState:boolean=false;
-  constructor(public dialog: MatDialog,private router: Router,private api: ApiPosService,private store:Store,public currentUser: CurrentUser,public paginator: UrlAwarePaginator) { }
+  panelOpenState = false;
+  constructor(public dialog: MatDialog, private router: Router, private api: ApiPosService, private store: Store, public currentUser: CurrentUser, public paginator: UrlAwarePaginator) { }
 
   ngOnInit() {
     if (this.currentUser.user) {
@@ -139,7 +139,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
   public showPreviewInvoiceModal(invoice?: Invoice) {
     this.dialog.open(PreviewOrderInvoiceComponent, {
       width: '1200px',
-      data: invoice?invoice:null
+      data: invoice ? invoice : null
     });
   }
 }

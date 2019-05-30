@@ -56,7 +56,7 @@ describe('VerifyEmailComponent', () => {
         HttpModule,
         RouterTestingModule,
         MatSnackBarModule
-        
+
       ]
     });
   });

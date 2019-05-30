@@ -18,7 +18,7 @@ export class Orders {
   order_items?: OrderItems[] = [];
   branch_id?: number;
   business_id?: number;
-  invoice?:Invoice;
+  invoice?: Invoice;
 
   constructor(params: Object = {}) {
     for (const name in params) {

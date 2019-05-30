@@ -67,8 +67,8 @@ export class BranchComponent implements OnInit {
   data: Branch[] = [];
   displayedColumns: string[] = ['select', 'name', 'description'];
   dataSource = new MatTableDataSource<Branch>([]);
-  @ViewChild(MatPaginator,{ static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort,{ static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   master$: Observable<Master>;
 

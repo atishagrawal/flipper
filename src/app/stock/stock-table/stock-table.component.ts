@@ -20,7 +20,7 @@ import { GlobalVariables } from '../../common/core/global-variables';
   encapsulation: ViewEncapsulation.None,
 })
 export class StockTableComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Stock>;
   public loading = new BehaviorSubject(false);
   cart: EventEmitter<Stock> = new EventEmitter();

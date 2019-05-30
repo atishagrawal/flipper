@@ -22,7 +22,7 @@ export interface enableSelectButtonModalData {
 })
 export class SelectReasonModelComponent implements OnInit {
 
-  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<Reason>;
   @Input() public reasonName = 'Reason';
   @Input() public reasonType = 'stock_movements';

@@ -14,7 +14,7 @@ export class PosComponent implements OnInit {
      */
   public leftColumnIsHidden = false;
   isMobile = false;
-  @ViewChild('scrollContainer', {static:true, read: ElementRef }) scrollContainer: ElementRef;
+  @ViewChild('scrollContainer', {static: true, read: ElementRef }) scrollContainer: ElementRef;
   constructor(public v: GlobalVariables, ) {
     this.v.webTitle('Point Of Sales');
   }

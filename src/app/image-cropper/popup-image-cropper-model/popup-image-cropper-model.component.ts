@@ -15,7 +15,7 @@ export class PopupImageCropperModelComponent implements OnInit {
   croppedImage: any = '';
   showCropper = false;
 
-  @ViewChild(ImageCropperComponent,{ static: true }) imageCropper: ImageCropperComponent;
+  @ViewChild(ImageCropperComponent, { static: true }) imageCropper: ImageCropperComponent;
 
   constructor(  private dialogRef: MatDialogRef<PopupImageCropperModelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ImageModalData) { }

@@ -19,7 +19,7 @@ export class PosStockStates {
     return state.data;
   }
 
-  
+
   @Selector()
   static selectedStock(state: PosStockState) {
     return state.stock;
@@ -110,12 +110,12 @@ export class PosStockStates {
     }));
   }
   removeDups(data: Array<any>) {
-      let obj = {};
+      const obj = {};
       data = Object.keys(data.reduce((prev, next) => {
-        if (!obj[next.id]) obj[next.id] = next;
+        if (!obj[next.id]) { obj[next.id] = next; }
         return obj;
       }, obj)).map((i) => obj[i]);
       return data.reverse();
-    };
-  
+    }
+
  }

@@ -11,14 +11,14 @@ import { InvoiceDetails } from '../../store/actions/pos-Order.action';
 })
 export class InvoicePreviewComponent implements OnInit {
 
-  constructor(private store:Store,public dialogRef: MatDialogRef<InvoicePreviewComponent>,
+  constructor(private store: Store, public dialogRef: MatDialogRef<InvoicePreviewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    if(this.data){
+    if (this.data) {
       this.store.dispatch(new InvoiceDetails(this.data));
     }
-      
+
   }
   public close() {
     this.dialogRef.close();

@@ -18,7 +18,7 @@ import { GlobalVariables } from '../../common/core/global-variables';
   styleUrls: ['./customize-invoice.component.scss']
 })
 export class CustomizeInvoiceComponent implements OnInit {
-  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
   public dataSource: PaginatedDataTableSource<CustomizeInvoice>;
   public loading = new BehaviorSubject(false);
   constructor(public v: GlobalVariables, private router: Router, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private api: ApiCustomizeInvoiceService) { }
@@ -39,9 +39,9 @@ ngOnDestroy() {
 newInvoiceCustomization() {
   this.router.navigate(['/admin/settings/new-customize-invoice']);
 }
-updateInvoiceCustomization(data){
+updateInvoiceCustomization(data) {
 this.shared.update(data);
-this.router.navigate(["/admin/settings/new-customize-invoice"]);
+this.router.navigate(['/admin/settings/new-customize-invoice']);
 }
 /**
      * Delete currently selected users.

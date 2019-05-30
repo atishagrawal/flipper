@@ -45,14 +45,14 @@ toggled = false;
 isMobile = false;
 leftColumnIsHidden = false;
 details$: Observable<Details>;
-constructor(private detailsService: DetailsService,public v: GlobalVariables) {
+constructor(private detailsService: DetailsService, public v: GlobalVariables) {
 }
 
   ngOnInit() {
     this.details$ = this.detailsService.details$;
   }
 
-  updateTitle(title){
+  updateTitle(title) {
     this.v.webTitle(title);
   }
 }

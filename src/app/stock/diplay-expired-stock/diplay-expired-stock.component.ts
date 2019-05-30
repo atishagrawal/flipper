@@ -18,7 +18,7 @@ import { ConfirmModalComponent } from '../../common/core/ui/confirm-modal/confir
 })
 export class DiplayExpiredStockComponent implements OnInit, OnDestroy {
 // entries
-@ViewChild(MatSort,{ static: true }) matSort: MatSort;
+@ViewChild(MatSort, { static: true }) matSort: MatSort;
 public dataSource: PaginatedDataTableSource<StockMovements>;
 public loading = new BehaviorSubject(false);
 

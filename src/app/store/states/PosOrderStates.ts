@@ -90,7 +90,7 @@ export class PosOrderState {
         return ctx.patchState(oldState);
   }
   @Action(CreateInvoice)
-  createInvoices(ctx: StateContext<PosOrdersState>, action: InvoiceAction){
+  createInvoices(ctx: StateContext<PosOrdersState>, action: InvoiceAction) {
     ctx.patchState({ loading: true });
 
    return this.api.createInvoice(action.invoice).pipe(tap(response => {
@@ -101,13 +101,13 @@ export class PosOrderState {
   }
 
   @Action(InvoiceDetails)
-  invoicesDetails(ctx: StateContext<PosOrdersState>, action: InvoiceAction){
+  invoicesDetails(ctx: StateContext<PosOrdersState>, action: InvoiceAction) {
     const oldState = ctx.getState();
-    oldState.invoice=action.invoice;
-    oldState.loading=false;
+    oldState.invoice = action.invoice;
+    oldState.loading = false;
  return ctx.patchState(oldState);
   }
-  
+
 
   @Action(LoadOrderEntries)
   @Action(LoadMoreOrderEntries)

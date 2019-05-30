@@ -21,11 +21,11 @@ import { InvoicePreviewComponent } from '../invoice-preview/invoice-preview.comp
   encapsulation: ViewEncapsulation.None,
 })
 export class InvoiceComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort,{ static: true }) matSort: MatSort;
+  @ViewChild(MatSort, { static: true }) matSort: MatSort;
 
   public dataSource: PaginatedDataTableSource<Invoice>;
   public loading = new BehaviorSubject(false);
-  constructor(public v: GlobalVariables,public shared:SharedModelService, public paginator: UrlAwarePaginator,private modal: Modal,private api:InvoiceService,private localStorage: LocalStorage,
+  constructor(public v: GlobalVariables, public shared: SharedModelService, public paginator: UrlAwarePaginator, private modal: Modal, private api: InvoiceService, private localStorage: LocalStorage,
     public dialog: MatDialog) {
     this.localStorage.set('sales-path', 'invoices');
   }
@@ -78,7 +78,7 @@ export class InvoiceComponent implements OnInit, OnDestroy {
     public showPreviewInvoiceModal(invoice?: Invoice) {
     this.dialog.open(InvoicePreviewComponent, {
       width: '1200px',
-      data: invoice?invoice:null
+      data: invoice ? invoice : null
     });
   }
 

@@ -12,7 +12,7 @@ import { UiModule } from '../common/core/ui/ui.module';
 import { CartItemComponent, CartDialog } from './cart-item/cart-item.component';
 import { ApiPosService } from './api/api.service';
 
-import {  HttpClientModule } from "@angular/common/http";
+import {  HttpClientModule } from '@angular/common/http';
 import { CustomersModule } from '../customers/customers.module';
 import { InvoicesModule } from '../invoices/invoices.module';
 import { PosInfiniteScrollDirective } from './pos/pos-infinite-scroll.directive';
@@ -54,7 +54,7 @@ import { PosSearchStockStates } from '../store/states/PosSearchStockStates';
       HttpClientModule,
       HttpModule,
       PipeModuleModule,
-      NgxsModule.forFeature([PosCateoriesState,PosStockStates,PosSearchStockStates,PosOrderState]),
+      NgxsModule.forFeature([PosCateoriesState, PosStockStates, PosSearchStockStates, PosOrderState]),
     ],
   exports: [
     SessionsComponent,

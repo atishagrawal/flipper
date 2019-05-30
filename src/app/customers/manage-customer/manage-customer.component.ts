@@ -70,10 +70,10 @@ export class CrupdateCustomerModelComponent implements OnInit {
       phone: this.dataForm.value.phone,
       email: this.dataForm.value.email,
       address: this.dataForm.value.address,
-      dob:this.dataForm.value.dob,
-      beneficiary:this.dataForm.value.beneficiary,
-      department:this.dataForm.value.department,
-    }
+      dob: this.dataForm.value.dob,
+      beneficiary: this.dataForm.value.beneficiary,
+      department: this.dataForm.value.department,
+    };
     return payload;
 }
 
@@ -89,22 +89,22 @@ export class CrupdateCustomerModelComponent implements OnInit {
    */
   private hydrateModel(customer) {
     this.dataForm = new FormGroup({
-      full_name: new FormControl(customer?customer.full_name:"", [Validators.required]),
-      title: new FormControl(customer?customer.title:"", [Validators.required]),
-      gender: new FormControl(customer?customer.gender:"", [Validators.required]),
-      status: new FormControl(customer?customer.status:"", [Validators.required]),
-      customer_type_id: new FormControl(customer?customer.customer_type_id:null),
-      customer_type: new FormControl(customer?customer.customer_type?customer.customer_type.name:null:null),
-      customer_no: new FormControl(customer?customer.customer_no:""),
-      city: new FormControl(customer?customer.city:""),
-      state: new FormControl(customer?customer.state:""),
-      country: new FormControl(customer?customer.country:""),
-      phone: new FormControl(customer?customer.phone:""),
-      email: new FormControl(customer?customer.email:""),
-      address: new FormControl(customer?customer.address:""),
-      dob:new FormControl(customer?customer.dob:""),
-      beneficiary:new FormControl(customer?customer.beneficiary:""),
-      department:new FormControl(customer?customer.department:""),
+      full_name: new FormControl(customer ? customer.full_name : '', [Validators.required]),
+      title: new FormControl(customer ? customer.title : '', [Validators.required]),
+      gender: new FormControl(customer ? customer.gender : '', [Validators.required]),
+      status: new FormControl(customer ? customer.status : '', [Validators.required]),
+      customer_type_id: new FormControl(customer ? customer.customer_type_id : null),
+      customer_type: new FormControl(customer ? customer.customer_type ? customer.customer_type.name : null : null),
+      customer_no: new FormControl(customer ? customer.customer_no : ''),
+      city: new FormControl(customer ? customer.city : ''),
+      state: new FormControl(customer ? customer.state : ''),
+      country: new FormControl(customer ? customer.country : ''),
+      phone: new FormControl(customer ? customer.phone : ''),
+      email: new FormControl(customer ? customer.email : ''),
+      address: new FormControl(customer ? customer.address : ''),
+      dob: new FormControl(customer ? customer.dob : ''),
+      beneficiary: new FormControl(customer ? customer.beneficiary : ''),
+      department: new FormControl(customer ? customer.department : ''),
     });
   }
 
@@ -116,10 +116,10 @@ export class CrupdateCustomerModelComponent implements OnInit {
   }
 
   get beneficiary() {
-    return this.dataForm.get("beneficiary");
+    return this.dataForm.get('beneficiary');
   }
   get department() {
-    return this.dataForm.get("department");
+    return this.dataForm.get('department');
   }
   get full_name() {
     return this.dataForm.get('full_name');

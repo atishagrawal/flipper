@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
   }
-  updateTitle(title){
+  updateTitle(title) {
     this.v.webTitle(title);
   }
 }

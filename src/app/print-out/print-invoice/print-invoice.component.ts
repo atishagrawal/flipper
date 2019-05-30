@@ -19,59 +19,59 @@ import { Branch } from '../../admin/master/branch/api/branch';
 export class PrintInvoiceComponent implements OnInit {
   orderItems: OrderItems[] = [];
   @Select(PosOrderState.currentInvoice) invoice$: Observable<Invoice>;
-  invoice_fields:CustomizeInvoice=null;
-  customer:Customer=null;
-  customer_type:CustomerType=null;
-  business:Business=null;
-  branch:Branch=null;
-  invoice:Invoice=null;
-  today=new Date();
-  @Input() preview:boolean=true;
+  invoice_fields: CustomizeInvoice = null;
+  customer: Customer = null;
+  customer_type: CustomerType = null;
+  business: Business = null;
+  branch: Branch = null;
+  invoice: Invoice = null;
+  today = new Date();
+  @Input() preview = true;
   constructor(private cdr: ChangeDetectorRef) {
 
    }
 
   ngOnInit() {
-    if(this.invoice$){
-      this.invoice$.subscribe(invoice=>{
-        console.log('invooce',invoice);
-        if(invoice){
-          const inv=invoice['invoice'] as Invoice;
-          this.invoice=inv;
-          this.orderItems=inv.orderItems.length > 0?inv.orderItems:[];
-          this.invoice_fields=inv.printFormat[0];
-          this.business=inv.business;
-          this.customer=inv.customer;
-          this.branch=inv.branch;
-          this.customer_type=inv.customer_type;
-          
+    if (this.invoice$) {
+      this.invoice$.subscribe(invoice => {
+        console.log('invooce', invoice);
+        if (invoice) {
+          const inv = invoice['invoice'] as Invoice;
+          this.invoice = inv;
+          this.orderItems = inv.orderItems.length > 0 ? inv.orderItems : [];
+          this.invoice_fields = inv.printFormat[0];
+          this.business = inv.business;
+          this.customer = inv.customer;
+          this.branch = inv.branch;
+          this.customer_type = inv.customer_type;
+
         }
       });
-       
+
     }
 
-    
+
     this.cdr.markForCheck();
   }
 
-  total(array:Array<OrderItems>,prop) {
-    var total = 0;
+  total(array: Array<OrderItems>, prop) {
+    let total = 0;
     if (array.length > 0) {
-      for (var i = 0, _len = array.length; i < _len; i++) {
-        total += array[i][prop]
+      for (let i = 0, _len = array.length; i < _len; i++) {
+        total += array[i][prop];
       }
     }
     return total;
 
   }
-   
+
 
   printInvoice(divName) {
-    var contents = document.getElementById(divName).innerHTML;
-    var frame1 = document.createElement('iframe');
-    frame1.name = "frame3";
-    frame1.style.position = "absolute";
-    frame1.style.top = "-1000000px";
+    const contents = document.getElementById(divName).innerHTML;
+    const frame1 = document.createElement('iframe');
+    frame1.name = 'frame3';
+    frame1.style.position = 'absolute';
+    frame1.style.top = '-1000000px';
     document.body.appendChild(frame1);
     const frameDoc = frame1.contentWindow ;
     // ? frame1.contentWindow : frame1.contentDocument.document ? frame1.contentDocument.document : frame1.contentDocument;
