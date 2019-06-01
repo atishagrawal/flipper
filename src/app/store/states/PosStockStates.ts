@@ -1,5 +1,5 @@
 import { ApiPosService } from '../../pos/api/api.service';
- import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 
 import { tap } from 'rxjs/internal/operators/tap';
 import { POS_STOCK_STATE_MODEL_DEFAULTS } from '../model/pos-stock-state';
@@ -109,13 +109,13 @@ export class PosStockStates {
       return ctx.patchState({ loading: false });
     }));
   }
-  removeDups(data: Stock[]=[]) {
-      let obj = {};
+  removeDups(data: Stock[]= []) {
+      const obj = {};
       data = Object.keys(data.reduce((prev, next) => {
         if (!obj[next.id]) { obj[next.id] = next; }
         return obj;
       }, obj)).map((i) => obj[i]);
       return data.reverse();
-    };
+    }
 
  }

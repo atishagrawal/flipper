@@ -25,11 +25,9 @@ import { Customer } from '../../customers/customer';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PosSearchBarComponent implements OnInit
-{
-  @ViewChild('trigger', {static: true,read: ElementRef}) trigger: ElementRef;
+export class PosSearchBarComponent implements OnInit {
+  @ViewChild('trigger', {static: true, read: ElementRef}) trigger: ElementRef;
   formControl = new FormControl();
-  //public results: BehaviorSubject<State[]> = new BehaviorSubject([]);
   public results: Observable<any>;
   private lastQuery: string;
   public dispaly_autocomplete = false;
@@ -52,13 +50,13 @@ states2: Stock[] = [
   radius: number;
   color: string;
   warn = 'warn';
-  accent='accent';
-  primary='primary';
+  accent = 'accent';
+  primary = 'primary';
   mode = 'determinate';
-  current_order:Orders=null;
-  selectedItem=null;
-  customer:Customer=null;
-  constructor(private api: ApiPosService,private bottomSheet: MatBottomSheet,private store:Store,public currentUser: CurrentUser) {
+  current_order: Orders = null;
+  selectedItem = null;
+  customer: Customer = null;
+  constructor(private api: ApiPosService, private bottomSheet: MatBottomSheet, private store: Store, public currentUser: CurrentUser) {
     this.searchableResults();
     this.allItems();
    }
@@ -69,11 +67,11 @@ states2: Stock[] = [
       this.business = this.currentUser.get('business')[0];
       this.store.dispatch(new CurrentOrder());
 
-      this.current_order$.subscribe(current=>{
-        if(current){
-          this.current_order=current as Orders;
-        }else{
-          this.current_order=null;
+      this.current_order$.subscribe(current => {
+        if (current) {
+          this.current_order = current as Orders;
+        } else {
+          this.current_order = null;
         }
       });
     }
@@ -82,16 +80,16 @@ states2: Stock[] = [
       debounceTime(300),
       distinctUntilChanged(),
       startWith(''),
-      map(state => state ? this.openSearchPage(state): this.searchableResults())
+      map(state => state ? this.openSearchPage(state) : this.searchableResults())
     );
   }
   public executeAction(e: MatAutocompleteSelectedEvent) {
     this.trigger.nativeElement.blur();
   }
 
-  percentage(num,num1) {
-    let sum=Math.round(parseInt(num) *100)/parseInt(num1);
-  return isNaN(sum)?0:sum.toFixed(1);
+  percentage(num, num1) {
+    const sum = Math.round(parseInt(num) * 100) / parseInt(num1);
+  return isNaN(sum) ? 0 : sum.toFixed(1);
 }
   private searchableResults() {
     this.store.dispatch(new LoadSearchableStockEntries());
@@ -99,19 +97,19 @@ states2: Stock[] = [
   private allItems() {
     this.items_entries$.subscribe(res => this.states2.push(...res));
   }
-  public openSearchPage(params){
+  public openSearchPage(params) {
     this.store.dispatch(new LoadSearchableStockEntries(params));
   }
 
-  removeDups(data: Stock[]=[]) {
-    let obj = {};
-    if(data && data.length==0) return [];
+  removeDups(data: Stock[]= []) {
+    const obj = {};
+    if (data && data.length == 0) { return []; }
     data = Object.keys(data.reduce((prev, next) => {
       if (!obj[next.id]) { obj[next.id] = next; }
       return obj;
     }, obj)).map((i) => obj[i]);
     return data.reverse();
-  };
+  }
 
   public resetForm() {
     this.formControl.reset();
@@ -119,43 +117,43 @@ states2: Stock[] = [
 }
 
 
-openBottomSheet(stock_movemts,stock_name): any {
-  return this.bottomSheet.open(BottomSheetOverviewStock,{
-      data:{stock_movemts:stock_movemts,stock_name:stock_name}
+openBottomSheet(stock_movemts, stock_name): any {
+  return this.bottomSheet.open(BottomSheetOverviewStock, {
+      data: {stock_movemts: stock_movemts, stock_name: stock_name}
   });
 }
 
 addItemToCart(stock: Stock) {
-  this.selectedItem=stock;
-  if(stock['stockMovmentsTransformable'].length > 1){
-      this.openBottomSheet(stock['stockMovmentsTransformable'],stock.item.item).afterDismissed().subscribe(cart_data => {
-        this.saveToCartWithOrder(cart_data,stock);
+  this.selectedItem = stock;
+  if (stock['stockMovmentsTransformable'].length > 1) {
+      this.openBottomSheet(stock['stockMovmentsTransformable'], stock.item.item).afterDismissed().subscribe(cart_data => {
+        this.saveToCartWithOrder(cart_data, stock);
       });
-  }else{
-    this.saveToCartWithOrder(stock['stockMovmentsTransformable'][0],stock);
+  } else {
+    this.saveToCartWithOrder(stock['stockMovmentsTransformable'][0], stock);
   }
 }
 
-saveToCartWithOrder(cart,stock:Stock){
-  if (!this.business) return;
+saveToCartWithOrder(cart, stock: Stock) {
+  if (!this.business) { return; }
 
   if (cart.total_qty <= 0) {
-    alert("Stock Quantity is unavailable");
+    alert('Stock Quantity is unavailable');
   } else {
-   const sale_price=stock.customer_price;
+   const sale_price = stock.customer_price;
     const cart_data: OrderItems = {
-      batch_no:cart.batch_no,
+      batch_no: cart.batch_no,
       note: null,
       reason_id: null,
-      discount_value:stock.customer_type.discount_value,
-      tax_rate_id: stock.tax_rate?stock.tax_rate.id:null,
-      sale_price_id: sale_price?sale_price.id:null,
-      order_id: this.current_order?this.current_order.id:null,
-      stock_id: stock?stock.stock_id:null,
+      discount_value: stock.customer_type.discount_value,
+      tax_rate_id: stock.tax_rate ? stock.tax_rate.id : null,
+      sale_price_id: sale_price ? sale_price.id : null,
+      order_id: this.current_order ? this.current_order.id : null,
+      stock_id: stock ? stock.stock_id : null,
       discount_reason_id: null,
-      refund_reason_id:null,
+      refund_reason_id: null,
       qty: 1,
-      action:'add'
+      action: 'add'
     };
 
     if (this.current_order) {
@@ -165,7 +163,7 @@ saveToCartWithOrder(cart,stock:Stock){
       branch_id: parseInt(localStorage.getItem('active_branch')),
       user_id: this.currentUser.get('id'),
       business_id: this.currentUser.get('business')[0].id,
-      customer_id:this.customer?this.customer.id:null,
+      customer_id: this.customer ? this.customer.id : null,
       cart_data: cart_data });
     }
   }
@@ -173,7 +171,7 @@ saveToCartWithOrder(cart,stock:Stock){
 updateOrder(params) {
 this.api.updateOrderItem(params).subscribe(
   res => {
-      if(res['status']){
+      if (res['status']) {
          this.store.dispatch(new CurrentOrder());
       }
   },
@@ -186,7 +184,7 @@ this.api.updateOrderItem(params).subscribe(
 createNewOrder(params) {
 this.api.createOrder(params).subscribe(
   res => {
-    if(res['order']){
+    if (res['order']) {
       this.store.dispatch(new CurrentOrder());
      }
   },

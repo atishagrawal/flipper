@@ -13,7 +13,7 @@ export class LoadMoreCategoriesEntries implements LoadCategoriesEntriesAction {
   constructor(public queryParams: CategoriesApiIndexParams = {}) {  }
 }
 
-//FIXME: CategoryIdAction is used before implementation
+// FIXME: CategoryIdAction is used before implementation
 export class OpenPosCategory implements CategoryIdAction {
   static readonly type = '[CATEGORY] Open Category Entries';
   constructor(public categoryId: number, public customerTypeId: number ) {  }

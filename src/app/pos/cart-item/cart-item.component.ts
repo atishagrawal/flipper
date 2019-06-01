@@ -36,7 +36,6 @@ export class CartDialog implements OnInit {
   cart_item: OrderItems;
   status: string;
   order_items$: Observable<OrderItems[]>;
-
   centered = true;
   disabled = false;
   unbounded = false;
