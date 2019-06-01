@@ -109,13 +109,13 @@ export class PosStockStates {
       return ctx.patchState({ loading: false });
     }));
   }
-  removeDups(data: Array<any>) {
-      const obj = {};
+  removeDups(data: Stock[]=[]) {
+      let obj = {};
       data = Object.keys(data.reduce((prev, next) => {
         if (!obj[next.id]) { obj[next.id] = next; }
         return obj;
       }, obj)).map((i) => obj[i]);
       return data.reverse();
-    }
+    };
 
  }

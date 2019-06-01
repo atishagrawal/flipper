@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.20-alpha.26"></a>
+## [0.4.20-alpha.26](https://github.com/StreamUpBox/flipper/compare/v0.4.20-alpha.25...v0.4.20-alpha.26) (2019-05-31)
+
+
+
+<a name="0.4.20-alpha.25"></a>
+## [0.4.20-alpha.25](https://github.com/StreamUpBox/flipper/compare/v0.4.20-alpha.24...v0.4.20-alpha.25) (2019-05-31)
+
+
+
+<a name="0.4.20-alpha.24"></a>
+## [0.4.20-alpha.24](https://github.com/StreamUpBox/flipper/compare/v0.4.20-alpha.23...v0.4.20-alpha.24) (2019-05-31)
+
+
+
+<a name="0.4.20-alpha.23"></a>
+## [0.4.20-alpha.23](https://github.com/StreamUpBox/flipper/compare/v0.4.20-alpha.22...v0.4.20-alpha.23) (2019-05-31)
+
+
+
+<a name="0.4.20-alpha.22"></a>
+## [0.4.20-alpha.22](https://github.com/StreamUpBox/flipper/compare/v0.4.20-alpha.21...v0.4.20-alpha.22) (2019-05-31)
+
+
+
 <a name="0.4.20-alpha.21"></a>
 ## [0.4.20-alpha.21](https://github.com/StreamUpBox/flipper/compare/v0.4.20-alpha.20...v0.4.20-alpha.21) (2019-05-17)
 

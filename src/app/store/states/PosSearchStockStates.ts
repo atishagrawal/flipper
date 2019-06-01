@@ -86,7 +86,7 @@ loadSearchabletockEntries(ctx: StateContext<PosSearchStockState>, action: LoadSt
     ...action.queryParams
   });
 
-if (params.query) {
+if(params.query){
   return this.api.searchStockEntries(params).pipe(tap(response => {
     const entries = action.loadMore ? oldState.data : [];
     const state = {
@@ -138,13 +138,12 @@ if (params.query) {
 
 }
 
-removeDups(data: Array<any>) {
-    const obj = {};
-    if (data.length == 0) { return []; }
-    data = Object.keys(data.reduce((prev, next) => {
-      if (!obj[next.id]) { obj[next.id] = next; }
-      return obj;
-    }, obj)).map((i) => obj[i]);
-    return data.reverse();
-  }
+removeDups(data: Stock[]=[]) {
+  let obj = {};
+  data = Object.keys(data.reduce((prev, next) => {
+    if (!obj[next.id]) obj[next.id] = next;
+    return obj;
+  }, obj)).map((i) => obj[i]);
+  return data.reverse();
+};
  }

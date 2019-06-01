@@ -162,8 +162,8 @@ export class PosCateoriesState {
 
   }
 
-  removeDups(data: Array<any>) {
-      const obj = {};
+  removeDups(data: Category[]=[]) {
+      let obj = {};
       data = Object.keys(data.reduce((prev, next) => {
         if (!obj[next.id]) { obj[next.id] = next; }
         return obj;
